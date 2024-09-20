@@ -1,249 +1,195 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { Form, Input, Select, DatePicker, Button, Upload, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import moment from "moment";
+
+const { Option } = Select;
 
 const LeaveRequest = () => {
-  const [formData, setFormData] = useState({
-    employeeId: "",
-    phone: "",
-    leaveType: "",
-    startDate: "",
-    endDate: "",
-    justification: "",
-    justificationFile: null,
-    otherLeaveType: "",
-    requestDate: new Date().toISOString().split("T")[0], // Default to current date
-  });
-
+  const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [error, setError] = useState(null);
+  const [fileList, setFileList] = useState([]);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: files ? files[0] : value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleFinish = async (values) => {
     setSubmitting(true);
 
     const newLeaveRequest = new FormData();
-    Object.keys(formData).forEach((key) => {
-      newLeaveRequest.append(key, formData[key]);
+    Object.keys(values).forEach((key) => {
+      newLeaveRequest.append(key, values[key]);
     });
 
-    // If "Other" leave type is selected, use the value from the text input
-    if (formData.leaveType === "Other") {
-      newLeaveRequest.set("leaveType", formData.otherLeaveType);
-    }
+    // Add requestDate to FormData
+    newLeaveRequest.append("requestDate", moment().format("DD-MM-YYYY"));
 
     try {
-      const response = await axios.post(
-        "https://hr-back-end.azurewebsites.net/leave-requests",
+      await axios.post(
+        "http://localhost:3000/leave-requests",
         newLeaveRequest,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
 
-      setSubmitting(false);
-      setShowSuccessMessage(true);
-      setError(null);
-
-      // Clear form data after submission
-      setFormData({
-        employeeId: "",
-        phone: "",
-        leaveType: "",
-        startDate: "",
-        endDate: "",
-        justification: "",
-        justificationFile: null,
-        otherLeaveType: "",
-        requestDate: new Date().toISOString().split("T")[0], // Reset requestDate to current date
+      Swal.fire({
+        title: "Success!",
+        text: "Leave request submitted successfully!",
+        icon: "success",
       });
+
+      form.resetFields();
     } catch (error) {
+      console.error("Error response:", error.response);
       setError(
         error.response ? error.response.data.error : "Something went wrong!"
       );
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to submit leave request",
+        icon: "error",
+      });
+    } finally {
       setSubmitting(false);
     }
   };
 
-  const today = new Date().toISOString().split("T")[0]; // Get current date for min attribute of date inputs
+  const handleFileChange = ({ file, fileList }) => {
+    setFileList(fileList); // Update state with file list
+    if (file.status === "done") {
+      Swal.fire({
+        title: "Success!",
+        text: `${file.name} file uploaded successfully`,
+        icon: "success",
+      });
+    } else if (file.status === "error") {
+      Swal.fire({
+        title: "Error!",
+        text: `${file.name} file upload failed.`,
+        icon: "error",
+      });
+    }
+  };
 
   return (
     <div className="w-full p-4 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
-            <label className="block text-sm font-bold mb-2">
-              Serial Number
-              <span className="text-gray-500">
-                {" "}
-                (Employee ID, ID Number, M.At)
-              </span>
-              <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="employeeId"
-              value={formData.employeeId}
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
-            <label className="block text-sm font-bold mb-2">
-              Type of Leave <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="leaveType"
-              value={formData.leaveType}
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-              required
-            >
-              <option value="">-- Select --</option>
-              <option value="Wedding">Wedding</option>
-              <option value="Business">Business</option>
-              <option value="Injury">Injury</option>
-              <option value="Sick">Sick</option>
-              <option value="Maternity">Maternity</option>
-              <option value="Funeral">Funeral (Ghrama) / Explet</option>
-              <option value="Annual Leave">Annual Leave</option>
-              <option value="Compensatory">Compensatory</option>
-              <option value="Without Pay">Without Pay</option>
-              <option value="Seniority">Seniority</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-        </div>
-
-        {formData.leaveType === "Other" && (
-          <div className="flex flex-wrap -mx-3 mb-2">
-            <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
-              <label className="block text-sm font-bold mb-2">
-                Please specify the type of leave{" "}
-                <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="otherLeaveType"
-                value={formData.otherLeaveType}
-                onChange={handleChange}
-                className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-                required
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
-            <label className="block text-sm font-bold mb-2">
-              Start Date of Leave <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="date"
-              name="startDate"
-              value={formData.startDate}
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-              min={today}
-              required
-            />
-          </div>
-          <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
-            <label className="block text-sm font-bold mb-2">
-              End Date of Leave <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="date"
-              name="endDate"
-              value={formData.endDate}
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-              min={formData.startDate || today}
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full md:w-1/2 px-3 mb-2 md:mb-0">
-            <label className="block text-sm font-bold mb-2">
-              Phone (Personal Number) <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="tel"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full px-3 mb-2">
-            <label className="block text-sm font-bold mb-2">
-              Justification <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              name="justification"
-              value={formData.justification}
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-              rows="4"
-              required
-            ></textarea>
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-2">
-          <div className="w-full px-3 mb-2">
-            <label className="block text-sm font-bold mb-2">
-              Upload Justification File
-            </label>
-            <input
-              type="file"
-              name="justificationFile"
-              onChange={handleChange}
-              className="w-full p-2 pl-10 text-sm text-gray-700 border border-gray-300 rounded"
-            />
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-          disabled={submitting}
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleFinish}
+        initialValues={{ requestDate: moment().format("DD-MM-YYYY") }}
+      >
+        <Form.Item
+          name="employeeId"
+          label="Serial Number (Employee ID, ID Number, M.At)"
+          rules={[{ required: true, message: "Please enter your employee ID" }]}
         >
-          {submitting ? "Submitting..." : "Apply"}
-        </button>
+          <Input placeholder="Enter your ID" />
+        </Form.Item>
 
-        {/* Success message */}
-        {showSuccessMessage && (
-          <p className="mt-4 text-green-600">
-            Leave request submitted successfully!
-          </p>
-        )}
+        <Form.Item
+          name="leaveType"
+          label="Type of Leave"
+          rules={[{ required: true, message: "Please select leave type" }]}
+        >
+          <Select placeholder="Select a leave type">
+            <Option value="half_day">half_day</Option>
+            <Option value="Wedding">Wedding</Option>
+            <Option value="Business">Business</Option>
+            <Option value="Injury">Injury</Option>
+            <Option value="Sick">Sick</Option>
+            <Option value="Maternity">Maternity</Option>
+            <Option value="Funeral">Funeral (Ghrama) / Explet</Option>
+            <Option value="Annual Leave">Annual Leave</Option>
+            <Option value="Compensatory">Compensatory</Option>
+            <Option value="Without Pay">Without Pay</Option>
+            <Option value="Seniority">Seniority</Option>
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          name="otherLeaveType"
+          label="Please specify the type of leave"
+          hidden={form.getFieldValue("leaveType") !== "Other"}
+          rules={[
+            {
+              required: form.getFieldValue("leaveType") === "Other",
+              message: "Please specify the type of leave",
+            },
+          ]}
+        >
+          <Input placeholder="Specify the type of leave" />
+        </Form.Item>
+
+        <Form.Item
+          name="startDate"
+          label="Start Date of Leave"
+          rules={[{ required: true, message: "Please select start date" }]}
+        >
+          <DatePicker
+            format="DD-MM-YYYY"
+            disabledDate={(current) =>
+              current && current < moment().startOf("day")
+            }
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="endDate"
+          label="End Date of Leave"
+          rules={[{ required: true, message: "Please select end date" }]}
+        >
+          <DatePicker
+            format="DD-MM-YYYY"
+            disabledDate={(current) =>
+              current && current < form.getFieldValue("startDate")
+            }
+          />
+        </Form.Item>
+
+        <Form.Item
+          name="phone"
+          label="Phone (Personal Number)"
+          rules={[
+            { required: true, message: "Please enter your phone number" },
+          ]}
+        >
+          <Input type="tel" placeholder="Enter your phone number" />
+        </Form.Item>
+
+        <Form.Item
+          name="justification"
+          label="Justification"
+          rules={[{ required: true, message: "Please enter justification" }]}
+        >
+          <Input.TextArea rows={4} placeholder="Enter justification" />
+        </Form.Item>
+
+        <Form.Item name="justificationFile" label="Upload Justification File">
+          <Upload
+            accept=".pdf,.doc,.docx,.jpg,.png"
+            fileList={fileList} // Bind file list to state
+            showUploadList={true}
+            beforeUpload={() => false} // Prevent automatic upload
+            onChange={handleFileChange}
+          >
+            <Button icon={<UploadOutlined />}>Upload File</Button>
+          </Upload>
+        </Form.Item>
+
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={submitting}>
+            {submitting ? "Submitting..." : "Apply"}
+          </Button>
+        </Form.Item>
 
         {/* Error message */}
         {error && <p className="mt-4 text-red-600">{error}</p>}
-      </form>
+      </Form>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import ConfirmDialog from "./Confirmdialog"; // Import the ConfirmDialog component
-
+import ConfirmDialog from "./Confirmdialog";
+import { ArrowLeftIcon, UserIcon } from "@heroicons/react/24/outline";
 const Profile = () => {
   const [user, setUser] = useState({
     id: "",
@@ -17,7 +17,6 @@ const Profile = () => {
   const [error, setError] = useState(null);
   const [message, setMessage] = useState("");
   const [profilePhoto, setProfilePhoto] = useState(null);
-
   const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
   const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
   const [modalAction, setModalAction] = useState(() => () => {});
@@ -75,9 +74,14 @@ const Profile = () => {
         setLoading(false);
       }
     };
-
     fetchUserDetails();
   }, []);
+  useEffect(() => {
+    if (message.includes("successfully")) {
+      const timer = setTimeout(() => setMessage(""), 2000); // Clear message after 5 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -85,42 +89,40 @@ const Profile = () => {
 
   const handleProfileUpdate = async (e) => {
     e.preventDefault();
-    setModalAction(async () => {
-      setLoading(true);
-      setMessage("");
-      const formData = new FormData();
-      formData.append("profile_photo", file);
+    setLoading(true);
+    setMessage("");
 
-      try {
-        const token = localStorage.getItem("token");
-        const response = await fetch(
-          `http://localhost:3000/auth/user/${user.id}/photo`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-            body: formData,
-          }
-        );
-        if (response.ok) {
-          setMessage("Profile photo updated successfully!");
-          // Refresh the profile photo
-          const blob = await response.blob();
-          const photoUrl = URL.createObjectURL(blob);
-          setProfilePhoto(photoUrl);
-        } else {
-          const data = await response.json();
-          setMessage(data.error || "Update failed");
+    const formData = new FormData();
+    formData.append("profile_photo", file);
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        `http://localhost:3000/auth/user/${user.id}/photo`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
         }
-      } catch (error) {
-        console.error("Profile update failed:", error);
-        setMessage("Profile update failed: " + error.message);
-      } finally {
-        setLoading(false);
+      );
+
+      if (response.ok) {
+        setMessage("Profile photo updated successfully!");
+        // Refresh the profile photo
+        const updatedPhotoUrl = URL.createObjectURL(file);
+        setProfilePhoto(updatedPhotoUrl);
+      } else {
+        const data = await response.json();
+        setMessage(data.error || "Update failed");
       }
-    });
-    setIsPhotoModalOpen(true);
+    } catch (error) {
+      console.error("Profile update failed:", error);
+      setMessage("Profile update failed: " + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleInfoChange = async (e) => {
@@ -132,7 +134,7 @@ const Profile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `https://hr-back-end.azurewebsites.net/auth/user/${user.id}`,
+          `http://localhost:3000/auth/user/${user.id}`,
           {
             method: "PUT",
             headers: {
@@ -158,12 +160,22 @@ const Profile = () => {
     });
     setIsInfoModalOpen(true);
   };
+  const handleBackClick = () => {
+    window.history.back(); // Navigate to the previous page
+  };
 
   if (loading) return <p className="text-blue-500">Loading...</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="p-6 max-w-lg mx-auto bg-white rounded-lg shadow-lg">
+      <button
+        onClick={handleBackClick}
+        className="mb-4 text-gray-500 hover:text-gray-700"
+        aria-label="Back"
+      >
+        <ArrowLeftIcon className="w-6 h-6" />
+      </button>
       <h2 className="text-2xl font-semibold mb-4 text-center">
         Update Profile
       </h2>
@@ -186,7 +198,7 @@ const Profile = () => {
             className="w-32 h-32 rounded-full mb-4 object-cover"
           />
         ) : (
-          "/avatar.jpg"
+          <UserIcon className="h-16 w-16 text-gray-700" />
         )}
         <form onSubmit={handleProfileUpdate} className="mb-4">
           <input

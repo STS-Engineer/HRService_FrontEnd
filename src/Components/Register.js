@@ -10,24 +10,23 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const [plant_connection, setPlantConnection] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://hr-back-end.azurewebsites.net/auth/register",
-        {
-          firstname,
-          lastname,
-          function: userFunction,
-          department,
-          email,
-          password,
-          role,
-        }
-      );
+      const response = await axios.post("http://localhost:3000/auth/register", {
+        firstname,
+        lastname,
+        function: userFunction,
+        department,
+        email,
+        password,
+        role,
+        plant_connection,
+      });
       console.log("Response data:", response.data); // Log response data
       if (response.status === 201) {
         navigate("/login");
@@ -162,6 +161,31 @@ const Register = () => {
                   <option value="EMPLOYEE">Employee</option>
                   <option value="MANAGER">Manager</option>
                   <option value="HRMANAGER">HR Manager</option>
+                  <option value="PLANT_MANAGER">PLANT Manager</option>
+                  <option value="CEO">CEO</option>
+                </select>
+              </div>
+              <div>
+                <label htmlFor="plant_connection" className="sr-only">
+                  Plant connection
+                </label>
+                <select
+                  id="plant_connection"
+                  name="plant_connection"
+                  value={plant_connection}
+                  onChange={(e) => setPlantConnection(e.target.value)}
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                >
+                  <option value="">Select Plant</option>
+                  <option value="AVOCarbon Kunshan">AVOCarbon Kunshan</option>
+                  <option value="AVOCarbon Tianjin">AVOCarbon Tianjin</option>
+                  <option value="AVOCarbon France ">AVOCarbon France </option>
+                  <option value="Cyclam">Cyclam</option>
+                  <option value="AVOCarbon Germany">AVOCarbon Germany</option>
+                  <option value="AVOCarbon India">AVOCarbon India</option>
+                  <option value="AVOCarbon Korea">AVOCarbon Korea</option>
+                  <option value="AVOCarbon Tunisia ">AVOCarbon Tunisia </option>
                 </select>
               </div>
             </div>

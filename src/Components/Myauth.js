@@ -14,7 +14,7 @@ const MyAuth = ({ user }) => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await fetch(
-          `https://hr-back-end.azurewebsites.net/authorization-requests/employee/${user.id}`,
+          `http://localhost:3000/authorization-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

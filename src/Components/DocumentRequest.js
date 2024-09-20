@@ -1,56 +1,47 @@
 import React, { useState } from "react";
+import { Form, Input, Button, Select, message } from "antd";
 import axios from "axios";
+import Swal from "sweetalert2";
+
+const { Option } = Select;
 
 const DocumentRequest = () => {
-  const [formData, setFormData] = useState({
-    employeeId: "",
-    documentType: "",
-    otherDocumentType: "",
-    documentPurpose: "",
-  });
-
+  const [form] = Form.useForm(); // Ant Design form instance
   const [submitting, setSubmitting] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (values) => {
     setSubmitting(true);
 
     const newDocumentRequest = {
-      employee_id: formData.employeeId,
+      employee_id: values.employeeId,
       document_type:
-        formData.documentType === "other"
-          ? formData.otherDocumentType
-          : formData.documentType,
-      additional_info: formData.documentPurpose,
+        values.documentType === "other"
+          ? values.otherDocumentType
+          : values.documentType,
+      additional_info: values.documentPurpose,
     };
 
     try {
       await axios.post(
-        "https://hr-back-end.azurewebsites.net/document-requests",
+        "http://localhost:3000/document-requests",
         newDocumentRequest
       );
 
-      setFormData({
-        employeeId: "",
-        documentType: "",
-        otherDocumentType: "",
-        documentPurpose: "",
+      // Success alert using SweetAlert
+      Swal.fire({
+        icon: "success",
+        title: "Document request submitted successfully!",
+        showConfirmButton: false,
+        timer: 2000,
       });
 
-      setShowSuccessMessage(true);
-      setTimeout(() => setShowSuccessMessage(false), 3000);
+      form.resetFields(); // Reset the form after successful submission
     } catch (err) {
-      setError("Failed to submit document request. Please try again.");
+      // Error alert using SweetAlert
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Failed to submit document request. Please try again.",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -58,96 +49,75 @@ const DocumentRequest = () => {
 
   return (
     <div className="w-full p-4 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="flex flex-wrap -mx-3 mb-4">
-          <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-sm font-bold mb-2">
-              Serial Number
-              <span className="text-gray-500">
-                {" "}
-                (Employee ID, ID Number, M.At)
-              </span>
-              <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              name="employeeId"
-              value={formData.employeeId}
-              onChange={handleChange}
-              className="w-full p-2 text-sm text-gray-700 border border-gray-300 rounded"
-              required
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap -mx-3 mb-4">
-          <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-sm font-bold mb-2">
-              Type of Document <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="documentType"
-              value={formData.documentType}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-              required
-            >
-              <option value="">-- Select --</option>
-              <option value="salary-certificate">Salary Certificate</option>
-              <option value="work-certificate">Work Certificate</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-
-        {formData.documentType === "other" && (
-          <div className="flex flex-wrap -mx-3 mb-4">
-            <div className="w-full md:w-1/2 px-3 mb-2">
-              <label className="block text-sm font-bold mb-2">
-                Please specify
-              </label>
-              <input
-                type="text"
-                name="otherDocumentType"
-                value={formData.otherDocumentType}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded"
-                required
-              />
-            </div>
-          </div>
-        )}
-
-        <div className="flex flex-wrap -mx-3 mb-4">
-          <div className="w-full md:w-1/2 px-3 mb-2">
-            <label className="block text-sm font-bold mb-2">
-              Document Purpose
-            </label>
-            <input
-              type="text"
-              name="documentPurpose"
-              value={formData.documentPurpose}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
-            />
-          </div>
-        </div>
-
-        <button
-          type="submit"
-          className="bg-green-500 text-white p-2 rounded"
-          disabled={submitting}
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={handleSubmit}
+        className="space-y-4"
+      >
+        {/* Employee ID */}
+        <Form.Item
+          label="Serial Number (Employee ID, ID Number, M.At)"
+          name="employeeId"
+          rules={[
+            { required: true, message: "Please input your employee ID!" },
+          ]}
         >
-          {submitting ? "Submitting..." : "Apply"}
-        </button>
+          <Input placeholder="Enter your Employee ID" />
+        </Form.Item>
 
-        {showSuccessMessage && (
-          <p className="text-green-500 mt-2">
-            Document request submitted successfully!
-          </p>
-        )}
-        {error && <p className="text-red-500 mt-2">{error}</p>}
-      </form>
+        {/* Document Type */}
+        <Form.Item
+          label="Type of Document"
+          name="documentType"
+          rules={[
+            { required: true, message: "Please select a document type!" },
+          ]}
+        >
+          <Select placeholder="Select Document Type">
+            <Option value="salary-certificate">Salary Certificate</Option>
+            <Option value="work-certificate">Work Certificate</Option>
+            <Option value="other">Other</Option>
+          </Select>
+        </Form.Item>
+
+        {/* Other Document Type (shown only if 'Other' is selected) */}
+        <Form.Item
+          noStyle
+          shouldUpdate={(prevValues, currentValues) =>
+            prevValues.documentType !== currentValues.documentType
+          }
+        >
+          {({ getFieldValue }) =>
+            getFieldValue("documentType") === "other" ? (
+              <Form.Item
+                label="Please Specify"
+                name="otherDocumentType"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please specify the document type!",
+                  },
+                ]}
+              >
+                <Input placeholder="Specify the document type" />
+              </Form.Item>
+            ) : null
+          }
+        </Form.Item>
+
+        {/* Document Purpose */}
+        <Form.Item label="Document Purpose" name="documentPurpose">
+          <Input placeholder="Enter the purpose of the document" />
+        </Form.Item>
+
+        {/* Submit Button */}
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={submitting}>
+            {submitting ? "Submitting..." : "Apply"}
+          </Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 };

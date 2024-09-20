@@ -28,6 +28,13 @@ import DocumentRequest from "./Components/DocumentRequest";
 import MyDoc from "./Components/Mydoc";
 import DocumentAdmin from "./Components/DocAdmin";
 import Profile from "./Components/profile";
+import Notifications from "./Components/Notifications";
+import ChangePassword from "./Components/ChangePassword";
+import Requets from "./Components/ApplyForRequest";
+import DemandsPage from "./Components/Mydemands";
+import SidebarHR from "./Components/SideBarHR";
+import EmployeeManagement from "./Components/EmployeeManagement";
+import AddEmployee from "./Components/AddEmployee";
 
 const App = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -153,6 +160,21 @@ const App = () => {
           }
         />
         <Route
+          path="/document-request-admin"
+          element={
+            <div className="flex h-screen">
+              <SideBarAdmin />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <DocumentRequest onSubmit={handleDocumentRequest} />
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
           path="/document-request"
           element={
             <div className="flex h-screen">
@@ -175,8 +197,22 @@ const App = () => {
               <div className="flex-1 flex flex-col">
                 <TopBar />
                 <div className="flex-1 overflow-auto p-4">
-                  <MyDoc employeeId="example-employee-id" />{" "}
-                  {/* Replace with actual employee ID */}
+                  <MyDoc employeeId="" />{" "}
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/leave-request-admin"
+          element={
+            <div className="flex h-screen">
+              <SideBarAdmin />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <LeaveRequest onSubmit={handleLeaveRequest} />
                 </div>
                 <Footer />
               </div>
@@ -200,6 +236,21 @@ const App = () => {
           }
         />
         <Route
+          path="/mission-request-admin"
+          element={
+            <div className="flex h-screen">
+              <SideBarAdmin />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <MissionRequest onSubmit={handleMissionRequest} />
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
           path="/mission-request"
           element={
             <div className="flex h-screen">
@@ -208,6 +259,37 @@ const App = () => {
                 <TopBar />
                 <div className="flex-1 overflow-auto p-4">
                   <MissionRequest onSubmit={handleMissionRequest} />
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/auth-request-admin"
+          element={
+            <div className="flex h-screen">
+              <SideBarAdmin />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <AuthRequest onSubmit={handleAuthRequest} />{" "}
+                  {/* Corrected component */}
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/demands"
+          element={
+            <div className="flex h-screen">
+              <SideBarAdmin />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <DemandsPage /> {/* Corrected component */}
                 </div>
                 <Footer />
               </div>
@@ -231,7 +313,9 @@ const App = () => {
           }
         />
         <Route path="/home" element={<Home />} />
+        <Route path="/requests" element={<Requets />} />
         <Route path="/home-admin" element={<HomeAdmin />} />
+
         <Route
           path="/my-leave"
           element={<MyLeave leaveRequests={leaveRequests} />}
@@ -252,6 +336,50 @@ const App = () => {
                 <TopBar />
                 <div className="flex-1 overflow-auto p-4">
                   <Profile />
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/change-password"
+          element={
+            <div className="flex h-screen">
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <ChangePassword />
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/employee-management"
+          element={
+            <div className="flex h-screen">
+              <SidebarHR />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <EmployeeManagement />
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+        <Route
+          path="/add-employee"
+          element={
+            <div className="flex h-screen">
+              <SidebarHR />
+              <div className="flex-1 flex flex-col">
+                <TopBar />
+                <div className="flex-1 overflow-auto p-4">
+                  <AddEmployee />
                 </div>
                 <Footer />
               </div>

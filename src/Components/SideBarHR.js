@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  BsHouseDoorFill,
-  BsClipboardCheck,
-  BsChatLeftTextFill,
-  BsBarChartFill,
-} from "react-icons/bs";
+import { BsHouseDoorFill, BsPeopleFill, BsBarChartFill } from "react-icons/bs";
 
-const SideBarAdmin = () => {
-  const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
+const SidebarHR = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex h-screen">
@@ -47,7 +42,7 @@ const SideBarAdmin = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg rounded-xl transform ${
+        className={`fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`} // Increased z-index for sidebar
       >
@@ -78,47 +73,31 @@ const SideBarAdmin = () => {
         {/* Logo or Branding */}
         <div className="p-4 flex items-center justify-center md:justify-start lg:justify-center mt-10">
           <img
-            src="image.png"
+            src="image.png" // Make sure to replace this with the actual logo file path
             alt="Logo"
             className="h-20 mb-5 mx-auto md:mx-0"
           />
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 px-4">
+        <nav className="flex-1 px-4 py-6">
           <ul>
             <li className="my-2">
               <Link
-                to="/home-admin" // Navigate to /home-admin route
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
-              >
-                <BsHouseDoorFill className="mr-2" /> Home Admin
-              </Link>
-            </li>
-            <li className="my-2">
-              <Link
-                to="/requests"
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
-              >
-                <BsClipboardCheck className="mr-2" /> Apply for Requests
-              </Link>
-            </li>
-            <li className="my-2">
-              <Link
-                to="/demands" // Navigate to /demands route
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
-              >
-                <BsChatLeftTextFill className="mr-2" /> Consult Demands
-              </Link>
-            </li>
-            {/* <li className="my-2">
-              <Link
-                to="/dashboard"
+                to="/home-rh"
                 className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
               >
-                <BsBarChartFill className="mr-3 text-lg" /> Dashboard
+                <BsHouseDoorFill className="mr-3 text-lg" /> Home
               </Link>
-            </li> */}
+            </li>
+            <li className="my-2">
+              <Link
+                to="/employee-management"
+                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+              >
+                <BsPeopleFill className="mr-3 text-lg" /> Employee Management
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -135,4 +114,4 @@ const SideBarAdmin = () => {
   );
 };
 
-export default SideBarAdmin;
+export default SidebarHR;

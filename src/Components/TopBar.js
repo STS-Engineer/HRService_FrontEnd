@@ -5,6 +5,7 @@ import {
   BellIcon,
   UserIcon,
   ArrowRightOnRectangleIcon,
+  LockClosedIcon,
 } from "@heroicons/react/24/outline";
 
 const TopBar = () => {
@@ -86,6 +87,9 @@ const TopBar = () => {
     // Perform any logout logic here
     navigate("/login");
   };
+  const handleChangePassword = () => {
+    navigate("/change-password");
+  };
 
   const getTitle = () => {};
 
@@ -141,6 +145,19 @@ const TopBar = () => {
                     <UserIcon className="mr-2 h-5 w-5 text-gray-500" />
                     Profile
                   </a>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    onClick={handleChangePassword}
+                    className={`${
+                      active ? "bg-gray-100" : ""
+                    } flex items-center w-full px-4 py-2 text-sm text-gray-700`}
+                  >
+                    <LockClosedIcon className="mr-2 h-5 w-5 text-gray-500" />
+                    Change Password
+                  </button>
                 )}
               </Menu.Item>
               <Menu.Item>

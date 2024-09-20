@@ -6,6 +6,7 @@ import {
   BsBriefcaseFill,
   BsShieldLockFill,
   BsFileEarmarkFill,
+  BsBarChartFill,
 } from "react-icons/bs";
 
 const Sidebar = () => {
@@ -60,7 +61,20 @@ const Sidebar = () => {
           aria-controls="mobile-navigation"
           aria-label="Close Navigation Menu"
         >
-          Close
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
         </button>
 
         {/* Logo or Branding */}
@@ -115,6 +129,14 @@ const Sidebar = () => {
                 <BsFileEarmarkFill className="mr-3 text-lg" /> My Documents
               </Link>
             </li>
+            {/* <li className="my-2">
+              <Link
+                to="/dashboard"
+                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+              >
+                <BsBarChartFill className="mr-3 text-lg" /> Dashboard
+              </Link>
+            </li> */}
           </ul>
         </nav>
       </div>

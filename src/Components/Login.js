@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Form, Input, Button, Checkbox, Typography } from "antd";
+import Swal from "sweetalert2"; // Import SweetAlert
+import "antd/dist/reset.css";
+
+const { Title } = Typography;
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-  const [showError, setShowError] = useState(false);
-  const [userName, setUserName] = useState(""); // State to store user's first and last name
-  const navigate = useNavigate();
+  const [rememberMe, setRememberMe] = useState(false);
   const [welcomeText, setWelcomeText] = useState("");
-  const welcomeMessage = "Welcome to AVOCarbon LEAVE Management";
+  const navigate = useNavigate();
+
+  const welcomeMessage = "Welcome to AVOCarbon HR Service";
 
   useEffect(() => {
     let currentIndex = 0;
@@ -20,55 +23,74 @@ const Login = () => {
         setWelcomeText(welcomeMessage.substring(0, currentIndex));
         currentIndex++;
       } else {
-        clearInterval(interval);
+        setTimeout(() => {
+          currentIndex = 0;
+          setWelcomeText("");
+        }, 3500);
       }
     }, 100);
+
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErrorMessage(""); // Clear previous error message
-    setShowError(false); // Hide the previous error message if visible
-
+  const handleSubmit = async (values) => {
     try {
-      const response = await axios.post(
-        "https://hr-back-end.azurewebsites.net/auth/login",
-        {
-          email: username,
-          password: password,
-        }
-      );
-      console.log("Response data:", response.data); // Log response data
+      const response = await axios.post("http://localhost:3000/auth/login", {
+        email: values.username,
+        password: values.password,
+      });
+
       if (response.data.token && response.data.user) {
-        localStorage.setItem("token", response.data.token);
+        const { firstname, role } = response.data.user;
+        // Store token and user data
+        if (rememberMe) {
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("username", values.username);
+          localStorage.setItem("password", values.password);
+        } else {
+          sessionStorage.setItem("token", response.data.token);
+          localStorage.removeItem("username");
+          localStorage.removeItem("password");
+        }
+        console.log(response.data);
+
         localStorage.setItem("user", JSON.stringify(response.data.user));
+        // Show success notification using SweetAlert
+        Swal.fire({
+          icon: "success",
+          title: "Login Successful",
+          text: `Welcome back !`,
+          timer: 1500,
+          showConfirmButton: false,
+        });
+
         const userRole = response.data.user.role;
-        setRole(userRole);
-        setUserName(
-          `${response.data.user.firstName} ${response.data.user.lastName}`
-        ); // Set user's first and last name
         navigate(`/${getRedirectPath(userRole)}`);
       } else {
-        setErrorMessage("Invalid Credentials. Please try again.");
-        setShowError(true); // Show the error message
+        Swal.fire("Invalid Credentials", "Please try again", "error"); // SweetAlert for error
       }
     } catch (error) {
-      console.error("Error logging in:", error);
-      setErrorMessage("Password Incorrect. Please try again.");
-      setShowError(true); // Show the error message
+      Swal.fire(
+        "Login Failed",
+        "Password incorrect. Please try again",
+        "error"
+      ); // SweetAlert for error
     }
   };
 
   useEffect(() => {
-    if (showError) {
-      const timer = setTimeout(() => {
-        setShowError(false);
-      }, 1500);
+    const savedRememberMe = localStorage.getItem("rememberMe") === "true";
+    if (savedRememberMe) {
+      const savedUsername = localStorage.getItem("username");
+      const savedPassword = localStorage.getItem("password");
 
-      return () => clearTimeout(timer); // Clear the timeout if the component unmounts
+      if (savedUsername && savedPassword) {
+        setUsername(savedUsername);
+        setPassword(savedPassword);
+        setRememberMe(true);
+      }
     }
-  }, [showError]);
+  }, []);
 
   const getRedirectPath = (role) => {
     switch (role) {
@@ -86,7 +108,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-orange-500 p-4 sm:p-6 lg:p-8">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-orange-500 p-4">
       <div className="background-svg">
         <div className="absolute top-4 left-4">
           <img
@@ -96,83 +118,77 @@ const Login = () => {
           />
         </div>
       </div>
+
       <div className="login-container">
         <div className="text-center text-orange-500 text-2xl font-bold mb-6">
           {welcomeText}
         </div>
-        <h2 className="text-center text-2xl font-bold mb-6">Sign In</h2>
-        {showError && (
-          <div
-            className={`transition-opacity duration-200 ease-in-out ${
-              showError ? "opacity-100" : "opacity-0"
-            } bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4`}
-            role="alert"
+        <Title level={2} className="text-center">
+          Sign In
+        </Title>
+
+        <Form
+          name="login_form"
+          layout="vertical"
+          onFinish={handleSubmit}
+          initialValues={{ remember: rememberMe }}
+          className="login-form"
+        >
+          <Form.Item
+            label="Email"
+            name="username"
+            rules={[{ required: true, message: "Please input your email!" }]}
           >
-            <p>{errorMessage}</p>
-          </div>
-        )}
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
-                placeholder="Email"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-          </div>
+            <Input
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Email"
+            />
+          </Form.Item>
 
-          <div>
-            <button
-              type="submit"
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+            />
+          </Form.Item>
+
+          <Form.Item>
+            <Checkbox
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
             >
-              SIGN IN
-            </button>
-            <div className="flex items-center justify-between mt-4">
-              <div className="text-sm">
-                <a
-                  href="/reset-password"
-                  className="font-medium text-gray-500 hover:text-orange-500"
-                >
-                  Forgot your password?{" "}
-                  <span className="underline">Reset Password</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </form>
+              Remember me
+            </Checkbox>
+          </Form.Item>
 
-        {userName && ( // Conditionally render the welcome message
-          <div className="mt-8 text-center text-lg font-bold text-green-600">
-            Welcome, {userName}!
-          </div>
-        )}
+          <Form.Item>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="login-form-button"
+              block
+            >
+              Sign In
+            </Button>
+          </Form.Item>
+        </Form>
 
-        <div className="mt-8">
+        <div className="text-center mt-4">
+          <a
+            href="/reset-password"
+            className="font-medium text-gray-500 hover:text-orange-500"
+          >
+            Forgot your password? Reset Password
+          </a>
+        </div>
+
+        {/* <div className="mt-8">
           <p className="text-center text-sm font-medium text-gray-700">
             Don't have an account?{" "}
             <a
@@ -182,7 +198,7 @@ const Login = () => {
               Register here
             </a>
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div
