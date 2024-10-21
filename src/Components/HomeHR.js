@@ -27,19 +27,19 @@ const HomeHR = () => {
       const token = localStorage.getItem("token");
       try {
         const leaveRequestsResponse = await axios.get(
-          "http://bhr-avocarbon.azurewebsites.net/leave-requests/all",
+          "https://bhr-avocarbon.azurewebsites.net/leave-requests/all",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         const missionRequestsResponse = await axios.get(
-          "http://bhr-avocarbon.azurewebsites.net/mission-requests/all",
+          "https://bhr-avocarbon.azurewebsites.net/mission-requests/all",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         const authorizationRequestsResponse = await axios.get(
-          "http://bhr-avocarbon.azurewebsites.net/authorization-requests/all",
+          "https://bhr-avocarbon.azurewebsites.net/authorization-requests/all",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
