@@ -19,7 +19,7 @@ const EmployeeManagement = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://bhr-avocarbon.azurewebsites.net/auth/employees-by-plant",
+          "https://bhr-avocarbon.azurewebsites.net/auth/employees-by-plant",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -52,7 +52,7 @@ const EmployeeManagement = () => {
         const token = localStorage.getItem("token");
 
         // Make the delete request to the API
-        await axios.delete(`http://bhr-avocarbon.azurewebsites.net/users/${id}`, {
+        await axios.delete(`https://bhr-avocarbon.azurewebsites.net/users/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -211,7 +211,7 @@ const EditEmployeeForm = ({ record, onClose, onUpdate }) => {
 
       // Send the PUT request to update the employee details
       const response = await axios.put(
-        `http://bhr-avocarbon.azurewebsites.net/auth/user/${record.id}`,
+        `https://bhr-avocarbon.azurewebsites.net/auth/user/${record.id}`,
         values,
         {
           headers: {
