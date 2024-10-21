@@ -22,7 +22,7 @@ const DashboardAdmin = () => {
     const fetchRequests = () => {
       const token = localStorage.getItem("token");
       fetch(
-        `bhr-avocarbon.azurewebsites.netleave-requests?page=${currentPage}&limit=${requestsPerPage}`,
+        `bhr-avocarbon.azurewebsites.net/leave-requests?page=${currentPage}&limit=${requestsPerPage}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const DashboardAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`bhr-avocarbon.azurewebsites.netleave-requests/${id}`, {
+        fetch(`bhr-avocarbon.azurewebsites.net/leave-requests/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -102,7 +102,7 @@ const DashboardAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`bhr-avocarbon.azurewebsites.netleave-requests/${id}`, {
+        fetch(`bhr-avocarbon.azurewebsites.net/leave-requests/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -199,7 +199,7 @@ const DashboardAdmin = () => {
                     content: (
                       <div>
                         <iframe
-                          src={`bhr-avocarbon.azurewebsites.netuploads/${record.justificationfile}`}
+                          src={`bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`}
                           style={{
                             width: "100%",
                             height: "500px",
@@ -212,7 +212,7 @@ const DashboardAdmin = () => {
                             icon={<AiOutlineDownload />}
                             onClick={() =>
                               handleFileDownload(
-                                `bhr-avocarbon.azurewebsites.netuploads/${record.justificationfile}`,
+                                `bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`,
                                 record.justificationfile
                               )
                             }
