@@ -210,12 +210,12 @@ const DashboardAdmin = () => {
                         <div className="mt-2 flex items-center">
                           <Button
                             icon={<AiOutlineDownload />}
-                            onClick={() =>
+                            onClick={() => (
                               handleFileDownload(
                                 `https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}',
                                 record.justificationfile
                               )
-                            }
+                            )}
                             className="mr-2"
                           >
                             Download
