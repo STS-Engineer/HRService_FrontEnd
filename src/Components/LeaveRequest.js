@@ -37,7 +37,7 @@ const LeaveRequest = ({ employeeId }) => {
 
     try {
       await axios.post(
-        "http://localhost:3000/leave-requests",
+        "http://bhr-avocarbon.azurewebsites.net/leave-requests",
         newLeaveRequest,
         {
           headers: {
