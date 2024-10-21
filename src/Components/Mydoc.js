@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Table, Tag, Button, Spin, Alert, message, Modal } from "antd";
 import { FaDownload } from "react-icons/fa";
+import Swal from "sweetalert2";
+import "antd/dist/reset.css"; // Ant Design styles
 
 const MyDoc = ({ user }) => {
   const [documentRequests, setDocumentRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const handleGetAllDocumentRequests = async () => {
@@ -12,7 +17,6 @@ const MyDoc = ({ user }) => {
       try {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
-        console.log("User:", user); // Debug line
         const response = await fetch(
           `http://localhost:3000/document-requests/${user.id}`,
           {
@@ -22,89 +26,129 @@ const MyDoc = ({ user }) => {
           }
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch doc requests");
+          throw new Error("Failed to fetch document requests");
         }
         const data = await response.json();
-        console.log("Fetched documents:", data); // Debug line
         setDocumentRequests(data);
         setError(null);
       } catch (error) {
-        console.error("Error fetching doc requests:", error);
-        setError(error.message || "Failed to fetch doc requests");
+        setError(error.message || "Failed to fetch document requests");
+        Swal.fire("Error", error.message, "error");
       } finally {
         setLoading(false);
       }
     };
     handleGetAllDocumentRequests();
   }, []);
+  const showDeleteConfirm = (id) => {
+    setDeleteId(id);
+    setIsModalVisible(true);
+  };
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await fetch(`http://localhost:3000/document-requests/${deleteId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      message.success("Document request deleted successfully.");
+      setDocumentRequests((prevRequests) =>
+        prevRequests.filter((request) => request.id !== deleteId)
+      );
+      setIsModalVisible(false);
+      setDeleteId(null);
+    } catch (error) {
+      message.error("Failed to delete document request.");
+      console.error("Error deleting document request:", error);
+    }
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    setDeleteId(null);
+  };
+  const columns = [
+    {
+      title: "Document Type",
+      dataIndex: "document_type",
+      key: "document_type",
+      render: (text) => text || "N/A",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: (status) => (
+        <Tag
+          color={
+            status === "Pending"
+              ? "gold"
+              : status === "Completed"
+              ? "green"
+              : "red"
+          }
+        >
+          {status.toUpperCase()}
+        </Tag>
+      ),
+    },
+    {
+      title: "Download",
+      key: "download",
+      render: (doc) =>
+        doc.file_path ? (
+          <Button
+            type="primary"
+            icon={<FaDownload />}
+            onClick={() => {
+              window.location.href = `http://localhost:3000/document-requests/download/${doc.file_path}`;
+            }}
+          >
+            Download
+          </Button>
+        ) : (
+          <span>No file available</span>
+        ),
+    },
+    ,
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Button danger onClick={() => showDeleteConfirm(record.id)}>
+          Delete
+        </Button>
+      ),
+    },
+  ];
 
   return (
-    <div className="p-4">
+    <div className="p4">
       {loading ? (
-        <p>Loading...</p>
+        <Spin size="large" />
       ) : error ? (
         <p className="text-red-500">{error}</p>
-      ) : documentRequests.length > 0 ? (
-        <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Document Type
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Download
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
-              {documentRequests.map((doc) => (
-                <tr key={doc.id}>
-                  {" "}
-                  {/* Use doc.id for unique key */}
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                    {doc.document_type || "N/A"}{" "}
-                    {/* Match field name from API */}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                    <span
-                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                        doc.status === "Pending"
-                          ? "bg-yellow-400 text-white"
-                          : doc.status === "Completed"
-                          ? "bg-green-400 text-white"
-                          : "bg-red-400 text-white"
-                      }`}
-                    >
-                      {doc.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {doc.file_path ? (
-                      <a
-                        href={`https://hr-back-end.azurewebsites.net/document-requests/download/${doc.file_path}`}
-                        download
-                        className="text-blue-500 hover:text-blue-700"
-                      >
-                        <FaDownload className="inline-block mr-2" />
-                        Download
-                      </a>
-                    ) : (
-                      <p>No file available</p>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
       ) : (
-        <p className="text-lg text-gray-500">
-          There are no documents available for this employee.
-        </p>
+        <>
+          <Table
+            columns={columns}
+            dataSource={documentRequests}
+            rowKey="id"
+            pagination={{ pageSize: 5 }}
+            bordered
+          />
+          <Modal
+            title="Delete Confirmation"
+            visible={isModalVisible}
+            onOk={handleDelete}
+            onCancel={handleCancel}
+            okText="Yes, Delete"
+            cancelText="Cancel"
+          >
+            <p>Are you sure you want to delete this documet request?</p>
+          </Modal>
+        </>
       )}
     </div>
   );

@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BsHouseDoorFill, BsPeopleFill, BsBarChartFill } from "react-icons/bs";
+import {
+  BsHouseDoorFill,
+  BsPeopleFill,
+  // BsClipboardCheck,
+  // BsChatLeftTextFill,
+  BsBarChartFill,
+} from "react-icons/bs";
+
+import { FaFileAlt } from "react-icons/fa";
 
 const SidebarHR = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
 
   return (
     <div className="flex h-screen">
@@ -42,9 +50,9 @@ const SidebarHR = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg transform ${
+        className={`fixed inset-y-0 left-0 w-64 bg-white text-gray-700 shadow-2xl rounded-r-2xl transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`} // Increased z-index for sidebar
+        } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`}
       >
         {/* Close Button for Mobile */}
         <button
@@ -71,21 +79,21 @@ const SidebarHR = () => {
         </button>
 
         {/* Logo or Branding */}
-        <div className="p-4 flex items-center justify-center md:justify-start lg:justify-center mt-10">
+        <div className="p-4 flex items-center justify-center mt-10">
           <img
-            src="image.png" // Make sure to replace this with the actual logo file path
+            src="image.png"
             alt="Logo"
-            className="h-20 mb-5 mx-auto md:mx-0"
+            className="h-20 mb-5  border-2 border-gray-300 shadow-lg"
           />
         </div>
 
         {/* Navigation Links */}
         <nav className="flex-1 px-4 py-6">
-          <ul>
+          <ul className="space-y-6">
             <li className="my-2">
               <Link
                 to="/home-rh"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
                 <BsHouseDoorFill className="mr-3 text-lg" /> Home
               </Link>
@@ -93,16 +101,48 @@ const SidebarHR = () => {
             <li className="my-2">
               <Link
                 to="/employee-management"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
                 <BsPeopleFill className="mr-3 text-lg" /> Employee Management
               </Link>
             </li>
+
+            <li className="my-2">
+              <Link
+                to="/RH-dashboard"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsBarChartFill className="mr-3 text-lg" /> Dashboard
+              </Link>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/Dispatch-SalaryCertificate"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <FaFileAlt className="mr-3 text-lg" /> Salary Certificate
+              </Link>
+            </li>
+            {/* <li className="my-2">
+              <Link
+                to="/requests-RH"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsClipboardCheck className="mr-2" /> Apply for Requests
+              </Link>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/demands-RH"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsChatLeftTextFill className="mr-2" /> Consult Demands
+              </Link>
+            </li> */}
           </ul>
         </nav>
       </div>
 
-      {/* Overlay for Mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-20" // Covers entire screen with opacity

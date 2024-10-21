@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { Form, Input, Select, DatePicker, Button, Upload, message } from "antd";
+import { Form, Input, Select, DatePicker, Button, Upload } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import moment from "moment";
 
 const { Option } = Select;
 
-const LeaveRequest = () => {
+const LeaveRequest = ({ employeeId }) => {
   const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -17,9 +17,20 @@ const LeaveRequest = () => {
     setSubmitting(true);
 
     const newLeaveRequest = new FormData();
-    Object.keys(values).forEach((key) => {
-      newLeaveRequest.append(key, values[key]);
+    // Convert moment objects (startDate, endDate) to 'YYYY-MM-DD' format
+    const formattedValues = {
+      ...values,
+      startDate: values.startDate.format("YYYY-MM-DD"),
+      endDate: values.endDate.format("YYYY-MM-DD"),
+    };
+    Object.keys(formattedValues).forEach((key) => {
+      newLeaveRequest.append(key, formattedValues[key]);
     });
+
+    // Append the justification file if it exists
+    if (fileList.length > 0) {
+      newLeaveRequest.append("justificationFile", fileList[0].originFileObj); // Get the file object
+    }
 
     // Add requestDate to FormData
     newLeaveRequest.append("requestDate", moment().format("DD-MM-YYYY"));
@@ -43,6 +54,7 @@ const LeaveRequest = () => {
       });
 
       form.resetFields();
+      setFileList([]); // Clear the file list after submission
     } catch (error) {
       console.error("Error response:", error.response);
       setError(
@@ -86,9 +98,9 @@ const LeaveRequest = () => {
         <Form.Item
           name="employeeId"
           label="Serial Number (Employee ID, ID Number, M.At)"
-          rules={[{ required: true, message: "Please enter your employee ID" }]}
+          rules={[{ required: true, message: "Please enter your  ID" }]}
         >
-          <Input placeholder="Enter your ID" />
+          <Input placeholder="Enter your  ID" />
         </Form.Item>
 
         <Form.Item
@@ -97,7 +109,7 @@ const LeaveRequest = () => {
           rules={[{ required: true, message: "Please select leave type" }]}
         >
           <Select placeholder="Select a leave type">
-            <Option value="half_day">half_day</Option>
+            <Option value="half_day">Half Day</Option>
             <Option value="Wedding">Wedding</Option>
             <Option value="Business">Business</Option>
             <Option value="Injury">Injury</Option>

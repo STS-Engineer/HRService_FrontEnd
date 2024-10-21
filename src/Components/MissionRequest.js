@@ -24,17 +24,19 @@ const MissionRequest = () => {
         values.missionBudget.replace(/[^\d.-]/g, "")
       );
 
-      const newMissionRequest = {
+      // Format startDate and endDate to 'YYYY-MM-DD'
+      const formattedValues = {
         ...values,
+        startDate: values.startDate.format("YYYY-MM-DD"),
+        endDate: values.endDate.format("YYYY-MM-DD"),
         missionBudget: numericBudget,
         status: "Pending",
-        requestDate: moment().format("DD-MM-YYYY"),
+        requestDate: moment().format("YYYY-MM-DD"),
       };
-
       // POST request to API
       await axios.post(
         "http://localhost:3000/mission-requests",
-        newMissionRequest,
+        formattedValues,
         {
           headers: {
             "Content-Type": "application/json",
@@ -72,78 +74,79 @@ const MissionRequest = () => {
   };
 
   return (
-    <Form form={form} layout="vertical" onFinish={handleSubmit}>
-      {/* Serial Number (Employee ID, ID Number, M.At) */}
-      <Form.Item
-        label="Serial Number (Employee ID, ID Number, M.At)"
-        name="employeeId"
-        rules={[{ required: true, message: "Please enter Employee ID" }]}
-      >
-        <Input placeholder="Enter Employee ID" />
-      </Form.Item>
+    <div className="w-full p-4 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
+      <Form form={form} layout="vertical" onFinish={handleSubmit}>
+        {/* Serial Number (Employee ID, ID Number, M.At) */}
+        <Form.Item
+          label="Serial Number (Employee ID, ID Number, M.At)"
+          name="employeeId"
+          rules={[{ required: true, message: "Please enter your Employee ID" }]}
+        >
+          <Input placeholder="Enter your ID" />
+        </Form.Item>
 
-      {/* Phone */}
-      <Form.Item
-        label="Phone (Personal Number)"
-        name="phone"
-        rules={[{ required: true, message: "Please enter your phone number" }]}
-      >
-        <Input placeholder="Enter Phone Number" />
-      </Form.Item>
+        {/* Phone */}
+        <Form.Item
+          label="Phone (Personal Number)"
+          name="phone"
+          rules={[
+            { required: true, message: "Please enter your phone number" },
+          ]}
+        >
+          <Input placeholder="Enter your phone number" />
+        </Form.Item>
 
-      {/* Start Date */}
-      <Form.Item
-        label="Start Date"
-        name="startDate"
-        rules={[{ required: true, message: "Please select a start date" }]}
-      >
-        <DatePicker
-          format="DD-MM-YYYY"
-          disabledDate={(current) =>
-            current && current < moment().startOf("day")
-          }
-        />
-      </Form.Item>
+        {/* Start Date */}
+        <Form.Item
+          label="Start Date"
+          name="startDate"
+          rules={[{ required: true, message: "Please select a start date" }]}
+        >
+          <DatePicker
+            format="DD-MM-YYYY"
+            disabledDate={(current) =>
+              current && current < moment().startOf("day")
+            }
+          />
+        </Form.Item>
 
-      {/* End Date */}
-      <Form.Item
-        label="End Date"
-        name="endDate"
-        rules={[{ required: true, message: "Please select an end date" }]}
-      >
-        <DatePicker format="DD-MM-YYYY" disabledDate={disabledEndDate} />
-      </Form.Item>
+        <Form.Item
+          label="End Date"
+          name="endDate"
+          rules={[{ required: true, message: "Please select an end date" }]}
+        >
+          <DatePicker format="DD-MM-YYYY" disabledDate={disabledEndDate} />
+        </Form.Item>
+        {/* Mission Budget */}
+        <Form.Item
+          label="Mission Budget"
+          name="missionBudget"
+          rules={[{ required: true, message: "Please enter mission budget" }]}
+        >
+          <Input placeholder="Enter Mission Budget" />
+        </Form.Item>
 
-      {/* Mission Budget */}
-      <Form.Item
-        label="Mission Budget"
-        name="missionBudget"
-        rules={[{ required: true, message: "Please enter mission budget" }]}
-      >
-        <Input placeholder="Enter Mission Budget" />
-      </Form.Item>
+        {/* Purpose of Travel */}
+        <Form.Item
+          label="Purpose of Travel"
+          name="purposeOfTravel"
+          rules={[
+            { required: true, message: "Please enter the purpose of travel" },
+          ]}
+        >
+          <Input.TextArea placeholder="Enter Purpose of Travel" />
+        </Form.Item>
 
-      {/* Purpose of Travel */}
-      <Form.Item
-        label="Purpose of Travel"
-        name="purposeOfTravel"
-        rules={[
-          { required: true, message: "Please enter the purpose of travel" },
-        ]}
-      >
-        <Input.TextArea placeholder="Enter Purpose of Travel" />
-      </Form.Item>
+        {/* Destination */}
+        <Form.Item
+          label="Destination"
+          name="destination"
+          rules={[{ required: true, message: "Please enter destination" }]}
+        >
+          <Input placeholder="Enter Destination" />
+        </Form.Item>
 
-      {/* Destination */}
-      <Form.Item
-        label="Destination"
-        name="destination"
-        rules={[{ required: true, message: "Please enter destination" }]}
-      >
-        <Input placeholder="Enter Destination" />
-      </Form.Item>
-
-      {/* <Form.Item
+        {/* <Form.Item
         label="Departure Time"
         name="departureTime"
         rules={[{ required: true, message: "Please select a departure time" }]}
@@ -158,13 +161,14 @@ const MissionRequest = () => {
         <TimePicker use12Hours format="h:mm A" placeholder="Select Time" />
       </Form.Item> */}
 
-      {/* Submit Button */}
-      <Form.Item>
-        <Button type="primary" htmlType="submit" loading={submitting}>
-          {submitting ? "Submitting..." : "Apply"}
-        </Button>
-      </Form.Item>
-    </Form>
+        {/* Submit Button */}
+        <Form.Item>
+          <Button type="primary" htmlType="submit" loading={submitting}>
+            {submitting ? "Submitting..." : "Apply"}
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 

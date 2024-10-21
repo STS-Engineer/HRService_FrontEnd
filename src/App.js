@@ -28,13 +28,16 @@ import DocumentRequest from "./Components/DocumentRequest";
 import MyDoc from "./Components/Mydoc";
 import DocumentAdmin from "./Components/DocAdmin";
 import Profile from "./Components/profile";
-import Notifications from "./Components/Notifications";
+// import Notifications from "./Components/Notifications";
 import ChangePassword from "./Components/ChangePassword";
 import Requets from "./Components/ApplyForRequest";
 import DemandsPage from "./Components/Mydemands";
 import SidebarHR from "./Components/SideBarHR";
 import EmployeeManagement from "./Components/EmployeeManagement";
 import AddEmployee from "./Components/AddEmployee";
+import Dashboard from "./Components/Dashboard";
+import SalaryCertificateUpload from "./Components/SalaryCertificateUpload";
+import Chatbot from "./Components/Chatbot";
 
 const App = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -83,311 +86,345 @@ const App = () => {
 
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/admin-dashboard"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <AdminDashboard
-                    leaveRequests={leaveRequests}
-                    handleStatusChange={handleStatusChange}
-                  />
+      <div>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <AdminDashboard
+                      leaveRequests={leaveRequests}
+                      handleStatusChange={handleStatusChange}
+                    />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/mission-management"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <MissionAdmin
-                    missionRequests={missionRequests}
-                    handleStatusChange={handleStatusChange}
-                  />
+            }
+          />
+          <Route
+            path="/mission-management"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <MissionAdmin
+                      missionRequests={missionRequests}
+                      handleStatusChange={handleStatusChange}
+                    />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/auth-management"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <AuthAdmin
-                    authorizationRequests={authorizationRequests}
-                    handleStatusChange={handleStatusChange}
-                  />
+            }
+          />
+          <Route
+            path="/auth-management"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <AuthAdmin
+                      authorizationRequests={authorizationRequests}
+                      handleStatusChange={handleStatusChange}
+                    />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route path="/home-rh" element={<HomeHR />} />
-        <Route
-          path="/document-management"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <DocumentAdmin
-                    documentRequests={documentRequests}
-                    handleStatusChange={handleStatusChange}
-                  />
+            }
+          />
+          <Route path="/home-rh" element={<HomeHR />} />
+          <Route
+            path="/document-management"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <DocumentAdmin
+                      documentRequests={documentRequests}
+                      handleStatusChange={handleStatusChange}
+                    />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/document-request-admin"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <DocumentRequest onSubmit={handleDocumentRequest} />
+            }
+          />
+          <Route
+            path="/document-request-admin"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <DocumentRequest onSubmit={handleDocumentRequest} />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/document-request"
-          element={
-            <div className="flex h-screen">
-              <Sidebar />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <DocumentRequest onSubmit={handleDocumentRequest} />
+            }
+          />
+          <Route
+            path="/document-request"
+            element={
+              <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <DocumentRequest onSubmit={handleDocumentRequest} />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/my-docs"
-          element={
-            <div className="flex h-screen">
-              <Sidebar />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <MyDoc employeeId="" />{" "}
+            }
+          />
+          <Route
+            path="/my-docs"
+            element={
+              <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <MyDoc employeeId="" />{" "}
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/leave-request-admin"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <LeaveRequest onSubmit={handleLeaveRequest} />
+            }
+          />
+          <Route
+            path="/leave-request-admin"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <LeaveRequest onSubmit={handleLeaveRequest} />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
+            }
+          />
 
-        <Route
-          path="/leave-request"
-          element={
-            <div className="flex h-screen">
-              <Sidebar />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <LeaveRequest onSubmit={handleLeaveRequest} />
+          <Route
+            path="/leave-request"
+            element={
+              <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <LeaveRequest onSubmit={handleLeaveRequest} />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/mission-request-admin"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <MissionRequest onSubmit={handleMissionRequest} />
+            }
+          />
+          <Route
+            path="/mission-request-admin"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <MissionRequest onSubmit={handleMissionRequest} />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/mission-request"
-          element={
-            <div className="flex h-screen">
-              <Sidebar />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <MissionRequest onSubmit={handleMissionRequest} />
+            }
+          />
+          <Route
+            path="/mission-request"
+            element={
+              <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <MissionRequest onSubmit={handleMissionRequest} />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/auth-request-admin"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <AuthRequest onSubmit={handleAuthRequest} />{" "}
-                  {/* Corrected component */}
+            }
+          />
+          <Route
+            path="/auth-request-admin"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <AuthRequest onSubmit={handleAuthRequest} />{" "}
+                    {/* Corrected component */}
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/demands"
-          element={
-            <div className="flex h-screen">
-              <SideBarAdmin />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <DemandsPage /> {/* Corrected component */}
+            }
+          />
+          <Route
+            path="/demands"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <DemandsPage />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/auth-request"
-          element={
-            <div className="flex h-screen">
-              <Sidebar />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <AuthRequest onSubmit={handleAuthRequest} />{" "}
-                  {/* Corrected component */}
+            }
+          />
+          <Route
+            path="/auth-request"
+            element={
+              <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <AuthRequest onSubmit={handleAuthRequest} />{" "}
+                    {/* Corrected component */}
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route path="/home" element={<Home />} />
-        <Route path="/requests" element={<Requets />} />
-        <Route path="/home-admin" element={<HomeAdmin />} />
+            }
+          />
+          <Route path="/home" element={<Home />} />
+          <Route path="/requests" element={<Requets />} />
+          <Route path="/home-admin" element={<HomeAdmin />} />
 
-        <Route
-          path="/my-leave"
-          element={<MyLeave leaveRequests={leaveRequests} />}
-        />
-        <Route
-          path="/my-mission"
-          element={<MyMission missionRequests={missionRequests} />}
-        />
-        <Route
-          path="/my-auth"
-          element={<MyAuth authorizationRequests={authorizationRequests} />}
-        />
-        <Route
-          path="/profile"
-          element={
-            <div className="flex h-screen">
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <Profile />
+          <Route
+            path="/my-leave"
+            element={<MyLeave leaveRequests={leaveRequests} />}
+          />
+          <Route
+            path="/my-mission"
+            element={<MyMission missionRequests={missionRequests} />}
+          />
+          <Route
+            path="/my-auth"
+            element={<MyAuth authorizationRequests={authorizationRequests} />}
+          />
+          <Route
+            path="/profile"
+            element={
+              <div className="flex h-screen">
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <Profile />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/change-password"
-          element={
-            <div className="flex h-screen">
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <ChangePassword />
+            }
+          />
+          <Route
+            path="/change-password"
+            element={
+              <div className="flex h-screen">
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <ChangePassword />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/employee-management"
-          element={
-            <div className="flex h-screen">
-              <SidebarHR />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <EmployeeManagement />
+            }
+          />
+          <Route
+            path="/employee-management"
+            element={
+              <div className="flex h-screen">
+                <SidebarHR />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <EmployeeManagement />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route
-          path="/add-employee"
-          element={
-            <div className="flex h-screen">
-              <SidebarHR />
-              <div className="flex-1 flex flex-col">
-                <TopBar />
-                <div className="flex-1 overflow-auto p-4">
-                  <AddEmployee />
+            }
+          />
+          <Route
+            path="/add-employee"
+            element={
+              <div className="flex h-screen">
+                <SidebarHR />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <AddEmployee />
+                  </div>
+                  <Footer />
                 </div>
-                <Footer />
               </div>
-            </div>
-          }
-        />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
+            }
+          />
+          <Route
+            path="/RH-dashboard"
+            element={
+              <div className="flex h-screen">
+                <SidebarHR />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <Dashboard />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/Dispatch-SalaryCertificate"
+            element={
+              <div className="flex h-screen">
+                <SidebarHR />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <SalaryCertificateUpload />
+                  </div>
+
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
+        <Chatbot />
+      </div>
     </Router>
   );
 };

@@ -2,12 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileExcel, faFilePdf } from "@fortawesome/free-solid-svg-icons";
+import { Table, Button, Select, DatePicker, Pagination } from "antd";
 import TopBar from "./TopBar";
-import SidebarHR from "./SideBarHR"; // Import SidebarHR component
+import SidebarHR from "./SideBarHR";
 import axios from "axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import * as XLSX from "xlsx";
+import Swal from "sweetalert2";
+
+const { Option } = Select;
 
 const HomeHR = () => {
   const navigate = useNavigate();
@@ -16,47 +20,57 @@ const HomeHR = () => {
   const [requestsPerPage] = useState(10);
   const [filter, setFilter] = useState("All");
   const [filterDate, setFilterDate] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(false); // State to handle sidebar
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     const fetchRequests = async () => {
+      const token = localStorage.getItem("token");
       try {
         const leaveRequestsResponse = await axios.get(
-          "http://localhost:3000/leave-requests/all"
+          "http://localhost:3000/leave-requests/all",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
         const missionRequestsResponse = await axios.get(
-          "http://localhost:3000/mission-requests" // nchouf chnya el probléme lehné (hedhy kenet temchy chnya elli sar manarech el 7a9)
+          "http://localhost:3000/mission-requests/all",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
         const authorizationRequestsResponse = await axios.get(
-          "http://localhost:3000/authorization-requests" // lehné jawou behii (rekeh wel oumour mrigla)
+          "http://localhost:3000/authorization-requests/all",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
         );
 
         const leaveRequests = leaveRequestsResponse.data.map((req) => ({
           id: req.requestid,
           employeeId: req.employeeid,
           type: "Leave",
-          leaveType: req.leavetype,
+          leaveType: req.leavetype || "-",
           startDate: req.startdate,
           endDate: req.enddate,
           status: req.status,
           firstName: req.firstname,
           lastName: req.lastname,
-          function: req.function,
-          department: req.department,
+          function: req.function || "-",
+          department: req.department || "-",
         }));
 
         const missionRequests = missionRequestsResponse.data.map((req) => ({
           id: req.requestid,
           employeeId: req.employeeid,
           type: "Mission",
-          leaveType: "_", // Placeholder for leaveType
+          leaveType: "_",
           startDate: req.startdate,
           endDate: req.enddate,
           status: req.status,
           firstName: req.firstname,
           lastName: req.lastname,
-          function: req.function,
-          department: req.department,
+          function: req.function || "-",
+          department: req.department || "-",
         }));
 
         const authorizationRequests = authorizationRequestsResponse.data.map(
@@ -64,14 +78,16 @@ const HomeHR = () => {
             id: req.requestid,
             employeeId: req.employeeid,
             type: "Authorization",
-            leaveType: "_", // Placeholder for leaveType
-            startDate: req.authorization_date,
-            endDate: req.authorization_date,
+            leaveType: "_",
+            startDate: req.authorizationdate,
+            endDate: req.authorizationdate,
             status: req.status,
             firstName: req.firstname,
             lastName: req.lastname,
-            function: req.function,
-            department: req.department,
+            function: req.function || "-",
+            department: req.department || "-",
+            departureTime: req.departure_time || "-", // Add departure_time
+            returnTime: req.return_time || "-", // Add return_time
           })
         );
 
@@ -84,6 +100,11 @@ const HomeHR = () => {
         setRequests(combinedRequests);
       } catch (error) {
         console.error("Error fetching requests:", error);
+        Swal.fire({
+          icon: "error",
+          title: "Error!",
+          text: "Failed to fetch requests.",
+        });
       }
     };
 
@@ -91,10 +112,10 @@ const HomeHR = () => {
   }, []);
 
   const calculateDuration = (startDate, endDate) => {
+    if (!startDate || !endDate) return 0; // Handle undefined dates
     const start = new Date(startDate);
     const end = new Date(endDate);
-    const duration = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
-    return duration;
+    return Math.ceil((end - start) / (1000 * 60 * 60 * 24)) + 1; // Return 0 if dates are invalid
   };
 
   const filteredRequests = requests.filter((req) => {
@@ -144,6 +165,8 @@ const HomeHR = () => {
           "Start Date",
           "End Date",
           "Duration",
+          "Departure Time", // Add departure time to the header
+          "Return Time", // Add return time to the header
         ],
       ],
       body: filteredRequests.map((req) => [
@@ -155,9 +178,16 @@ const HomeHR = () => {
         formatDate(req.startDate) || "",
         formatDate(req.endDate) || "",
         calculateDuration(req.startDate, req.endDate) + " days" || "",
+        req.departureTime || "", // Add departure time to the body
+        req.returnTime || "", // Add return time to the body
       ]),
     });
     doc.save("employeerequests.pdf");
+    Swal.fire({
+      icon: "success",
+      title: "Download Complete!",
+      text: "Your PDF has been downloaded successfully.",
+    });
   };
 
   const handleDownloadExcel = () => {
@@ -171,136 +201,108 @@ const HomeHR = () => {
         "Start Date": formatDate(req.startDate) || "",
         "End Date": formatDate(req.endDate) || "",
         Duration: calculateDuration(req.startDate, req.endDate) + " days" || "",
+        "Departure Time": req.departureTime || "", // Add departure time
+        "Return Time": req.returnTime || "", // Add return time
       }))
     );
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Requests");
     XLSX.writeFile(workbook, "employeerequests.xlsx");
+    Swal.fire({
+      icon: "success",
+      title: "Download Complete!",
+      text: "Your Excel file has been downloaded successfully.",
+    });
   };
 
+  const columns = [
+    { title: "Employee ID", dataIndex: "employeeId", key: "employeeId" },
+    { title: "First Name", dataIndex: "firstName", key: "firstName" },
+    { title: "Last Name", dataIndex: "lastName", key: "lastName" },
+    { title: "Type of Request", dataIndex: "type", key: "type" },
+    { title: "Type of Leave", dataIndex: "leaveType", key: "leaveType" },
+    {
+      title: "Start Date",
+      dataIndex: "startDate",
+      key: "startDate",
+      render: (text) => formatDate(text),
+    },
+    {
+      title: "End Date",
+      dataIndex: "endDate",
+      key: "endDate",
+      render: (text) => formatDate(text),
+    },
+    {
+      title: "Duration",
+      key: "duration",
+      render: (text, record) =>
+        `${calculateDuration(record.startDate, record.endDate)} days`,
+    },
+    {
+      title: "Departure Time",
+      dataIndex: "departureTime",
+      key: "departureTime",
+    },
+    {
+      title: "Return Time",
+      dataIndex: "returnTime",
+      key: "returnTime",
+    },
+  ];
+
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <SidebarHR isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
-
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 min-h-screen">
+    <div className="flex flex-row h-screen">
+      <SidebarHR sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+      <div className="flex flex-col flex-1">
         <TopBar />
-        <div className="p-4 flex-1">
-          <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-lg font-bold mb-2 sm:mb-0">
-              Employee Requests
-            </h2>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-2">
-              <button
-                onClick={handleDownloadExcel}
-                className="bg-green-400 text-white px-3 py-2 rounded hover:bg-green-600 flex items-center mb-2 sm:mb-0"
-              >
-                <FontAwesomeIcon icon={faFileExcel} className="mr-2" />
-                Export Excel
-              </button>
-              <button
-                onClick={handleDownloadPDF}
-                className="bg-red-400 text-white px-3 py-2 rounded hover:bg-red-600 flex items-center"
-              >
-                <FontAwesomeIcon icon={faFilePdf} className="mr-2" />
-                Export PDF
-              </button>
-            </div>
+        <div className="p-4">
+          <h1 className="text-2xl font-semibold mb-4">Employee Requests</h1>
+          <div className="mb-4">
+            <Select
+              defaultValue="All"
+              style={{ width: 120 }}
+              onChange={(value) => setFilter(value)}
+            >
+              <Option value="All">All</Option>
+              <Option value="Leave">Leave</Option>
+              <Option value="Mission">Mission</Option>
+              <Option value="Authorization">Authorization</Option>
+            </Select>
+            <DatePicker
+              className="ml-2"
+              onChange={(date, dateString) => setFilterDate(dateString)}
+            />
+            <Button
+              type="primary"
+              icon={<FontAwesomeIcon icon={faFilePdf} />}
+              onClick={handleDownloadPDF}
+              className="ml-2"
+            >
+              Download PDF
+            </Button>
+            <Button
+              type="primary"
+              icon={<FontAwesomeIcon icon={faFileExcel} />}
+              onClick={handleDownloadExcel}
+              className="ml-2"
+            >
+              Download Excel
+            </Button>
           </div>
-
-          {/* Filter Section */}
-          <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-            <label className="flex-1">
-              Filter by Type:
-              <select
-                value={filter}
-                onChange={(e) => setFilter(e.target.value)}
-                className="block mt-1 border p-2 w-full sm:w-auto"
-              >
-                <option value="All">All</option>
-                <option value="Leave">Leave</option>
-                <option value="Mission">Mission</option>
-                <option value="Authorization">Authorization</option>
-              </select>
-            </label>
-
-            <label className="flex-1 mt-4 sm:mt-0">
-              Filter by Date:
-              <input
-                type="date"
-                value={filterDate}
-                onChange={(e) => setFilterDate(e.target.value)}
-                className="block mt-1 border p-2 w-full sm:w-auto"
-              />
-            </label>
-          </div>
-
-          {/* Requests Table */}
-          {currentRequests.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="w-full table-auto border-collapse border border-gray-300">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border p-2">Employee ID</th>
-                    <th className="border p-2">First Name</th>
-                    <th className="border p-2">Last Name</th>
-                    <th className="border p-2">Type of Request</th>
-                    <th className="border p-2">Type of Leave</th>
-                    <th className="border p-2">Start Date</th>
-                    <th className="border p-2">End Date</th>
-                    <th className="border p-2">Duration</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {currentRequests.map((req) => (
-                    <tr key={req.id} className="bg-white hover:bg-gray-50">
-                      <td className="border p-2">{req.employeeId}</td>
-                      <td className="border p-2">{req.firstName}</td>
-                      <td className="border p-2">{req.lastName}</td>
-                      <td className="border p-2">{req.type}</td>
-                      <td className="border p-2">{req.leaveType}</td>
-                      <td className="border p-2">
-                        {formatDate(req.startDate)}
-                      </td>
-                      <td className="border p-2">{formatDate(req.endDate)}</td>
-                      <td className="border p-2">
-                        {calculateDuration(req.startDate, req.endDate)} days
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-
-              {/* Pagination */}
-              <div className="mt-4">
-                <ul className="flex justify-center space-x-2">
-                  {Array.from(
-                    {
-                      length: Math.ceil(
-                        filteredRequests.length / requestsPerPage
-                      ),
-                    },
-                    (_, i) => (
-                      <li
-                        key={i}
-                        onClick={() => paginate(i + 1)}
-                        className={`cursor-pointer px-4 py-2 rounded border ${
-                          currentPage === i + 1
-                            ? "bg-gray-200 font-bold"
-                            : "bg-white"
-                        }`}
-                      >
-                        {i + 1}
-                      </li>
-                    )
-                  )}
-                </ul>
-              </div>
-            </div>
-          ) : (
-            <p>No approved requests found.</p>
-          )}
+          <Table
+            dataSource={currentRequests}
+            columns={columns}
+            rowKey="id"
+            pagination={false}
+          />
+          <Pagination
+            current={currentPage}
+            total={filteredRequests.length}
+            pageSize={requestsPerPage}
+            onChange={paginate}
+            className="mt-4"
+          />
         </div>
       </div>
     </div>

@@ -47,15 +47,14 @@ const AuthAdmin = () => {
 
   const handleStatusChange = (id, newStatus) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: `You want to ${newStatus} this request?`,
+      title: `Are you sure you want to ${newStatus.toLowerCase()} this request?`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes",
+      confirmButtonText: `Yes, ${newStatus.toLowerCase()} it!`,
     }).then((result) => {
       if (result.isConfirmed) {
+        const token = localStorage.getItem("token"); // Get the token from local storage
+
         // Optimistically update the UI
         const updatedRequests = authRequests.map((request) =>
           request.requestid === id ? { ...request, status: newStatus } : request
@@ -64,15 +63,28 @@ const AuthAdmin = () => {
 
         // Make the server request
         axios
-          .patch(`http://localhost:3000/authorization-requests/${id}`, {
-            status: newStatus,
-          })
+          .patch(
+            `http://localhost:3000/authorization-requests/${id}`,
+            {
+              status: newStatus,
+            },
+            {
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`, // Include the token in headers
+              },
+            }
+          )
           .then((response) => {
             const confirmedRequests = authRequests.map((request) =>
               request.requestid === id ? response.data : request
             );
             setAuthRequests(confirmedRequests);
-            Swal.fire("Success!", `Request has been ${newStatus}.`, "success");
+            Swal.fire(
+              "Success!",
+              `Request has been ${newStatus.toLowerCase()}.`,
+              "success"
+            );
           })
           .catch((error) => {
             console.error("Error updating authorization request:", error);
@@ -115,6 +127,16 @@ const AuthAdmin = () => {
   };
 
   const columns = [
+    {
+      title: "First Name",
+      dataIndex: "firstname",
+      key: "firstname",
+    },
+    {
+      title: "Last Name",
+      dataIndex: "lastname",
+      key: "lastname",
+    },
     {
       title: "Purpose of Authorization",
       dataIndex: "purposeofauthorization",
@@ -190,9 +212,6 @@ const AuthAdmin = () => {
         dataSource={authRequests}
         rowKey="requestid"
         pagination={false}
-        onRow={(record) => ({
-          onClick: () => setSelectedRequest(record),
-        })}
       />
       <Pagination
         current={currentPage}

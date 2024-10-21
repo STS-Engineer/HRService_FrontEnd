@@ -126,3 +126,50 @@ body {
   background-color: #d43f3a;
 }
 
+/* TopBar.css */
+.topbar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1890ff; /* Ant Design primary color */
+  padding: 0 20px;
+}
+
+.topbar-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 500;
+  flex-grow: 1; /* Ensure title takes up available space */
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar-username {
+  color: white;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .topbar-header {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .topbar-title {
+    font-size: 1.2rem;
+    text-align: center; /* Center title on mobile */
+    margin-bottom: 10px; /* Add space below title */
+  }
+
+  .topbar-right {
+    justify-content: center; /* Center items on mobile */
+    gap: 10px; /* Adjust spacing */
+  }
+}
+

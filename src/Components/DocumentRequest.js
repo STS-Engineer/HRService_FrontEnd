@@ -20,10 +20,18 @@ const DocumentRequest = () => {
       additional_info: values.documentPurpose,
     };
 
+    // Get the token from local storage (or wherever it's stored)
+    const token = localStorage.getItem("token"); // Adjust this based on your app's implementation
+
     try {
       await axios.post(
         "http://localhost:3000/document-requests",
-        newDocumentRequest
+        newDocumentRequest,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the headers
+          },
+        }
       );
 
       // Success alert using SweetAlert
@@ -63,7 +71,7 @@ const DocumentRequest = () => {
             { required: true, message: "Please input your employee ID!" },
           ]}
         >
-          <Input placeholder="Enter your Employee ID" />
+          <Input placeholder="Enter your  ID" />
         </Form.Item>
 
         {/* Document Type */}

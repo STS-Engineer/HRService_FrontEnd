@@ -166,9 +166,11 @@ const DashboardAdmin = () => {
       dataIndex: "dateRange",
       key: "dateRange",
       render: (text, record) =>
-        `${moment(record.startdate).format("DD-MM-YYYY")} to ${moment(
-          record.enddate
-        ).format("DD-MM-YYYY")}`,
+        `${moment(record.startdate)
+          .startOf("day")
+          .format("DD-MM-YYYY")} to ${moment(record.enddate)
+          .startOf("day")
+          .format("DD-MM-YYYY")}`,
     },
     {
       title: "Status",

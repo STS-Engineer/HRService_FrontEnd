@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { Table, Spin, message, Tag, Button, Modal } from "antd";
 import Topbar from "./TopBar";
 import Sidebar from "./SideBar";
 
-const MyAuth = ({ user }) => {
+const MyAuth = () => {
   const [authorizationRequests, setAuthorizationRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
   useEffect(() => {
     const fetchAuthorizationRequests = async () => {
@@ -30,6 +33,9 @@ const MyAuth = ({ user }) => {
       } catch (error) {
         console.error("Error fetching authorization requests:", error);
         setError(error.message || "Failed to fetch authorization requests");
+        message.error(
+          error.message || "Failed to fetch authorization requests"
+        );
       } finally {
         setLoading(false);
       }
@@ -39,9 +45,90 @@ const MyAuth = ({ user }) => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const options = { year: "numeric", month: "2-digit", day: "2-digit" };
-    return date.toLocaleDateString(undefined, options);
+    return date.toLocaleDateString(); // Adjust format as needed
   };
+
+  const showDeleteConfirm = (id) => {
+    setDeleteId(id);
+    setIsModalVisible(true);
+  };
+
+  const handleDelete = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      await fetch(`http://localhost:3000/authorization-requests/${deleteId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      message.success("Authorization request deleted successfully.");
+      setAuthorizationRequests((prevRequests) =>
+        prevRequests.filter((request) => request.id !== deleteId)
+      );
+      setIsModalVisible(false);
+      setDeleteId(null);
+    } catch (error) {
+      message.error("Failed to delete authorization request.");
+      console.error("Error deleting authorization request:", error);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+    setDeleteId(null);
+  };
+
+  const columns = [
+    {
+      title: "Purpose",
+      dataIndex: "purpose_of_authorization",
+      key: "purpose_of_authorization",
+    },
+    {
+      title: "Date",
+      dataIndex: "authorization_date",
+      key: "authorization_date",
+      render: (text) => formatDate(text),
+    },
+    {
+      title: "Departure Time",
+      dataIndex: "departure_time",
+      key: "departure_time",
+    },
+    {
+      title: "Return Time",
+      dataIndex: "return_time",
+      key: "return_time",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: (status) => (
+        <Tag
+          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+            status === "Pending"
+              ? "bg-yellow-400 text-white"
+              : status === "Approved"
+              ? "bg-green-400 text-white"
+              : "bg-red-400 text-white"
+          }`}
+        >
+          {status}
+        </Tag>
+      ),
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: (text, record) => (
+        <Button danger onClick={() => showDeleteConfirm(record.id)}>
+          Delete
+        </Button>
+      ),
+    },
+  ];
 
   return (
     <div className="flex h-screen">
@@ -50,68 +137,31 @@ const MyAuth = ({ user }) => {
         <Topbar />
         <div className="p-4">
           {loading ? (
-            <p>Loading...</p>
+            <Spin size="large" />
           ) : error ? (
             <p className="text-red-500">{error}</p>
-          ) : authorizationRequests.length > 0 ? (
-            <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Purpose
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Date
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Departure Time
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Return Time
-                    </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {authorizationRequests.map((request) => (
-                    <tr key={request.id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        {request.purpose_of_authorization}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {formatDate(request.authorization_date)}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {request.departure_time}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {request.return_time}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <span
-                          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-                            request.status === "Pending"
-                              ? "bg-yellow-400 text-white"
-                              : request.status === "Approved"
-                              ? "bg-green-400 text-white"
-                              : "bg-red-400 text-white"
-                          }`}
-                        >
-                          {request.status}
-                        </span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
           ) : (
-            <p className="text-lg text-gray-500">
-              There are no authorization requests for this employee.
-            </p>
+            <>
+              <Table
+                columns={columns}
+                dataSource={authorizationRequests}
+                rowKey="id"
+                pagination={{ pageSize: 5 }}
+                bordered
+              />
+              <Modal
+                title="Delete Confirmation"
+                visible={isModalVisible}
+                onOk={handleDelete}
+                onCancel={handleCancel}
+                okText="Yes, Delete"
+                cancelText="Cancel"
+              >
+                <p>
+                  Are you sure you want to delete this authorization request?
+                </p>
+              </Modal>
+            </>
           )}
         </div>
       </div>

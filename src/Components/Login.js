@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Form, Input, Button, Checkbox, Typography } from "antd";
+import { Form, Input, Button, Checkbox, Typography, Select } from "antd";
 import Swal from "sweetalert2"; // Import SweetAlert
 import "antd/dist/reset.css";
 
@@ -10,10 +10,11 @@ const { Title } = Typography;
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [plantConnection, setPlantConnection] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [welcomeText, setWelcomeText] = useState("");
   const navigate = useNavigate();
-
+  const { Option } = Select;
   const welcomeMessage = "Welcome to AVOCarbon HR Service";
 
   useEffect(() => {
@@ -38,19 +39,21 @@ const Login = () => {
       const response = await axios.post("http://localhost:3000/auth/login", {
         email: values.username,
         password: values.password,
+        plant_connection: values.plantConnection,
       });
 
       if (response.data.token && response.data.user) {
         const { firstname, role } = response.data.user;
+
         // Store token and user data
         if (rememberMe) {
           localStorage.setItem("token", response.data.token);
-          localStorage.setItem("username", values.username);
-          localStorage.setItem("password", values.password);
+          localStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("rememberMe", "true"); // Save rememberMe state
         } else {
           sessionStorage.setItem("token", response.data.token);
-          localStorage.removeItem("username");
-          localStorage.removeItem("password");
+          sessionStorage.setItem("user", JSON.stringify(response.data.user));
+          localStorage.setItem("rememberMe", "false");
         }
         console.log(response.data);
 
@@ -67,14 +70,14 @@ const Login = () => {
         const userRole = response.data.user.role;
         navigate(`/${getRedirectPath(userRole)}`);
       } else {
-        Swal.fire("Invalid Credentials", "Please try again", "error"); // SweetAlert for error
+        Swal.fire("Invalid Credentials", "Please try again", "error");
       }
     } catch (error) {
       Swal.fire(
         "Login Failed",
-        "Password incorrect. Please try again",
+        "Password or plant connection incorrect. Please try again.",
         "error"
-      ); // SweetAlert for error
+      );
     }
   };
 
@@ -157,7 +160,33 @@ const Login = () => {
               placeholder="Password"
             />
           </Form.Item>
-
+          <Form.Item
+            label="Plant Connection"
+            name="plantConnection"
+            rules={[
+              {
+                required: true,
+                message: "Please select your plant connection!",
+              },
+            ]}
+          >
+            <Select
+              value={plantConnection}
+              onChange={(value) => setPlantConnection(value)} // Handle plant connection selection
+              placeholder="Select Plant Connection"
+              showSearch
+              optionFilterProp="children"
+            >
+              <Option value="AVOCarbon Kunshan">AVOCarbon Kunshan</Option>
+              <Option value="AVOCarbon Tianjin">AVOCarbon Tianjin</Option>
+              <Option value="AVOCarbon France">AVOCarbon France</Option>
+              <Option value="Cyclam">Cyclam</Option>
+              <Option value="AVOCarbon Germany">AVOCarbon Germany</Option>
+              <Option value="AVOCarbon India">AVOCarbon India</Option>
+              <Option value="AVOCarbon Korea">AVOCarbon Korea</Option>
+              <Option value="AVOCarbon Tunisia">AVOCarbon Tunisia</Option>
+            </Select>
+          </Form.Item>
           <Form.Item>
             <Checkbox
               checked={rememberMe}
@@ -166,7 +195,6 @@ const Login = () => {
               Remember me
             </Checkbox>
           </Form.Item>
-
           <Form.Item>
             <Button
               type="primary"
@@ -178,15 +206,14 @@ const Login = () => {
             </Button>
           </Form.Item>
         </Form>
-
-        <div className="text-center mt-4">
+        {/* <div className="text-center mt-4">
           <a
             href="/reset-password"
             className="font-medium text-gray-500 hover:text-orange-500"
           >
             Forgot your password? Reset Password
           </a>
-        </div>
+        </div> */}
 
         {/* <div className="mt-8">
           <p className="text-center text-sm font-medium text-gray-700">
@@ -200,7 +227,6 @@ const Login = () => {
           </p>
         </div> */}
       </div>
-
       <div
         style={{
           position: "absolute",

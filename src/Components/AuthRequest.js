@@ -69,7 +69,7 @@ const AuthRequest = () => {
             { required: true, message: "Please input your Employee ID!" },
           ]}
         >
-          <Input placeholder="Enter your Employee ID" />
+          <Input placeholder="Enter your ID" />
         </Form.Item>
 
         {/* Phone Number */}

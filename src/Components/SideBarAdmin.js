@@ -47,9 +47,9 @@ const SideBarAdmin = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg rounded-xl transform ${
+        className={`fixed inset-y-0 left-0 w-64 bg-white text-gray-700 shadow-2xl rounded-r-xl transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`} // Increased z-index for sidebar
+        } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`}
       >
         {/* Close Button for Mobile */}
         <button
@@ -76,21 +76,21 @@ const SideBarAdmin = () => {
         </button>
 
         {/* Logo or Branding */}
-        <div className="p-4 flex items-center justify-center md:justify-start lg:justify-center mt-10">
+        <div className="p-4 flex items-center justify-center mt-10">
           <img
             src="image.png"
             alt="Logo"
-            className="h-20 mb-5 mx-auto md:mx-0"
+            className="h-20 mb-5  border-2 border-gray-300 shadow-lg"
           />
         </div>
 
         {/* Navigation Links */}
         <nav className="flex-1 px-4">
-          <ul>
+          <ul className="space-y-6">
             <li className="my-2">
               <Link
-                to="/home-admin" // Navigate to /home-admin route
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                to="/home-admin"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
                 <BsHouseDoorFill className="mr-2" /> Home Admin
               </Link>
@@ -98,15 +98,15 @@ const SideBarAdmin = () => {
             <li className="my-2">
               <Link
                 to="/requests"
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
                 <BsClipboardCheck className="mr-2" /> Apply for Requests
               </Link>
             </li>
             <li className="my-2">
               <Link
-                to="/demands" // Navigate to /demands route
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                to="/demands"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
                 <BsChatLeftTextFill className="mr-2" /> Consult Demands
               </Link>
@@ -114,9 +114,9 @@ const SideBarAdmin = () => {
             {/* <li className="my-2">
               <Link
                 to="/dashboard"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
               >
-                <BsBarChartFill className="mr-3 text-lg" /> Dashboard
+                <BsBarChartFill className="mr-2" /> Dashboard
               </Link>
             </li> */}
           </ul>
@@ -126,7 +126,7 @@ const SideBarAdmin = () => {
       {/* Overlay for Mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-50 z-20" // Covers entire screen with opacity
+          className="fixed inset-0 bg-black opacity-50 z-20"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
         ></div>

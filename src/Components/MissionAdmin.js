@@ -246,8 +246,6 @@ const MissionAdmin = () => {
               <strong>Mission Budget:</strong> {selectedRequest.missionbudget}{" "}
               euro
             </p>
-
-            {/* Include any other fields you want to show */}
           </div>
         )}
       </Modal>

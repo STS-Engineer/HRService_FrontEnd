@@ -6,11 +6,10 @@ import {
   BsBriefcaseFill,
   BsShieldLockFill,
   BsFileEarmarkFill,
-  BsBarChartFill,
 } from "react-icons/bs";
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false); // Default closed for mobile
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="flex h-screen">
@@ -49,9 +48,9 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 w-64 bg-white text-black shadow-lg transform ${
+        className={`fixed inset-y-0 left-0 w-64 bg-white text-gray-700 shadow-2xl rounded-r-xl transform ${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`} // Increased z-index for sidebar
+        } transition-transform duration-300 ease-in-out md:relative md:translate-x-0 z-30`}
       >
         {/* Close Button for Mobile */}
         <button
@@ -78,65 +77,59 @@ const Sidebar = () => {
         </button>
 
         {/* Logo or Branding */}
-        <div className="p-4 flex items-center justify-center md:justify-start lg:justify-center mt-10">
+        <div className="p-4 flex items-center justify-center mt-10">
           <img
             src="image.png"
             alt="Logo"
-            className="h-20 mb-5 mx-auto md:mx-0"
+            className="h-20 mb-5  border-2 border-gray-300 shadow-lg"
           />
         </div>
 
         {/* Navigation Links */}
-        <nav className="flex-1 px-4 py-6">
-          <ul>
-            <li className="my-2">
+        <nav className="px-4 py-6">
+          <ul className="space-y-6">
+            {" "}
+            {/* This class adds more vertical space */}
+            <li>
               <Link
                 to="/home"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsHouseDoorFill className="mr-3 text-lg" /> Home
+                <BsHouseDoorFill className="mr-3 text-xl" /> Home
               </Link>
             </li>
-            <li className="my-2">
+            <li>
               <Link
                 to="/my-leave"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsCalendarCheckFill className="mr-3 text-lg" /> My Leave
+                <BsCalendarCheckFill className="mr-3 text-xl" /> My Leave
               </Link>
             </li>
-            <li className="my-2">
+            <li>
               <Link
                 to="/my-mission"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsBriefcaseFill className="mr-3 text-lg" /> My Mission
+                <BsBriefcaseFill className="mr-3 text-xl" /> My Mission
               </Link>
             </li>
-            <li className="my-2">
+            <li>
               <Link
                 to="/my-auth"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsShieldLockFill className="mr-3 text-lg" /> My Authorization
+                <BsShieldLockFill className="mr-3 text-xl" /> My Authorization
               </Link>
             </li>
-            <li className="my-2">
+            <li>
               <Link
                 to="/my-docs"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsFileEarmarkFill className="mr-3 text-lg" /> My Documents
+                <BsFileEarmarkFill className="mr-3 text-xl" /> My Documents
               </Link>
             </li>
-            {/* <li className="my-2">
-              <Link
-                to="/dashboard"
-                className="flex items-center p-3 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
-              >
-                <BsBarChartFill className="mr-3 text-lg" /> Dashboard
-              </Link>
-            </li> */}
           </ul>
         </nav>
       </div>
@@ -144,7 +137,7 @@ const Sidebar = () => {
       {/* Overlay for Mobile */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black opacity-50 z-20" // Covers entire screen with opacity
+          className="fixed inset-0 bg-black opacity-50 z-20"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
         ></div>
