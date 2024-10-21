@@ -30,7 +30,7 @@ const Dashboard = () => {
     const fetchStatistics = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/dashboard/general-statistics",
+          "http://bhr-avocarbon.azurewebsites.net/dashboard/general-statistics",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
     const fetchRequestsPerEmployee = async (employeeID = null) => {
       try {
-        let url = "http://localhost:3000/dashboard/requests-per-employee";
+        let url = "http://bhr-avocarbon.azurewebsites.net/dashboard/requests-per-employee";
         if (employeeID) {
           url += `?employeeID=${employeeID}`;
         }
@@ -74,7 +74,7 @@ const Dashboard = () => {
     const fetchEmployeesOnLeaveToday = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/dashboard/employees-on-leave-today",
+          "http://bhr-avocarbon.azurewebsites.net/dashboard/employees-on-leave-today",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ const Dashboard = () => {
     const fetchTotalRequestsForPieChart = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/dashboard/general-statistics",
+          "http://bhr-avocarbon.azurewebsites.net/dashboard/general-statistics",
           {
             headers: {
               Authorization: `Bearer ${token}`,
