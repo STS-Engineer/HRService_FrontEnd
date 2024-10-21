@@ -35,10 +35,14 @@ jobs:
           mkdir -p dist
           npm run build -- --output-path=dist
 
+      - name: List dist directory contents
+        run: ls -la dist/
+
       - name: Zip artifact for deployment
         run: |
           cd dist
-          zip -r ../release.zip .
+          zip -r ../release.zip *
+
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
