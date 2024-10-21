@@ -19,7 +19,7 @@ const MyLeave = () => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await axios.get(
-          `http://localhost:3000/leave-requests/employee/${user.id}`,
+          `https://bhr-avocarbon.azurewebsites.net/leave-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const MyLeave = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:3000/leave-requests/${deleteId}`, {
+      await axios.delete(`https://bhr-avocarbon.azurewebsites.net/leave-requests/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
