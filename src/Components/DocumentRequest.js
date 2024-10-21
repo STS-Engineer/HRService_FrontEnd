@@ -25,7 +25,7 @@ const DocumentRequest = () => {
 
     try {
       await axios.post(
-        "http://localhost:3000/document-requests",
+        "http://bhr-avocarbon.azurewebsites.net/document-requests",
         newDocumentRequest,
         {
           headers: {
