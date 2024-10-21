@@ -27,7 +27,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:3000/auth/user/${userId}/photo`,
+          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}/photo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:3000/auth/user/${userId}`,
+          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -98,7 +98,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `http://localhost:3000/auth/user/${user.id}/photo`,
+        `https://bhr-avocarbon.azurewebsites.net/auth/user/${user.id}/photo`,
         {
           method: "POST",
           headers: {
@@ -134,7 +134,7 @@ const Profile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `http://localhost:3000/auth/user/${user.id}`,
+          `https://bhr-avocarbon.azurewebsites.net/auth/user/${user.id}`,
           {
             method: "PUT",
             headers: {
