@@ -212,7 +212,7 @@ const DashboardAdmin = () => {
                             icon={<AiOutlineDownload />}
                             onClick={() => (
                               handleFileDownload(
-                                `https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}',
+                                "https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}",
                                 record.justificationfile
                               )
                             )}
