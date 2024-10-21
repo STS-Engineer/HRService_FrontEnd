@@ -35,7 +35,7 @@ const MissionRequest = () => {
       };
       // POST request to API
       await axios.post(
-        "http://bhr-avocarbon.azurewebsites.net/mission-requests",
+        "https://bhr-avocarbon.azurewebsites.net/mission-requests",
         formattedValues,
         {
           headers: {
