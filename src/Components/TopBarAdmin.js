@@ -19,7 +19,7 @@ const TopBarAdmin = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/auth/users/"); // Adjust the endpoint as needed
+        const response = await fetch("https://bhr-avocarbon.azurewebsites.net/auth/users/"); // Adjust the endpoint as needed
         const data = await response.json();
         setUser({
           firstname: data.firstname,
