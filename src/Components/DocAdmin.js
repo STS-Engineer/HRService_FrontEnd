@@ -13,7 +13,7 @@ const DocumentAdmin = () => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(
-          "http://bhr-avocarbon.azurewebsites.net/document-requests"
+          "https://bhr-avocarbon.azurewebsites.net/document-requests"
         );
         setRequests(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ const DocumentAdmin = () => {
       setUploading(true);
       setUploadingRequestId(requestId);
       await axios.post(
-        `http://bhr-avocarbon.azurewebsites.net/document-requests/upload/${requestId}`,
+        `https://bhr-avocarbon.azurewebsites.net/document-requests/upload/${requestId}`,
         formData,
         {
           headers: {
