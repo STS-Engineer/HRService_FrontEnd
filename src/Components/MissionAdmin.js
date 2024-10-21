@@ -22,7 +22,7 @@ const MissionAdmin = () => {
     const fetchMissionRequests = () => {
       const token = localStorage.getItem("token");
       fetch(
-        `http://localhost:3000/mission-requests?page=${currentPage}&limit=${requestsPerPage}`,
+        `http://bhr-avocarbon.azurewebsites.net/mission-requests?page=${currentPage}&limit=${requestsPerPage}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const MissionAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`http://localhost:3000/mission-requests/${id}`, {
+        fetch(`http://bhr-avocarbon.azurewebsites.net/mission-requests/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -104,7 +104,7 @@ const MissionAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`http://localhost:3000/mission-requests/${id}`, {
+        fetch(`http://bhr-avocarbon.azurewebsites.net/mission-requests/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
