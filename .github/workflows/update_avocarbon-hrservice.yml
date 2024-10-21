@@ -28,13 +28,17 @@ jobs:
         run: echo "CI=false" >> $GITHUB_ENV
 
       - name: Install dependencies
-        run: npm ci  # 'ci' is faster and ensures a clean install
+        run: npm ci  # Clean install
 
       - name: Build the project
-        run: npm run build
+        run: |
+          mkdir -p dist
+          npm run build -- --output-path=dist
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./*  # Ensure recursive flag (-r) is placed correctly
+        run: |
+          cd dist
+          zip -r ../release.zip .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -65,4 +69,8 @@ jobs:
           app-name: 'AVOCarbon-HRService'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00FA764BB8034FDA9CD32AD519E8D39C }}
-          package: .
+          package: ./dist
+
+      - name: Verify deployment
+        run: |
+          curl -I https://avocarbon-hrservice.azurewebsites.net || exit 1
