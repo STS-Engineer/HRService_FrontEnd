@@ -205,19 +205,19 @@ const DashboardAdmin = () => {
                           }}
                           title="Justification File"
                         />
-                        <div className="mt-2 flex items-center">
-                          <Button
-                            icon={<AiOutlineDownload />}
-                            onClick={() =>
-                              handleFileDownload(
-                                `http://localhost:3000/uploads/${record.justificationfile}`,
-                                record.justificationfile
-                              )
-                            }
-                            className="mr-2"
-                          >
-                            Download
-                          </Button>
+                          <div className="mt-2 flex items-center">
+                           <Button
+    icon={<AiOutlineDownload />}
+    onClick={() =>
+      handleFileDownload(
+        `http://localhost:3000/uploads/${record.justificationfile}`,
+        record.justificationfile
+      )
+    }
+    className="mr-2"
+  >
+    Download
+  </Button>
                         </div>
                       </div>
                     ),
