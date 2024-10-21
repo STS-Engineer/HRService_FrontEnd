@@ -20,7 +20,7 @@ const AuthAdmin = () => {
     const fetchRequests = async () => {
       const token = localStorage.getItem("token");
       fetch(
-        `http://bhr-avocarbon.azurewebsites.net/authorization-requests?page=${currentPage}&limit=${requestsPerPage}`,
+        `https://bhr-avocarbon.azurewebsites.net/authorization-requests?page=${currentPage}&limit=${requestsPerPage}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -64,7 +64,7 @@ const AuthAdmin = () => {
         // Make the server request
         axios
           .patch(
-            `http://bhr-avocarbon.azurewebsites.net/authorization-requests/${id}`,
+            `https://bhr-avocarbon.azurewebsites.net/authorization-requests/${id}`,
             {
               status: newStatus,
             },
@@ -112,7 +112,7 @@ const AuthAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://bhr-avocarbon.azurewebsites.net/authorization-requests/${id}`)
+          .delete(`https://bhr-avocarbon.azurewebsites.net/authorization-requests/${id}`)
           .then(() => {
             setAuthRequests(
               authRequests.filter((request) => request.requestid !== id)
