@@ -63,4 +63,4 @@ jobs:
           app-name: 'AVOCarbon-HRService'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_00FA764BB8034FDA9CD32AD519E8D39C }}
-          package: .
+          package: ./build
