@@ -31,7 +31,8 @@ jobs:
         run: npm run build
 
       - name: Zip artifact for deployment
-        run: zip -r release.zip ./*  # Ensure recursive flag (-r) is placed correctly
+        run: zip -r release.zip ./build
+ # Ensure recursive flag (-r) is placed correctly
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
