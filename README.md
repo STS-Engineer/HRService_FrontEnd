@@ -19,7 +19,7 @@ A web-based system designed to streamline HR processes like leave management, le
 
 ## Technologies Used
 
-- **Frontend**: React, TailwindCSS, Headless UI
+- **Frontend**: React, TailwindCSS, Headless UI , antdesign
 - **Backend**: Node.js, Express.js
 - **Database**: PostgreSQL
 - **Authentication**: JWT, Bcrypt
