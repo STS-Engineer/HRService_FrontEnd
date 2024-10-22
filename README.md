@@ -6,14 +6,7 @@ A web-based system designed to streamline HR processes like leave management, le
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-- [Usage](#usage)
-- [API Endpoints](#api-endpoints)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Features
 
