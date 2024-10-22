@@ -3,7 +3,7 @@ name: Build and deploy Node.js app to Azure Web App - AVOCarbon-HR
 on:
   push:
     branches:
-      - master
+      - update
   workflow_dispatch:
   
 permissions:
