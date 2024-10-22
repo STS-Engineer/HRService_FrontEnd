@@ -10,7 +10,7 @@ const { Title } = Typography;
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [rememberMe, setRememberMe] = useState(true);
   const [welcomeText, setWelcomeText] = useState("");
   const navigate = useNavigate();
 
