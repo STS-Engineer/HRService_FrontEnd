@@ -173,7 +173,7 @@ const EmployeeManagement = () => {
         columns={columns}
         loading={loading}
         rowKey="id"
-        pagination={{ pageSize: 8 }}
+        pagination={{ pageSize: 12 }}
         scroll={{ x: true }} // Add horizontal scroll for small screens
       />
 
