@@ -189,7 +189,7 @@ const Dashboard = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} md={8}>
+        <Col xs={24} sm={12} md={8} lg={6}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
