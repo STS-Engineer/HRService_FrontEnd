@@ -33,7 +33,7 @@ const LeaveRequest = ({ employeeId }) => {
   }
 
   // Add requestDate to FormData in 'YYYY-MM-DD' format
-  newLeaveRequest.append("requestDate", moment().format("DD-MM-YYYY"));
+  newLeaveRequest.append("requestDate", moment().format("YYYY-MM-DD"));
 
   try {
     await axios.post(
