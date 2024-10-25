@@ -206,7 +206,7 @@ const Dashboard = () => {
         </Col>
       </Row>
       <Row gutter={[16, 16]} style={{ marginTop: "20px" }}>
-        <Col xs={24} sm={12} md={8} lg={6}}>
+        <Col xs={24} sm={12} md={8} lg={6}>
           <Card
             title={
               <span>
