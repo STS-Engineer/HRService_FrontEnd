@@ -153,13 +153,7 @@ const MissionRequest = () => {
       >
         <TimePicker use12Hours format="h:mm A" placeholder="Select Time" />
       </Form.Item>
-      <Form.Item
-        label="Return Time"
-        name="departureTime"
-        rules={[{ required: true, message: "Please select a departure time" }]}
-      >
-        <TimePicker use12Hours format="h:mm A" placeholder="Select Time" />
-      </Form.Item > 
+      
 
         {/* Submit Button */}
         <Form.Item>
