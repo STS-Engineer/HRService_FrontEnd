@@ -17,9 +17,9 @@ const AuthRequest = () => {
         ? values.authorizationDate.format("YYYY-MM-DD")
         : "",
       departureTime: values.departureTime
-        ? values.departureTime.format("HH:mm")
+        ? values.departureTime.format("HH:mm:ss")
         : "",
-      returnTime: values.returnTime ? values.returnTime.format("HH:mm") : "",
+      returnTime: values.returnTime ? values.returnTime.format("HH:mm:ss") : "",
     };
 
     try {
@@ -97,11 +97,11 @@ const AuthRequest = () => {
 
         {/* Departure and Return Time */}
         <Form.Item label="Departure Time" name="departureTime">
-          <TimePicker style={{ width: "20%" }} format="HH:mm" />
+          <TimePicker style={{ width: "20%" }} format="HH:mm:ss" />
         </Form.Item>
 
         <Form.Item label="Return Time" name="returnTime">
-          <TimePicker style={{ width: "20%" }} format="HH:mm" />
+          <TimePicker style={{ width: "20%" }} format="HH:mm:ss" />
         </Form.Item>
 
         {/* Purpose of Authorization */}
