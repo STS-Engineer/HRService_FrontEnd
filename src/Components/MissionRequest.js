@@ -29,6 +29,7 @@ const MissionRequest = () => {
         ...values,
         startDate: values.startDate.format("YYYY-MM-DD"),
         endDate: values.endDate.format("YYYY-MM-DD"),
+        departureTime: values.departureTime.format("HH:mm:ss"),
         missionBudget: numericBudget,
         status: "Pending",
         requestDate: moment().format("YYYY-MM-DD"),
