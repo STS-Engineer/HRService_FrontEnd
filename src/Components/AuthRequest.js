@@ -28,7 +28,7 @@ const AuthRequest = () => {
         throw new Error("No token found. Please log in again.");
       }
       await axios.post(
-        "httpss://bhr-avocarbon.azurewebsites.net/authorization-requests",
+        "https://bhr-avocarbon.azurewebsites.net/authorization-requests",
         formData,
         {
           headers: {
