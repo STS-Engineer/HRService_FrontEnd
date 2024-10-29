@@ -159,7 +159,7 @@ const Dashboard = () => {
         Dashboard
       </Title>
       <Row gutter={[16, 16]} justify="center">
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} md={12}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
@@ -174,7 +174,7 @@ const Dashboard = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} md={12}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
@@ -189,7 +189,7 @@ const Dashboard = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} md={12}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
@@ -206,7 +206,7 @@ const Dashboard = () => {
         </Col>
       </Row>
       <Row gutter={[16, 16]} style={{ marginTop: "20px" }}>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} md={12}>
           <Card
             title={
               <span>
@@ -225,7 +225,7 @@ const Dashboard = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} md={12}>
           <Card
             title={
               <span>
