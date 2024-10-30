@@ -228,6 +228,8 @@ const DashboardAdmin = () => {
                 View File
               </Button>
             </div>
+          ):(
+            <p>No Justification File</p>
           )}
         </div>
       ),
