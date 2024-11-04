@@ -185,55 +185,58 @@ const DashboardAdmin = () => {
       },
     },
     {
-      title: "Justification File",
-      key: "actions",
-      render: (text, record) => (
+  title: "Justification File",
+  key: "actions",
+  render: (text, record) => (
+    <div>
+      {record.justificationfile ? (
         <div>
-          {record.justificationfile && (
-            <div>
-              <Button
-                icon={<AiOutlineEye />}
-                onClick={() =>
-                  Modal.info({
-                    title: "Justification File",
-                    content: (
-                      <div>
-                        <iframe
-                          src={`https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`}
-                          style={{
-                            width: "100%",
-                            height: "500px",
-                            border: "none",
-                          }}
-                          title="Justification File"
-                        />
-                        <div className="mt-2 flex items-center">
-                          <Button
-                            icon={<AiOutlineDownload />}
-                            onClick={() => (
-                              handleFileDownload(
-                                "https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}",
-                                record.justificationfile
-                              )
-                            )}
-                            className="mr-2"
-                          >
-                            Download
-                          </Button>
-                        </div>
-                      </div>
-                    ),
-                    onOk() {},
-                  })
-                }
-              >
-                View File
-              </Button>
-            </div>
-          )}
+          <Button
+            icon={<AiOutlineEye />}
+            onClick={() =>
+              Modal.info({
+                title: "Justification File",
+                content: (
+                  <div>
+                    <iframe
+                      src={`https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`}
+                      style={{
+                        width: "100%",
+                        height: "500px",
+                        border: "none",
+                      }}
+                      title="Justification File"
+                    />
+                    <div className="mt-2 flex items-center">
+                      <Button
+                        icon={<AiOutlineDownload />}
+                        onClick={() =>
+                          handleFileDownload(
+                            `https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`,
+                            record.justificationfile
+                          )
+                        }
+                        className="mr-2"
+                      >
+                        Download
+                      </Button>
+                    </div>
+                  </div>
+                ),
+                onOk() {},
+              })
+            }
+          >
+            View File
+          </Button>
         </div>
-      ),
-    },
+      ) : (
+        <span>No justification file available</span>
+      )}
+    </div>
+  ),
+}
+,
     {
       title: "Action",
       key: "action",
