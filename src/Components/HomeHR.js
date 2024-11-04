@@ -86,8 +86,8 @@ const HomeHR = () => {
             lastName: req.lastname,
             function: req.function || "-",
             department: req.department || "-",
-            departureTime: req.departure_time || "-", // Add departure_time
-            returnTime: req.return_time || "-", // Add return_time
+            departureTime: req.departuretime || "-", // Add departure_time
+            returnTime: req.returntime || "-", // Add return_time
           })
         );
 
