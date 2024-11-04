@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, message, Tag } from "antd";
-import { AiOutlineDownload, AiOutlineEye } from "react-icons/ai";
+import { AiOutlineDownload, AiOutlineEye,AiOutlineFile } from "react-icons/ai";
 import {
   DeleteOutlined,
   CheckOutlined,
@@ -231,7 +231,12 @@ const DashboardAdmin = () => {
           </Button>
         </div>
       ) : (
-        <span>No justification file available</span>
+        <div className="flex items-center text-gray-500">
+          <AiOutlineFile
+            style={{ fontSize: "20px", marginRight: "8px", textDecoration: "line-through" }}
+          />
+          <span>No justification file available</span>
+        </div>
       )}
     </div>
   ),
