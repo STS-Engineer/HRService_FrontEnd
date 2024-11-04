@@ -189,7 +189,7 @@ const DashboardAdmin = () => {
   key: "actions",
   render: (text, record) => (
     <div>
-      {record.justificationfile ? (
+      {record.justificationfile && record.justificationfile !== "undefined" ? (
         <div>
           <Button
             icon={<AiOutlineEye />}
