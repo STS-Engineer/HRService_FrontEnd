@@ -86,9 +86,9 @@ const LeaveRequest = () => {
         <Form.Item
           name="employeeId"
           label="Serial Number (Employee ID, ID Number, M.At)"
-          rules={[{ required: true, message: "Please enter your employee ID" }]}
+          initialValue={user.id} hidden
         >
-          <Input placeholder="Enter your ID" />
+          <Input />
         </Form.Item>
 
         <Form.Item
