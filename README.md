@@ -11,7 +11,7 @@ A web-based system designed to streamline HR processes like leave management, le
 ## Features
 
 - Role-based user authentication and access control.
-- Manage leave requests , mission requests and authorization requests with multi-step approvals (Manager & Plant Manager & Manager & CEO & RH Manager).
+- Manage leave requests , mission requests and authorization requests with multi-step approvals (Manager & Plant Manager & CEO & RH Manager).
 - Handle document requests and uploads.
 - Automated email notifications (using Nodemailer).
 - Export data to Excel and PDF.
