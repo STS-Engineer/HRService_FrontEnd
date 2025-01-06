@@ -26,7 +26,7 @@
 //     const fetchRequests = () => {
 //       const token = localStorage.getItem("token");
 //       fetch(
-//         `http://localhost:3000/leave-requests?page=${currentPage}&limit=${requestsPerPage}`,
+//         `https://bhr-avocarbon.azurewebsites.net/leave-requests?page=${currentPage}&limit=${requestsPerPage}`,
 //         {
 //           headers: {
 //             Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@
 //     }).then((result) => {
 //       if (result.isConfirmed) {
 //         const token = localStorage.getItem("token");
-//         fetch(`http://localhost:3000/leave-requests/${id}`, {
+//         fetch(`https://bhr-avocarbon.azurewebsites.net/leave-requests/${id}`, {
 //           method: "PATCH",
 //           headers: {
 //             "Content-Type": "application/json",
@@ -104,7 +104,7 @@
 //     }).then((result) => {
 //       if (result.isConfirmed) {
 //         const token = localStorage.getItem("token");
-//         fetch(`http://localhost:3000/leave-requests/${id}`, {
+//         fetch(`https://bhr-avocarbon.azurewebsites.net/leave-requests/${id}`, {
 //           method: "DELETE",
 //           headers: {
 //             "Content-Type": "application/json",
@@ -351,7 +351,7 @@ const DashboardAdmin = () => {
     const fetchRequests = () => {
       const token = localStorage.getItem("token");
       fetch(
-        `http://localhost:3000/leave-requests?page=${currentPage}&limit=${requestsPerPage}`,
+        `https://bhr-avocarbon.azurewebsites.net/leave-requests?page=${currentPage}&limit=${requestsPerPage}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -386,7 +386,7 @@ const DashboardAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`http://localhost:3000/leave-requests/${id}`, {
+        fetch(`https://bhr-avocarbon.azurewebsites.net/leave-requests/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -431,7 +431,7 @@ const DashboardAdmin = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`http://localhost:3000/leave-requests/${id}`, {
+        fetch(`https://bhr-avocarbon.azurewebsites.net/leave-requests/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -529,7 +529,7 @@ const DashboardAdmin = () => {
                     content: (
                       <div>
                         <iframe
-                          src={`http://localhost:3000/uploads/${record.justificationfile}`}
+                          src={`https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`}
                           style={{
                             width: "100%",
                             height: "500px",
@@ -542,7 +542,7 @@ const DashboardAdmin = () => {
                             icon={<AiOutlineDownload />}
                             onClick={() =>
                               handleFileDownload(
-                                `http://localhost:3000/uploads/${record.justificationfile}`,
+                                `https://bhr-avocarbon.azurewebsites.net/uploads/${record.justificationfile}`,
                                 record.justificationfile
                               )
                             }
