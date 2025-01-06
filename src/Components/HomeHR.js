@@ -27,19 +27,19 @@ const HomeHR = () => {
       const token = localStorage.getItem("token");
       try {
         const leaveRequestsResponse = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/leave-requests/all",
+          "http://localhost:3000/leave-requests/all",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         const missionRequestsResponse = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/mission-requests/all",
+          "http://localhost:3000/mission-requests/all",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
         const authorizationRequestsResponse = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/authorization-requests/all",
+          "http://localhost:3000/authorization-requests/all",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -86,8 +86,8 @@ const HomeHR = () => {
             lastName: req.lastname,
             function: req.function || "-",
             department: req.department || "-",
-            departureTime: req.departuretime || "-", // Add departure_time
-            returnTime: req.returntime || "-", // Add return_time
+            departureTime: req.departure_time || "-", // Add departure_time
+            returnTime: req.return_time || "-", // Add return_time
           })
         );
 

@@ -5,9 +5,12 @@ import {
   BsClipboardCheck,
   BsChatLeftTextFill,
   BsBarChartFill,
+  BsClockFill,
 } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 const SideBarAdmin = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
 
   return (
@@ -92,7 +95,7 @@ const SideBarAdmin = () => {
                 to="/home-admin"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsHouseDoorFill className="mr-2" /> Home Admin
+                <BsHouseDoorFill className="mr-2" /> {t("sidebar.home")}
               </Link>
             </li>
             <li className="my-2">
@@ -100,7 +103,7 @@ const SideBarAdmin = () => {
                 to="/requests"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsClipboardCheck className="mr-2" /> Apply for Requests
+                <BsClipboardCheck className="mr-2" /> {t("sidebar.requests")}
               </Link>
             </li>
             <li className="my-2">
@@ -108,7 +111,16 @@ const SideBarAdmin = () => {
                 to="/demands"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsChatLeftTextFill className="mr-2" /> Consult Demands
+                <BsChatLeftTextFill className="mr-2" /> {t("sidebar.demands")}
+              </Link>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/pointing-management"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsClockFill className="mr-2" />{" "}
+                {t("sidebar.PointingManagement")}
               </Link>
             </li>
             {/* <li className="my-2">

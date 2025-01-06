@@ -3,8 +3,10 @@ import { Input, Button, DatePicker, Form, TimePicker } from "antd";
 import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { useTranslation } from "react-i18next";
 
 const MissionRequest = () => {
+  const { t } = useTranslation();
   const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({});
@@ -29,14 +31,13 @@ const MissionRequest = () => {
         ...values,
         startDate: values.startDate.format("YYYY-MM-DD"),
         endDate: values.endDate.format("YYYY-MM-DD"),
-        departureTime: values.departureTime.format("HH:mm:ss"),
         missionBudget: numericBudget,
         status: "Pending",
         requestDate: moment().format("YYYY-MM-DD"),
       };
       // POST request to API
       await axios.post(
-        "https://bhr-avocarbon.azurewebsites.net/mission-requests",
+        "http://localhost:3000/mission-requests",
         formattedValues,
         {
           headers: {
@@ -48,21 +49,19 @@ const MissionRequest = () => {
 
       // Show success alert and reset form
       Swal.fire({
-        title: "Success!",
-        text: "Mission request submitted successfully!",
+        title: t("missionRequest.successTitle"),
+        text: t("missionRequest.successMessage"),
         icon: "success",
       });
       form.resetFields();
     } catch (error) {
       // Handle error and show alert
       Swal.fire({
-        title: "Error!",
-        text: "Failed to submit mission request. Please try again later.",
+        title: t("missionRequest.errorTitle"),
+        text: t("missionRequest.errorMessage"),
         icon: "error",
       });
-      setError(
-        error.response ? error.response.data.error : "Something went wrong!"
-      );
+      setError(error.response ? error.response.data.error : t("genericError"));
     } finally {
       setSubmitting(false);
     }
@@ -79,29 +78,39 @@ const MissionRequest = () => {
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         {/* Serial Number (Employee ID, ID Number, M.At) */}
         <Form.Item
-          label="Serial Number (Employee ID, ID Number, M.At)"
-          name="employeeId"
-          rules={[{ required: true, message: "Please enter your Employee ID" }]}
+          label={t("missionRequest.serialNumber")}
+          name={t("missionRequest.serialNumberPlaceholder")}
+          rules={[
+            {
+              required: true,
+              message: t("missionRequest.EmployeeIDPlaceholder"),
+            },
+          ]}
         >
-          <Input placeholder="Enter your ID" />
+          <Input placeholder={t("missionRequest.serialNumberPlaceholder")} />
         </Form.Item>
 
         {/* Phone */}
         <Form.Item
-          label="Phone (Personal Number)"
+          label={t("missionRequest.phone")}
           name="phone"
           rules={[
-            { required: true, message: "Please enter your phone number" },
+            { required: true, message: t("missionRequest.PhonePlaceholder") },
           ]}
         >
-          <Input placeholder="Enter your phone number" />
+          <Input placeholder={t("missionRequest.phonePlaceholder")} />
         </Form.Item>
 
         {/* Start Date */}
         <Form.Item
-          label="Start Date"
+          label={t("missionRequest.startDate")}
           name="startDate"
-          rules={[{ required: true, message: "Please select a start date" }]}
+          rules={[
+            {
+              required: true,
+              message: t("missionRequest.DatePlaceholder"),
+            },
+          ]}
         >
           <DatePicker
             format="DD-MM-YYYY"
@@ -112,54 +121,80 @@ const MissionRequest = () => {
         </Form.Item>
 
         <Form.Item
-          label="End Date"
+          label={t("missionRequest.endDate")}
           name="endDate"
-          rules={[{ required: true, message: "Please select an end date" }]}
+          rules={[
+            { required: true, message: t("missionRequest.DatePlaceholder") },
+          ]}
         >
           <DatePicker format="DD-MM-YYYY" disabledDate={disabledEndDate} />
         </Form.Item>
         {/* Mission Budget */}
         <Form.Item
-          label="Mission Budget"
+          label={t("missionRequest.missionBudget")}
           name="missionBudget"
-          rules={[{ required: true, message: "Please enter mission budget" }]}
+          rules={[
+            {
+              required: true,
+              message: t("missionRequest.missionBudgetPlaceholder"),
+            },
+          ]}
         >
-          <Input placeholder="Enter Mission Budget" />
+          <Input placeholder={t("missionRequest.missionBudgetPlaceholder")} />
         </Form.Item>
 
         {/* Purpose of Travel */}
         <Form.Item
-          label="Purpose of Travel"
+          label={t("missionRequest.purposeOfTravel")}
           name="purposeOfTravel"
           rules={[
-            { required: true, message: "Please enter the purpose of travel" },
+            { required: true, message: t("missionRequest.purposeOfTravel") },
           ]}
         >
-          <Input.TextArea placeholder="Enter Purpose of Travel" />
+          <Input.TextArea
+            placeholder={t("missionRequest.purposeOfTravelPlaceholder")}
+          />
         </Form.Item>
 
         {/* Destination */}
         <Form.Item
-          label="Destination"
+          label={t("missionRequest.destination")}
           name="destination"
-          rules={[{ required: true, message: "Please enter destination" }]}
+          rules={[
+            {
+              required: true,
+              message: t("missionRequest.destinationPlaceholder"),
+            },
+          ]}
         >
-          <Input placeholder="Enter Destination" />
+          <Input
+            placeholder={t("missionRequest.EnterDestinationPlaceholder")}
+          />
         </Form.Item>
 
-       <Form.Item
-        label="Departure Time"
-        name="departureTime"
-        rules={[{ required: true, message: "Please select a departure time" }]}
-      >
-        <TimePicker use12Hours format="HH:mm:ss" placeholder="Select Time" />
-      </Form.Item>
-      
+        <Form.Item
+          label={t("missionRequest.departureTime")}
+          name="departureTime"
+          rules={[
+            {
+              required: true,
+              message: t("missionRequest.departureTimePlaceholder"),
+            },
+          ]}
+        >
+          <TimePicker
+            use12Hours
+            format="h:mm A"
+            placeholder={t("missionRequest.SelectTimePlaceholder")}
+          />
+        </Form.Item>
 
         {/* Submit Button */}
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={submitting}>
-            {submitting ? "Submitting..." : "Apply"}
+            {submitting
+              ? t("leaveRequest.submitButtonLoading")
+              : t("leaveRequest.applyButton")}
           </Button>
         </Form.Item>
       </Form>

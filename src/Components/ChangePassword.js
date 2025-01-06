@@ -31,7 +31,7 @@ const ChangePassword = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "https://bhr-avocarbon.azurewebsites.net/auth/update-password/",
+        "http://localhost:3000/auth/update-password/",
         {
           method: "PATCH",
           headers: {

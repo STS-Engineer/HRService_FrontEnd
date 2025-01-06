@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Modal, message } from "antd";
+import { Table, Button, Modal, message, Tag } from "antd";
 import axios from "axios";
 import Topbar from "./TopBar";
 import Sidebar from "./SideBar";
 import "antd/dist/reset.css";
+import { DeleteOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const MyLeave = () => {
+  const { t } = useTranslation();
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,7 +22,7 @@ const MyLeave = () => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await axios.get(
-          `https://bhr-avocarbon.azurewebsites.net/leave-requests/employee/${user.id}`,
+          `http://localhost:3000/leave-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,7 +57,7 @@ const MyLeave = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`https://bhr-avocarbon.azurewebsites.net/leave-requests/${deleteId}`, {
+      await axios.delete(`http://localhost:3000/leave-requests/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -78,50 +81,57 @@ const MyLeave = () => {
 
   const columns = [
     {
-      title: "Leave Type",
+      title: t("leaveRequest.leaveTypeLabel"),
       dataIndex: "leave_type",
       key: "leave_type",
+      responsive: ["md"],
     },
     {
-      title: "Dates",
+      title: t("leaveRequest.dates"),
       key: "dates",
       render: (text, record) => (
         <span>
           from {formatDate(record.start_date)} to {formatDate(record.end_date)}
         </span>
       ),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Justification",
+      title: t("leaveRequest.justificationLabel"),
       dataIndex: "justification",
       key: "justification",
+      responsive: ["md"],
     },
     {
-      title: "Status",
+      title: t("missionRequest.myMission.status"),
       dataIndex: "status",
       key: "status",
       render: (status) => (
-        <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+        <Tag
+          color={
             status === "Pending"
-              ? "bg-yellow-400 text-white"
+              ? "gold"
               : status === "Approved"
-              ? "bg-green-400 text-white"
-              : "bg-red-400 text-white"
-          }`}
+              ? "green"
+              : "red"
+          }
         >
-          {status}
-        </span>
+          {status.toUpperCase()}
+        </Tag>
       ),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Action",
+      title: t("dashboard.action"),
       key: "action",
       render: (text, record) => (
-        <Button danger onClick={() => showDeleteConfirm(record.id)}>
-          Delete
-        </Button>
+        <Button
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => showDeleteConfirm(record.id)}
+        />
       ),
+      responsive: ["xs", "sm", "md", "lg"], // Show on all screen sizes
     },
   ];
 
@@ -137,13 +147,17 @@ const MyLeave = () => {
             <p className="text-red-500">{error}</p>
           ) : (
             <>
-              <Table
-                columns={columns}
-                dataSource={leaveRequests}
-                rowKey="id"
-                pagination={{ pageSize: 8 }}
-                bordered
-              />
+              <div className="overflow-x-auto">
+                {" "}
+                {/* Enables horizontal scroll for smaller screens */}
+                <Table
+                  columns={columns}
+                  dataSource={leaveRequests}
+                  rowKey="id"
+                  pagination={{ pageSize: 8 }}
+                  bordered
+                />
+              </div>
               <Modal
                 title="Delete Confirmation"
                 visible={isModalVisible}

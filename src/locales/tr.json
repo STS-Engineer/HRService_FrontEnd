@@ -1,0 +1,370 @@
+{
+  "welcome": "Hoş geldiniz",
+  "logout": "Çıkış yap",
+  "profile": "Profil",
+  "changePassword": "Şifreyi Değiştir",
+  "notifications": "Bildirimler",
+  "Leave Request": "Izin Talebi",
+  "leave_type": "Izin Türü",
+  "leave_request": "Izin Talebi",
+  "mission_request": "Görev Talebi",
+  "authorization_request": "Yetki Talebi",
+  "work_documents_request": "Çalışma Belgeleri Talebi",
+  "click_to_request_leave": "Izin talep etmek için tıklayın",
+  "click_to_request_mission": "Görev talep etmek için tıklayın",
+  "click_to_request_authorization": "Yetki talep etmek için tıklayın",
+  "click_to_request_documents": "Belgeleri talep etmek için tıklayın",
+  "back": "Geri",
+  "add_employee_title": "Çalışan Ekle",
+  "employee_id": "Çalışan ID",
+  "employee_id_placeholder": "Çalışan ID girin",
+  "first_name": "Adı",
+  "first_name_placeholder": "Adı girin",
+  "last_name": "Soyadı",
+  "last_name_placeholder": "Soyadı girin",
+  "department": "Departman",
+  "department_placeholder": "Departman girin",
+  "role": "Rol",
+  "select_role_placeholder": "Rol seçin",
+  "plant_connection": "Fabrika Bağlantısı",
+  "select_plant_placeholder": "Fabrika bağlantısı seçin",
+  "email": "E-posta",
+  "email_placeholder": "E-posta girin",
+  "password": "Şifre",
+  "submit_button": "Çalışan Ekle",
+  "success_message_title": "Başarı",
+  "success_message_text": "Çalışan başarıyla eklendi!",
+  "error_message_title": "Hata",
+  "error_message_text": "Çalışan eklenirken hata oluştu",
+  "dashboard": {
+    "modalTitle": "İzin Talebi Detayı",
+    "close": "Kapat",
+    "dateRange": "Tarih Aralığı",
+    "actions": {
+      "approve": "Onayla",
+      "reject": "Reddet",
+      "delete": "Sil",
+      "downloadFile": "Dosyayı indir",
+      "viewFile": "Dosyayı Görüntüle"
+    },
+    "messages": {
+      "confirmApprove": "Bu talebi onaylamak istediğinizden emin misiniz?",
+      "confirmReject": "Bu talebi reddetmek istediğinizden emin misiniz?",
+      "confirmDelete": "Bu talebi silmek istediğinizden emin misiniz?",
+      "successUpdate": "Talep başarıyla güncellendi.",
+      "successDelete": "Talep silindi.",
+      "errorUpdate": "Talep güncellenemedi.",
+      "errorDelete": "Talep silinemedi.",
+      "fileDownloadError": "Dosya indirilirken hata oluştu."
+    },
+    "status": {
+      "status": "Durum",
+      "approved": "Onaylı",
+      "rejected": "Reddedildi",
+      "pending": "Bekliyor"
+    },
+    "action": "Eylem"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "İzin Taleplerini Yönet",
+      "description": "İzin taleplerini yönetmek için tıklayın"
+    },
+    "manageMission": {
+      "title": "Görev Taleplerini Yönet",
+      "description": "Görev taleplerini yönetmek için tıklayın"
+    },
+    "manageAuth": {
+      "title": "Yetki Taleplerini Yönet",
+      "description": "Yetki taleplerini yönetmek için tıklayın"
+    },
+    "manageDocuments": {
+      "title": "Belgeleri Yönet",
+      "description": "Belgeleri yönetmek için tıklayın"
+    }
+  },
+  "mission_admin": {
+    "title": "Görev Talebi",
+    "firstname": "Adı",
+    "lastname": "Soyadı",
+    "purpose_of_travel": "Seyahat Amacı",
+    "dates": "Tarihler",
+    "status": {
+      "approved": "Onaylı",
+      "rejected": "Reddedildi",
+      "pending": "Bekliyor"
+    },
+    "actions": {
+      "approve": "Onayla",
+      "reject": "Reddet",
+      "delete": "Sil",
+      "view_details": "Detayları Görüntüle"
+    },
+    "pagination": {
+      "total_requests": "Toplam Talepler"
+    },
+    "modal": {
+      "title": "Talep Detayı",
+      "phone": "Telefon",
+      "destination": "Varış Noktası",
+      "mission_budget": "Görev Bütçesi"
+    },
+    "messages": {
+      "confirm_approve": "Bu talebi onaylamak istediğinizden emin misiniz?",
+      "confirm_reject": "Bu talebi reddetmek istediğinizden emin misiniz?",
+      "confirm_delete": "Bu talebi silmek istediğinizden emin misiniz?",
+      "success_update": "Talep başarıyla güncellendi.",
+      "success_delete": "Talep silindi.",
+      "error_update": "Talep güncellenemedi.",
+      "error_delete": "Talep silinemedi."
+    }
+  },
+  "sidebar": {
+    "home": "Ana Sayfa Yönetici",
+    "requests": "Izin Talepleri",
+    "demands": "Talepleri İncele",
+    "dashboard": "Gösterge Paneli",
+    "myLeave": "Izinlerim",
+    "myMission": "Görevlerim",
+    "myAuth": "Yetkilerim",
+    "myDocs": "Belgelerim",
+    "myPointing": "Benim İşaretim",
+    "employeeManagement": "Çalışan Yönetimi",
+    "rhDashboard": "Gösterge Paneli",
+    "salaryCertificate": "Maaş Sertifikası",
+    "documentManagement": "Belge Yönetimi",
+    "PointingManagement": " İşaret Yönetimi"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "Çalışan Numarası (Çalışan ID, Kimlik Kartı, M.At)",
+    "employeeIdPlaceholder": "Çalışan ID'sini girin",
+    "leaveTypeLabel": "Izin Türü",
+    "leaveTypePlaceholder": "Izin türü seçin",
+    "dates": "Tarihler",
+    "otherLeaveTypeLabel": "Lütfen başka bir izin türü belirtin",
+    "otherLeaveTypePlaceholder": "Izin türü belirtin",
+    "startDateLabel": "Izin Başlangıç Tarihi",
+    "endDateLabel": "Izin Bitiş Tarihi",
+    "DatePlaceholder": "Tarih seçin",
+    "phoneLabel": "Telefon (Kişisel Numara)",
+    "phonePlaceholder": "Telefon numarasını girin",
+    "justificationLabel": "Gerekçe",
+    "justificationPlaceholder": "Gerekçe girin",
+    "justificationFileLabel": "Gerekçe dosyasını yükleyin",
+    "uploadFileButton": "Dosya Yükle",
+    "applyButton": "Başvur",
+    "submitButtonLoading": "Gönderiliyor...",
+    "successTitle": "Başarı!",
+    "successMessage": "Izin talebi başarıyla gönderildi!",
+    "errorTitle": "Hata!",
+    "errorMessage": "Izin talebi gönderilirken hata oluştu",
+    "fileUploadSuccess": "Dosya başarıyla yüklendi",
+    "fileUploadError": "Dosya yüklenirken hata oluştu",
+    "validation": {
+      "employeeIdRequired": "Çalışan ID'sini girin",
+      "leaveTypeRequired": "Izin türünü seçin",
+      "otherLeaveTypeRequired": "Izin türünü belirtin",
+      "startDateRequired": "Izin başlangıç tarihini seçin",
+      "endDateRequired": "Izin bitiş tarihini seçin",
+      "phoneRequired": "Telefon numarasını girin",
+      "justificationRequired": "Gerekçeyi girin"
+    },
+    "leaveTypes": {
+      "halfDay": "Yarım Gün",
+      "wedding": "Düğün",
+      "business": "İş",
+      "injury": "Yaralanma",
+      "sick": "Hastalık",
+      "maternity": "Doğum İzni",
+      "funeral": "Cenaze",
+      "annualLeave": "Yıllık İzin",
+      "compensatory": "Telafi İzni",
+      "withoutPay": "Ücretsiz İzin",
+      "seniority": "Kıdem"
+    }
+  },
+  "missionRequest": {
+    "serialNumber": "Seri Numarası (Çalışan Kimliği, Kimlik Numarası, M.At)",
+    "serialNumberPlaceholder": "Kimliğinizi giriniz",
+    "EmployeeIDPlaceholder": "Lütfen çalışan kimliğinizi giriniz",
+    "EnterDestinationPlaceholder": "Hedefi giriniz",
+    "phone": "Telefon (Kişisel Numara)",
+    "phonePlaceholder": "Telefon numaranızı giriniz",
+    "PhonePlaceholder": "Lütfen telefon numaranızı giriniz",
+    "startDate": "Başlangıç Tarihi",
+    "startDatePlaceholder": "Lütfen bir başlangıç tarihi seçiniz",
+    "endDate": "Bitiş Tarihi",
+    "endDatePlaceholder": "Lütfen bir bitiş tarihi seçiniz",
+    "missionBudget": "Görev Bütçesi",
+    "missionBudgetPlaceholder": "Görev bütçesini giriniz",
+    "purposeOfTravel": "Seyahat Amacı",
+    "purposeOfTravelPlaceholder": "Seyahat amacını giriniz",
+    "destination": "Hedef",
+    "destinationPlaceholder": "Hedefi giriniz",
+    "departureTime": "Kalkış Saati",
+    "departureTimePlaceholder": "Lütfen bir kalkış saati seçiniz",
+    "DatePlaceholder": "Tarih seçin",
+    "submitButton": "Başvur",
+    "submittingButton": "Gönderiliyor...",
+    "successTitle": "Başarılı!",
+    "successMessage": "Görev talebi başarıyla gönderildi!",
+    "errorTitle": "Hata!",
+    "SelectTimePlaceholder": "Zaman Seç",
+    "errorMessage": "Görev talebi gönderilemedi. Lütfen daha sonra tekrar deneyiniz.",
+    "genericError": "Bir şeyler ters gitti!",
+    "myMission": {
+      "title": "Görevlerim",
+      "purposeOfTravel": "Seyahat Amacı",
+      "duration": "Süre",
+      "destination": "Hedef",
+      "status": "Durum",
+      "action": "İşlem",
+      "loading": "Yükleniyor...",
+      "error": "Görev talepleri yüklenemedi",
+      "deleteConfirmation": {
+        "title": "Silme Onayı",
+        "message": "Bu görev talebini silmek istediğinize emin misiniz?",
+        "okText": "Evet, Sil",
+        "cancelText": "İptal"
+      },
+      "deleteSuccess": "Görev talebi başarıyla silindi.",
+      "deleteError": "Görev talebi silinemedi."
+    }
+  },
+  "login": {
+    "welcomeMessage": "AVOCarbon İnsan Kaynakları Servisine Hoşgeldiniz",
+    "signInTitle": "Giriş Yap",
+    "emailLabel": "E-posta",
+    "passwordLabel": "Şifre",
+    "plantConnectionLabel": "Fabrika Bağlantısı",
+    "selectPlantPlaceholder": "Fabrika Bağlantısı Seçin",
+    "rememberMe": "Beni hatırla",
+    "loginButton": "Giriş Yap",
+    "loginSuccessTitle": "Giriş Başarılı",
+    "loginSuccessMessage": "Tekrar hoşgeldiniz, {{firstname}}!",
+    "loginFailureTitle": "Geçersiz Kimlik Bilgileri",
+    "loginFailureMessage": "Lütfen tekrar deneyin",
+    "loginErrorTitle": "Giriş Başarısız",
+    "loginErrorMessage": "Şifre veya fabrika bağlantısı yanlış. Lütfen tekrar deneyin."
+  },
+  "plants": {
+    "kunshan": "AVOCarbon Kunshan",
+    "tianjin": "AVOCarbon Tianjin",
+    "france": "AVOCarbon Fransa",
+    "cyclam": "Cyclam",
+    "germany": "AVOCarbon Almanya",
+    "india": "AVOCarbon Hindistan",
+    "korea": "AVOCarbon Kore",
+    "tunisia": "AVOCarbon Tunus"
+  },
+
+  "authRequest": {
+    "serialNumber": "Seri Numarası (Çalışan Kimliği, Kimlik Numarası, M.At)",
+    "serialNumberPlaceholder": "Kimliğinizi giriniz",
+    "phone": "Telefon (Kişisel Numara)",
+    "phonePlaceholder": "Telefon numaranızı giriniz",
+    "authorizationDate": "Yetki Tarihi",
+    "authorizationDatePlaceholder": "Lütfen bir tarih seçiniz!",
+    "departureTime": "Ayrılma Saati",
+    "departureTimePlaceholder": "Lütfen ayrılma saatini seçiniz!",
+    "returnTime": "Dönüş Saati",
+    "returnTimePlaceholder": "Lütfen dönüş saatini seçiniz!",
+    "purposeOfAuthorization": "Yetkilendirmenin Amacı",
+    "purposeOfAuthorizationPlaceholder": "Yetkilendirmenin amacını giriniz",
+    "submitButton": "Başvur",
+    "submitting": "Gönderiliyor...",
+    "successTitle": "Başarılı!",
+    "successMessage": "Yetkilendirme isteği başarıyla gönderildi!",
+    "errorTitle": "Hata!",
+    "errorMessage": "Bir şeyler ters gitti!",
+    "myAuth": {
+      "Purpose": "Amaç",
+      "Date": "Tarih",
+      "DepartureTime": "Ayrılma Saati",
+      "ReturnTime": "Dönüş Saati",
+      "Status": "Durum",
+      "Action": "Eylem",
+      "Pending": "Beklemede",
+      "Approved": "Onaylandı",
+      "Rejected": "Reddedildi",
+      "fetchError": "Yetkilendirme istekleri alınamadı.",
+      "deleteSuccess": "Yetkilendirme isteği başarıyla silindi.",
+      "deleteError": "Yetkilendirme isteği silinemedi.",
+      "deleteConfirmation": "Silme Onayı",
+      "deleteConfirmationMessage": "Bu yetkilendirme isteğini silmek istediğinize emin misiniz?",
+      "yesDelete": "Evet, Sil",
+      "cancel": "İptal"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "Seri Numarası (Çalışan Kimliği, Kimlik Numarası, M.At)",
+    "employeeIdPlaceholder": "Kimliğinizi girin",
+    "employeeIdError": "Lütfen çalışan kimliğinizi girin!",
+    "documentTypeLabel": "Belge Türü",
+    "documentTypePlaceholder": "Belge Türünü Seçin",
+    "documentTypeError": "Lütfen bir belge türü seçin!",
+    "salaryCertificate": "Maaş Sertifikası",
+    "workCertificate": "Çalışma Sertifikası",
+    "other": "Diğer",
+    "otherDocumentTypeLabel": "Lütfen Belirtiniz",
+    "otherDocumentTypePlaceholder": "Belge türünü belirtin",
+    "otherDocumentTypeError": "Lütfen belge türünü belirtin!",
+    "documentPurposeLabel": "Belge Amacı",
+    "documentPurposePlaceholder": "Belgenin amacını girin",
+    "applyButton": "Başvur",
+    "submitting": "Gönderiliyor...",
+    "successMessage": "Belge talebi başarıyla gönderildi!",
+    "errorTitle": "Hata...",
+    "errorMessage": "Belge talebi gönderilemedi. Lütfen tekrar deneyin.",
+    "table": {
+    "documentType": "Belge Türü",
+    "download": "İndir",
+    "downloadButton": "İndir",
+    "statuskey": "Durum",
+    "action": "Eylem",
+    "na": "Mevcut değil",
+    "noFile": "Dosya yok",
+    "modal": {
+      "title": "Silme Onayı",
+      "body": "Bu belge talebini silmek istediğinizden emin misiniz?",
+      "confirm": "Evet, Sil",
+      "cancel": "İptal"
+    },
+    "error": {
+      "fetchFailed": "Belge talepleri alınamadı",
+      "deleteFailed": "Belge talebi silinemedi",
+      "title": "Hata"
+    },
+    "success": {
+      "delete": "Belge talebi başarıyla silindi."
+    },
+    "status": {
+      "pending": "Beklemede",
+      "completed": "Tamamlandı",
+      "rejected": "Reddedildi"
+    }
+  }
+  },
+  "myPointing": {
+    "date": "Tarih",
+    "pointing": "Zaman Kaydı",
+    "workingHours": "Çalışma Saatleri"
+  },
+  "logs": {
+    "notLoggedIn": "Giriş yapılmadı",
+    "notLoggedOut": "Çıkış yapılmadı",
+    "insufficientData": "Yetersiz veri",
+    "hours": "saat",
+    "syncSuccess": "Kayıtlar başarıyla senkronize edildi!",
+    "updateSuccess": "Zaman kaydı durumu başarıyla güncellendi!"
+  },
+  "error": {
+    "notAuthenticated": "Kullanıcı kimlik doğrulanamadı.",
+    "fetchLogs": "Kayıtlar alınamadı.",
+    "syncLogs": "Kayıt senkronizasyonunda hata oluştu."
+  },
+  "buttons": {
+    "loadLogs": "Kayıtları Yükle",
+    "syncLogs": "Kayıtları Senkronize Et"
+  }
+}

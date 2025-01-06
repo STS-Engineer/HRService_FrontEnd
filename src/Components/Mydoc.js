@@ -3,8 +3,11 @@ import { Table, Tag, Button, Spin, Alert, message, Modal } from "antd";
 import { FaDownload } from "react-icons/fa";
 import Swal from "sweetalert2";
 import "antd/dist/reset.css"; // Ant Design styles
+import { DeleteOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const MyDoc = ({ user }) => {
+  const { t } = useTranslation();
   const [documentRequests, setDocumentRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -18,7 +21,7 @@ const MyDoc = ({ user }) => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/document-requests/${user.id}`,
+          `http://localhost:3000/document-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -26,20 +29,20 @@ const MyDoc = ({ user }) => {
           }
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch document requests");
+          throw new Error(t("error.fetchFailed"));
         }
         const data = await response.json();
         setDocumentRequests(data);
         setError(null);
       } catch (error) {
-        setError(error.message || "Failed to fetch document requests");
-        Swal.fire("Error", error.message, "error");
+        setError(t("error.fetchFailed"));
+        Swal.fire(t("error.title"), t("error.fetchFailed"), "error");
       } finally {
         setLoading(false);
       }
     };
     handleGetAllDocumentRequests();
-  }, []);
+  }, [t]);
   const showDeleteConfirm = (id) => {
     setDeleteId(id);
     setIsModalVisible(true);
@@ -47,7 +50,7 @@ const MyDoc = ({ user }) => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`https://bhr-avocarbon.azurewebsites.net/document-requests/${deleteId}`, {
+      await fetch(`http://localhost:3000/document-requests/${deleteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -60,7 +63,7 @@ const MyDoc = ({ user }) => {
       setIsModalVisible(false);
       setDeleteId(null);
     } catch (error) {
-      message.error("Failed to delete document request.");
+      message.error(t("error.deleteFailed"));
       console.error("Error deleting document request:", error);
     }
   };
@@ -70,15 +73,35 @@ const MyDoc = ({ user }) => {
   };
   const columns = [
     {
-      title: "Document Type",
+      title: t("documentRequest.table.documentType"),
       dataIndex: "document_type",
       key: "document_type",
-      render: (text) => text || "N/A",
+      render: (text) => text || t("table.na"),
+      responsive: ["md"],
     },
     {
-      title: "Status",
+      title: t("documentRequest.table.download"),
+      key: "download",
+      render: (doc) =>
+        doc.file_path ? (
+          <Button
+            type="primary"
+            icon={<FaDownload />}
+            onClick={() => {
+              window.location.href = `http://localhost:3000/document-requests/download/${doc.file_path}`;
+            }}
+          >
+            Download
+          </Button>
+        ) : (
+          <span>No file available</span>
+        ),
+      responsive: ["xs", "sm", "md", "lg"],
+    },
+    {
+      title: t("documentRequest.table.statuskey"),
       dataIndex: "status",
-      key: "status",
+      key: "documentRequest.status",
       render: (status) => (
         <Tag
           color={
@@ -92,34 +115,19 @@ const MyDoc = ({ user }) => {
           {status.toUpperCase()}
         </Tag>
       ),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Download",
-      key: "download",
-      render: (doc) =>
-        doc.file_path ? (
-          <Button
-            type="primary"
-            icon={<FaDownload />}
-            onClick={() => {
-              window.location.href = `https://bhr-avocarbon.azurewebsites.net/document-requests/download/${doc.file_path}`;
-            }}
-          >
-            Download
-          </Button>
-        ) : (
-          <span>No file available</span>
-        ),
-    },
-    ,
-    {
-      title: "Action",
+      title: t("documentRequest.table.action"),
       key: "action",
       render: (text, record) => (
-        <Button danger onClick={() => showDeleteConfirm(record.id)}>
-          Delete
-        </Button>
+        <Button
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => showDeleteConfirm(record.id)}
+        />
       ),
+      responsive: ["xs", "sm", "md", "lg"], // Show on all screen sizes
     },
   ];
 
@@ -139,14 +147,14 @@ const MyDoc = ({ user }) => {
             bordered
           />
           <Modal
-            title="Delete Confirmation"
+            title={t("modal.title")}
             visible={isModalVisible}
             onOk={handleDelete}
             onCancel={handleCancel}
-            okText="Yes, Delete"
-            cancelText="Cancel"
+            okText={t("modal.confirm")}
+            cancelText={t("modal.cancel")}
           >
-            <p>Are you sure you want to delete this documet request?</p>
+            <p>{t("modal.body")}</p>
           </Modal>
         </>
       )}

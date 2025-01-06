@@ -1,0 +1,373 @@
+{
+  "welcome": "Willkommen",
+  "logout": "Abmelden",
+  "profile": "Profil",
+  "changePassword": "Passwort ändern",
+  "notifications": "Benachrichtigungen",
+  "Leave Request": "Urlaubsanfrage",
+  "leave_type": "Urlaubsart",
+  "leave_request": "Urlaubsanfrage",
+  "mission_request": "Mission Anfrage",
+  "authorization_request": "Genehmigungsanfrage",
+  "work_documents_request": "Arbeitsdokumente Anfrage",
+  "click_to_request_leave": "Klicken Sie hier, um Urlaub anzufordern",
+  "click_to_request_mission": "Klicken Sie hier, um eine Mission anzufordern",
+  "click_to_request_authorization": "Klicken Sie hier, um eine Genehmigung anzufordern",
+  "click_to_request_documents": "Klicken Sie hier, um Dokumente anzufordern",
+  "back": "Zurück",
+  "add_employee_title": "Mitarbeiter hinzufügen",
+  "employee_id": "Mitarbeiter ID",
+  "employee_id_placeholder": "Mitarbeiter ID eingeben",
+  "first_name": "Vorname",
+  "first_name_placeholder": "Vorname eingeben",
+  "last_name": "Nachname",
+  "last_name_placeholder": "Nachname eingeben",
+  "department": "Abteilung",
+  "department_placeholder": "Abteilung eingeben",
+  "role": "Rolle",
+  "select_role_placeholder": "Rolle auswählen",
+  "plant_connection": "Werksverbindung",
+  "select_plant_placeholder": "Werksverbindung auswählen",
+  "email": "E-Mail",
+  "email_placeholder": "E-Mail eingeben",
+  "password": "Passwort",
+  "submit_button": "Mitarbeiter hinzufügen",
+  "success_message_title": "Erfolg",
+  "success_message_text": "Mitarbeiter erfolgreich hinzugefügt!",
+  "error_message_title": "Fehler",
+  "error_message_text": "Fehler beim Hinzufügen des Mitarbeiters",
+  "dashboard": {
+    "modalTitle": "Details der Urlaubsanfrage",
+    "close": "Schließen",
+    "dateRange": "Datumsbereich",
+    "actions": {
+      "approve": "Genehmigen",
+      "reject": "Ablehnen",
+      "delete": "Löschen",
+      "downloadFile": "Nachweisdokument herunterladen",
+      "viewFile": "Dokument anzeigen"
+    },
+    "messages": {
+      "confirmApprove": "Möchten Sie diese Anfrage wirklich genehmigen?",
+      "confirmReject": "Möchten Sie diese Anfrage wirklich ablehnen?",
+      "confirmDelete": "Möchten Sie diese Anfrage wirklich löschen?",
+      "successUpdate": "Anfrage wurde erfolgreich aktualisiert.",
+      "successDelete": "Die Anfrage wurde gelöscht.",
+      "errorUpdate": "Fehler beim Aktualisieren der Anfrage.",
+      "errorDelete": "Fehler beim Löschen der Anfrage.",
+      "fileDownloadError": "Fehler beim Herunterladen der Datei."
+    },
+    "status": "Status",
+    "status_key": {
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt",
+      "pending": "Ausstehend"
+    },
+    "action": "Aktion"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "Urlaubsanfragen verwalten",
+      "description": "Klicken Sie hier, um Urlaubsanfragen zu verwalten"
+    },
+    "manageMission": {
+      "title": "Mission Anfragen verwalten",
+      "description": "Klicken Sie hier, um Mission Anfragen zu verwalten"
+    },
+    "manageAuth": {
+      "title": "Genehmigungsanfragen verwalten",
+      "description": "Klicken Sie hier, um Genehmigungsanfragen zu verwalten"
+    },
+    "manageDocuments": {
+      "title": "Dokumente verwalten",
+      "description": "Klicken Sie hier, um Dokumente zu verwalten"
+    }
+  },
+  "mission_admin": {
+    "title": "Mission Anfragen",
+    "firstname": "Vorname",
+    "lastname": "Nachname",
+    "purpose_of_travel": "Reisezweck",
+    "dates": "Daten",
+    "status": "Status",
+    "status_key": {
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt",
+      "pending": "Ausstehend"
+    },
+    "actions": {
+      "approve": "Genehmigen",
+      "reject": "Ablehnen",
+      "delete": "Löschen",
+      "view_details": "Details anzeigen"
+    },
+    "pagination": {
+      "total_requests": "Gesamtanfragen"
+    },
+    "modal": {
+      "title": "Anfragedetails",
+      "phone": "Telefon",
+      "destination": "Zielort",
+      "mission_budget": "Missionsbudget"
+    },
+    "messages": {
+      "confirm_approve": "Möchten Sie diese Anfrage wirklich genehmigen?",
+      "confirm_reject": "Möchten Sie diese Anfrage wirklich ablehnen?",
+      "confirm_delete": "Möchten Sie diese Anfrage wirklich löschen?",
+      "success_update": "Anfrage wurde erfolgreich aktualisiert.",
+      "success_delete": "Anfrage wurde gelöscht.",
+      "error_update": "Fehler beim Aktualisieren der Anfrage.",
+      "error_delete": "Fehler beim Löschen der Anfrage."
+    }
+  },
+  "sidebar": {
+    "home": "Start Admin",
+    "requests": "Anfragen stellen",
+    "demands": "Anforderungen einsehen",
+    "dashboard": "Dashboard",
+    "myLeave": "Mein Urlaub",
+    "myMission": "Meine Missionen",
+    "myAuth": "Meine Genehmigungen",
+    "myDocs": "Meine Dokumente",
+    "myPointing": "Meine Markierung",
+    "employeeManagement": "Mitarbeiterverwaltung",
+    "rhDashboard": "Dashboard",
+    "salaryCertificate": "Gehaltsbescheinigung",
+    "documentManagement": "Dokumentenmanagement",
+    "PointingManagement": "Zeigerverwaltung"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "Seriennummer (Mitarbeiter ID, ID Nummer, M.At)",
+    "employeeIdPlaceholder": "Ihre ID eingeben",
+    "leaveTypeLabel": "Urlaubsart",
+    "dates": "Daten",
+    "leaveTypePlaceholder": "Urlaubsart auswählen",
+    "otherLeaveTypeLabel": "Bitte Urlaubsart angeben",
+    "otherLeaveTypePlaceholder": "Urlaubsart angeben",
+    "startDateLabel": "Urlaubsbeginn",
+    "endDateLabel": "Urlaubsende",
+    "DatePlaceholder": "Datum wählen",
+    "phoneLabel": "Telefon (Persönliche Nummer)",
+    "phonePlaceholder": "Ihre Telefonnummer eingeben",
+    "justificationLabel": "Begründung",
+    "justificationPlaceholder": "Begründung eingeben",
+    "justificationFileLabel": "Begründungsdokument hochladen",
+    "uploadFileButton": "Datei hochladen",
+    "applyButton": "Anwenden",
+    "submitButtonLoading": "Wird gesendet...",
+    "successTitle": "Erfolg!",
+    "successMessage": "Urlaubsanfrage erfolgreich eingereicht!",
+    "errorTitle": "Fehler!",
+    "errorMessage": "Fehler bei der Einreichung der Urlaubsanfrage",
+    "fileUploadSuccess": "Datei erfolgreich hochgeladen",
+    "fileUploadError": "Datei-Upload fehlgeschlagen.",
+    "validation": {
+      "employeeIdRequired": "Bitte geben Sie Ihre ID ein",
+      "leaveTypeRequired": "Bitte wählen Sie eine Urlaubsart aus",
+      "otherLeaveTypeRequired": "Bitte geben Sie die Urlaubsart an",
+      "startDateRequired": "Bitte wählen Sie ein Startdatum aus",
+      "endDateRequired": "Bitte wählen Sie ein Enddatum aus",
+      "phoneRequired": "Bitte geben Sie Ihre Telefonnummer ein",
+      "justificationRequired": "Bitte geben Sie eine Begründung ein"
+    },
+    "leaveTypes": {
+      "halfDay": "Halber Tag",
+      "wedding": "Hochzeit",
+      "business": "Geschäftlich",
+      "injury": "Verletzung",
+      "sick": "Krank",
+      "maternity": "Mutterschaft",
+      "funeral": "Begräbnis (Ghrama) / Explet",
+      "annualLeave": "Jahresurlaub",
+      "compensatory": "Kompensatorisch",
+      "withoutPay": "Unbezahlt",
+      "seniority": "Seniorität"
+    }
+  },
+  "login": {
+    "welcomeMessage": "Willkommen beim AVOCarbon HR-Service",
+    "signInTitle": "Anmelden",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "plantConnectionLabel": "Standortverbindung",
+    "selectPlantPlaceholder": "Standortverbindung auswählen",
+    "rememberMe": "Erinnere dich an mich",
+    "loginButton": "Anmelden",
+    "loginSuccessTitle": "Erfolgreich angemeldet",
+    "loginSuccessMessage": "Willkommen zurück, {{firstname}}!",
+    "loginFailureTitle": "Ungültige Anmeldeinformationen",
+    "loginFailureMessage": "Bitte versuchen Sie es erneut",
+    "loginErrorTitle": "Anmeldung fehlgeschlagen",
+    "loginErrorMessage": "Passwort oder Standortverbindung inkorrekt. Bitte versuchen Sie es erneut."
+  },
+  "plants": {
+    "kunshan": "AVOCarbon Kunshan",
+    "tianjin": "AVOCarbon Tianjin",
+    "france": "AVOCarbon Frankreich",
+    "cyclam": "Cyclam",
+    "germany": "AVOCarbon Deutschland",
+    "india": "AVOCarbon Indien",
+    "korea": "AVOCarbon Korea",
+    "tunisia": "AVOCarbon Tunesien"
+  },
+
+  "missionRequest": {
+    "serialNumber": "Seriennummer (Mitarbeiter-ID, ID-Nummer, M.At)",
+    "serialNumberPlaceholder": "Geben Sie Ihre ID ein",
+    "EmployeeIDPlaceholder": "Bitte geben Sie Ihre Mitarbeiter-ID ein",
+    "EnterDestinationPlaceholder": "Zielort eingeben",
+    "phone": "Telefon (persönliche Nummer)",
+    "phonePlaceholder": "Geben Sie Ihre Telefonnummer ein",
+    "PhonePlaceholder": "Bitte geben Sie Ihre Telefonnummer ein",
+    "startDate": "Startdatum",
+    "startDatePlaceholder": "Bitte wählen Sie ein Startdatum aus",
+    "endDate": "Enddatum",
+    "endDatePlaceholder": "Bitte wählen Sie ein Enddatum aus",
+    "missionBudget": "Budget der Missionen",
+    "missionBudgetPlaceholder": "Budget der Missionen eingeben",
+    "purposeOfTravel": "Reisezweck",
+    "purposeOfTravelPlaceholder": "Reisezweck eingeben",
+    "destination": "Zielort",
+    "destinationPlaceholder": "Zielort eingeben",
+    "departureTime": "Abfahrtszeit",
+    "departureTimePlaceholder": "Bitte wählen Sie eine Abfahrtszeit aus",
+    "submitButton": "Bewerben",
+    "submittingButton": "Wird übermittelt...",
+    "successTitle": "Erfolg!",
+    "successMessage": "Missionsantrag erfolgreich eingereicht!",
+    "errorTitle": "Fehler!",
+    "SelectTimePlaceholder": "Zeit auswählen",
+    "errorMessage": "Missionsantrag konnte nicht eingereicht werden. Bitte versuchen Sie es später noch einmal.",
+    "genericError": "Etwas ist schiefgelaufen!",
+    "myMission": {
+      "title": "Meine Missionen",
+      "purposeOfTravel": "Reisezweck",
+      "duration": "Dauer",
+      "from": "von",
+      "to": "bis",
+      "destination": "Zielort",
+      "status": "Status",
+      "action": "Aktion",
+      "loading": "Wird geladen...",
+      "error": "Missionsanträge konnten nicht abgerufen werden",
+      "deleteConfirmation": {
+        "title": "Löschbestätigung",
+        "message": "Sind Sie sicher, dass Sie diesen Missionsantrag löschen möchten?",
+        "okText": "Ja, löschen",
+        "cancelText": "Abbrechen"
+      },
+      "deleteSuccess": "Missionsantrag erfolgreich gelöscht.",
+      "deleteError": "Missionsantrag konnte nicht gelöscht werden."
+    }
+  },
+
+  "authRequest": {
+    "serialNumber": "Seriennummer (Mitarbeiterausweis, ID-Nummer, M.At)",
+    "serialNumberPlaceholder": "Geben Sie Ihre ID ein",
+    "phone": "Telefon (Private Nummer)",
+    "phonePlaceholder": "Geben Sie Ihre Telefonnummer ein",
+    "authorizationDate": "Genehmigungsdatum",
+    "authorizationDatePlaceholder": "Bitte wählen Sie ein Datum aus!",
+    "departureTime": "Abfahrtszeit",
+    "departureTimePlaceholder": "Bitte wählen Sie eine Abfahrtszeit aus!",
+    "returnTime": "Rückkehrzeit",
+    "returnTimePlaceholder": "Bitte wählen Sie eine Rückkehrzeit aus!",
+    "purposeOfAuthorization": "Zweck der Genehmigung",
+    "purposeOfAuthorizationPlaceholder": "Geben Sie den Zweck der Genehmigung ein",
+    "submitButton": "Anwenden",
+    "submitting": "Wird gesendet...",
+    "successTitle": "Erfolg!",
+    "successMessage": "Genehmigungsanfrage erfolgreich übermittelt!",
+    "errorTitle": "Fehler!",
+    "errorMessage": "Etwas ist schiefgelaufen!",
+    "myAuth": {
+      "Purpose": "Zweck",
+      "Date": "Datum",
+      "DepartureTime": "Abfahrtszeit",
+      "ReturnTime": "Rückkehrzeit",
+      "Status": "Status",
+      "Action": "Aktion",
+      "Pending": "Ausstehend",
+      "Approved": "Genehmigt",
+      "Rejected": "Abgelehnt",
+      "fetchError": "Genehmigungsanfragen konnten nicht abgerufen werden.",
+      "deleteSuccess": "Genehmigungsanfrage erfolgreich gelöscht.",
+      "deleteError": "Genehmigungsanfrage konnte nicht gelöscht werden.",
+      "deleteConfirmation": "Löschbestätigung",
+      "deleteConfirmationMessage": "Sind Sie sicher, dass Sie diese Genehmigungsanfrage löschen möchten?",
+      "yesDelete": "Ja, löschen",
+      "cancel": "Abbrechen"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "Seriennummer (Mitarbeiter-ID, ID-Nummer, M.At)",
+    "employeeIdPlaceholder": "Geben Sie Ihre ID ein",
+    "employeeIdError": "Bitte geben Sie Ihre Mitarbeiter-ID ein!",
+    "documentTypeLabel": "Dokumenttyp",
+    "documentTypePlaceholder": "Dokumenttyp auswählen",
+    "documentTypeError": "Bitte wählen Sie einen Dokumenttyp aus!",
+    "salaryCertificate": "Gehaltsbescheinigung",
+    "workCertificate": "Arbeitszeugnis",
+    "other": "Andere",
+    "otherDocumentTypeLabel": "Bitte angeben",
+    "otherDocumentTypePlaceholder": "Dokumenttyp angeben",
+    "otherDocumentTypeError": "Bitte geben Sie den Dokumenttyp an!",
+    "documentPurposeLabel": "Dokumentzweck",
+    "documentPurposePlaceholder": "Geben Sie den Zweck des Dokuments ein",
+    "applyButton": "Anwenden",
+    "submitting": "Wird übermittelt...",
+    "successMessage": "Dokumentanfrage erfolgreich übermittelt!",
+    "errorTitle": "Hoppla...",
+    "errorMessage": "Fehler beim Übermitteln der Dokumentanfrage. Bitte versuchen Sie es erneut.",
+    "table": {
+      "documentType": "Dokumenttyp",
+      "download": "Herunterladen",
+      "downloadButton": "Herunterladen",
+      "statuskey": "Status",
+      "action": "Aktion",
+      "na": "Nicht verfügbar",
+      "noFile": "Keine Datei verfügbar",
+      "modal": {
+        "title": "Löschbestätigung",
+        "body": "Sind Sie sicher, dass Sie diese Dokumentanfrage löschen möchten?",
+        "confirm": "Ja, löschen",
+        "cancel": "Abbrechen"
+      },
+      "error": {
+        "fetchFailed": "Fehler beim Abrufen der Dokumentanfragen",
+        "deleteFailed": "Fehler beim Löschen der Dokumentanfrage",
+        "title": "Fehler"
+      },
+      "success": {
+        "delete": "Dokumentanfrage erfolgreich gelöscht."
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "completed": "Abgeschlossen",
+        "rejected": "Abgelehnt"
+      }
+    }
+  },
+  "myPointing": {
+    "date": "Datum",
+    "pointing": "Zeiterfassung",
+    "workingHours": "Arbeitsstunden"
+  },
+  "logs": {
+    "notLoggedIn": "Nicht eingeloggt",
+    "notLoggedOut": "Nicht ausgeloggt",
+    "insufficientData": "Unzureichende Daten",
+    "hours": "Std",
+    "syncSuccess": "Logs erfolgreich synchronisiert!",
+    "updateSuccess": "Zeiterfassungsstatus erfolgreich aktualisiert!"
+  },
+  "error": {
+    "notAuthenticated": "Benutzer nicht authentifiziert.",
+    "fetchLogs": "Fehler beim Abrufen der Logs.",
+    "syncLogs": "Fehler beim Synchronisieren der Logs."
+  },
+  "buttons": {
+    "loadLogs": "Logs laden",
+    "syncLogs": "Logs synchronisieren"
+  }
+}

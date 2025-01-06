@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { Input, Button, Form, Select } from "antd"; // Import Select here
-import { ArrowLeftOutlined } from "@ant-design/icons"; // Using Ant Design's arrow icon
+import { Input, Button, Form, Select, InputNumber } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
-const { Option } = Select; // Destructure Option from Select
+const { Option } = Select;
 
 const AddEmployeeForm = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
+    id: "",
     firstname: "",
     lastname: "",
     department: "",
@@ -22,18 +25,18 @@ const AddEmployeeForm = () => {
 
   const handleSubmit = async (values) => {
     try {
-      await axios.post("https://bhr-avocarbon.azurewebsites.net/auth/register", values);
+      await axios.post("http://localhost:3000/auth/register", values);
       Swal.fire({
         icon: "success",
-        title: "Success",
-        text: "Employee added successfully!",
+        title: t("success_message_title"),
+        text: t("success_message_text"),
       });
       navigate("/employee-management");
     } catch (error) {
       Swal.fire({
         icon: "error",
-        title: "Error",
-        text: error.response?.data?.message || "Error adding employee",
+        title: t("error_message_title"),
+        text: error.response?.data?.message || t("error_message_text"),
       });
     }
   };
@@ -42,8 +45,7 @@ const AddEmployeeForm = () => {
     window.history.back();
   };
 
-  // Define the available roles
-  const roles = ["EMPLOYEE", "MANAGER", "HRMANAGER", "PLANT_MANAGER", "CEO"]; // Updated roles
+  const roles = ["EMPLOYEE", "MANAGER", "HRMANAGER", "PLANT_MANAGER", "CEO"];
   const plantConnections = [
     "AVOCarbon Kunshan",
     "AVOCarbon Tianjin",
@@ -57,66 +59,81 @@ const AddEmployeeForm = () => {
   ];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto max-w-lg md:max-w-xl p-4 md:p-8">
       <Button
         onClick={handleBackClick}
         type="text"
         icon={<ArrowLeftOutlined />}
         className="mb-4"
-        aria-label="Back"
+        aria-label={t("back")}
       >
-        Back
+        {t("back")}
       </Button>
-      <h2 className="text-xl font-bold mb-4">Add Employee</h2>
+      <h2 className="text-xl md:text-2xl font-bold mb-4">
+        {t("add_employee_title")}
+      </h2>
       <Form layout="vertical" onFinish={handleSubmit} initialValues={formData}>
         <Form.Item
-          label="First Name"
+          label={t("employee_id")}
+          name="id"
+          rules={[{ required: true, message: t("employee_id_placeholder") }]}
+        >
+          <InputNumber
+            min={1}
+            value={formData.id}
+            onChange={(value) => setFormData({ ...formData, id: value })}
+            placeholder={t("employee_id_placeholder")}
+            style={{ width: "100%" }}
+          />
+        </Form.Item>
+        <Form.Item
+          label={t("first_name")}
           name="firstname"
-          rules={[{ required: true, message: "Please input the first name!" }]}
+          rules={[{ required: true, message: t("first_name_placeholder") }]}
         >
           <Input
             value={formData.firstname}
             onChange={(e) =>
               setFormData({ ...formData, firstname: e.target.value })
             }
+            placeholder={t("first_name_placeholder")}
           />
         </Form.Item>
-
         <Form.Item
-          label="Last Name"
+          label={t("last_name")}
           name="lastname"
-          rules={[{ required: true, message: "Please input the last name!" }]}
+          rules={[{ required: true, message: t("last_name_placeholder") }]}
         >
           <Input
             value={formData.lastname}
             onChange={(e) =>
               setFormData({ ...formData, lastname: e.target.value })
             }
+            placeholder={t("last_name_placeholder")}
           />
         </Form.Item>
-
         <Form.Item
-          label="Department"
+          label={t("department")}
           name="department"
-          rules={[{ required: true, message: "Please input the department!" }]}
+          rules={[{ required: true, message: t("department_placeholder") }]}
         >
           <Input
             value={formData.department}
             onChange={(e) =>
               setFormData({ ...formData, department: e.target.value })
             }
+            placeholder={t("department_placeholder")}
           />
         </Form.Item>
-
         <Form.Item
-          label="Role"
+          label={t("role")}
           name="role"
-          rules={[{ required: true, message: "Please select a role!" }]} // Updated message
+          rules={[{ required: true, message: t("select_role_placeholder") }]}
         >
           <Select
             value={formData.role}
             onChange={(value) => setFormData({ ...formData, role: value })}
-            placeholder="Select a role"
+            placeholder={t("select_role_placeholder")}
           >
             {roles.map((role) => (
               <Option key={role} value={role}>
@@ -126,18 +143,16 @@ const AddEmployeeForm = () => {
           </Select>
         </Form.Item>
         <Form.Item
-          label="Plant Connection"
+          label={t("plant_connection")}
           name="plant_connection"
-          rules={[
-            { required: true, message: "Please select a plant connection!" },
-          ]}
+          rules={[{ required: true, message: t("select_plant_placeholder") }]}
         >
           <Select
             value={formData.plant_connection}
             onChange={(value) =>
               setFormData({ ...formData, plant_connection: value })
             }
-            placeholder="Select a plant connection"
+            placeholder={t("select_plant_placeholder")}
           >
             {plantConnections.map((connection) => (
               <Option key={connection} value={connection}>
@@ -147,14 +162,10 @@ const AddEmployeeForm = () => {
           </Select>
         </Form.Item>
         <Form.Item
-          label="Email"
+          label={t("email")}
           name="email"
           rules={[
-            {
-              required: true,
-              message: "Please input a valid email!",
-              type: "email",
-            },
+            { required: true, message: t("email_placeholder"), type: "email" },
           ]}
         >
           <Input
@@ -162,13 +173,13 @@ const AddEmployeeForm = () => {
             onChange={(e) =>
               setFormData({ ...formData, email: e.target.value })
             }
+            placeholder={t("email_placeholder")}
           />
         </Form.Item>
-
         <Form.Item
-          label="Password"
+          label={t("password")}
           name="password"
-          rules={[{ required: true, message: "Please input the password!" }]}
+          rules={[{ required: true, message: t("password") }]}
         >
           <Input.Password
             value={formData.password}
@@ -177,14 +188,13 @@ const AddEmployeeForm = () => {
             }
           />
         </Form.Item>
-
         <Form.Item>
           <Button
             type="primary"
             htmlType="submit"
-            className="bg-blue-500 text-white"
+            className="bg-blue-500 text-white w-full md:w-auto"
           >
-            Add Employee
+            {t("submit_button")}
           </Button>
         </Form.Item>
       </Form>

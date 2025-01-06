@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Table, Spin, message, Tag, Button, Modal } from "antd";
 import Topbar from "./TopBar";
 import Sidebar from "./SideBar";
+import { DeleteOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 
 const MyAuth = () => {
+  const { t } = useTranslation();
   const [authorizationRequests, setAuthorizationRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -17,7 +20,7 @@ const MyAuth = () => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/authorization-requests/employee/${user.id}`,
+          `http://localhost:3000/authorization-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -25,17 +28,15 @@ const MyAuth = () => {
           }
         );
         if (!response.ok) {
-          throw new Error("Failed to fetch authorization requests");
+          throw new Error(t("fetchError"));
         }
         const data = await response.json();
         setAuthorizationRequests(data);
         setError(null);
       } catch (error) {
-        console.error("Error fetching authorization requests:", error);
-        setError(error.message || "Failed to fetch authorization requests");
-        message.error(
-          error.message || "Failed to fetch authorization requests"
-        );
+        console.error(t("fetchError"), error);
+        setError(error.message || t("fetchError"));
+        message.error(error.message || t("fetchError"));
       } finally {
         setLoading(false);
       }
@@ -56,21 +57,21 @@ const MyAuth = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`https://bhr-avocarbon.azurewebsites.net/authorization-requests/${deleteId}`, {
+      await fetch(`http://localhost:3000/authorization-requests/${deleteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      message.success("Authorization request deleted successfully.");
+      message.success(t("deleteSuccess"));
       setAuthorizationRequests((prevRequests) =>
         prevRequests.filter((request) => request.id !== deleteId)
       );
       setIsModalVisible(false);
       setDeleteId(null);
     } catch (error) {
-      message.error("Failed to delete authorization request.");
-      console.error("Error deleting authorization request:", error);
+      message.error(t("deleteError"));
+      console.error(t("deleteError"), error);
     }
   };
 
@@ -81,52 +82,60 @@ const MyAuth = () => {
 
   const columns = [
     {
-      title: "Purpose",
+      title: t("authRequest.myAuth.Purpose"),
       dataIndex: "purpose_of_authorization",
       key: "purpose_of_authorization",
+      responsive: ["md"],
     },
     {
-      title: "Date",
+      title: t("authRequest.myAuth.Date"),
       dataIndex: "authorization_date",
       key: "authorization_date",
       render: (text) => formatDate(text),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Departure Time",
+      title: t("authRequest.myAuth.DepartureTime"),
       dataIndex: "departure_time",
       key: "departure_time",
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Return Time",
+      title: t("authRequest.myAuth.ReturnTime"),
       dataIndex: "return_time",
       key: "return_time",
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Status",
+      title: t("authRequest.myAuth.Status"),
       dataIndex: "status",
       key: "status",
       render: (status) => (
         <Tag
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
-            status === "Pending"
-              ? "bg-yellow-400 text-white"
-              : status === "Approved"
-              ? "bg-green-400 text-white"
-              : "bg-red-400 text-white"
-          }`}
+          color={
+            status === t("Pending")
+              ? "gold"
+              : status === t("Approved")
+              ? "green"
+              : "red"
+          }
         >
-          {status}
+          {status.toUpperCase()}
         </Tag>
       ),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Action",
+      title: t("authRequest.myAuth.Action"),
       key: "action",
       render: (text, record) => (
-        <Button danger onClick={() => showDeleteConfirm(record.id)}>
-          Delete
-        </Button>
+        <Button
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => showDeleteConfirm(record.id)}
+        />
       ),
+      responsive: ["xs", "sm", "md", "lg"], // Show on all screen sizes
     },
   ];
 
@@ -150,16 +159,14 @@ const MyAuth = () => {
                 bordered
               />
               <Modal
-                title="Delete Confirmation"
+                title={t("deleteConfirmation")}
                 visible={isModalVisible}
                 onOk={handleDelete}
                 onCancel={handleCancel}
-                okText="Yes, Delete"
-                cancelText="Cancel"
+                okText={t("authRequest.myAuth.yesDelete")}
+                cancelText={t("authRequest.myAuth.cancel")}
               >
-                <p>
-                  Are you sure you want to delete this authorization request?
-                </p>
+                <p>{t("authRequest.myAuth.deleteConfirmationMessage")}</p>
               </Modal>
             </>
           )}

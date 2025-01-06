@@ -2,8 +2,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import SidebarAdmin from "./SideBarAdmin";
 import TopBar from "./TopBar";
+import { useTranslation } from "react-i18next";
 
 const HomeAdmin = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleLeaveManagementClick = () => {
@@ -36,13 +38,17 @@ const HomeAdmin = () => {
               <div className="flex justify-center items-center">
                 <img
                   src="software_engineer_re_tnjc.png"
-                  alt="Manage Leave Requests"
+                  alt={t("homeAdmin.manageLeave.title")}
                   className="w-48 h-48 center"
                 />
               </div>
               <div className="p-4">
-                <h3 className="text-md font-bold">Manage Leave Requests</h3>
-                <p className="text-gray-600">Click to manage leave requests</p>
+                <h3 className="text-md font-bold">
+                  {t("homeAdmin.manageLeave.title")}
+                </h3>
+                <p className="text-gray-600">
+                  {t("homeAdmin.manageLeave.description")}
+                </p>
               </div>
             </div>
             <div
@@ -52,14 +58,16 @@ const HomeAdmin = () => {
               <div className="flex justify-center items-center">
                 <img
                   src="product_iteration_kjok.png"
-                  alt="Manage Mission Requests"
+                  alt={t("homeAdmin.manageMission.title")}
                   className="w-48 h-48 center"
                 />
               </div>
               <div className="p-4">
-                <h3 className="text-md font-bold">Manage Mission Requests</h3>
+                <h3 className="text-md font-bold">
+                  {t("homeAdmin.manageMission.title")}
+                </h3>
                 <p className="text-gray-600">
-                  Click to manage mission requests
+                  {t("homeAdmin.manageMission.description")}
                 </p>
               </div>
             </div>
@@ -70,33 +78,17 @@ const HomeAdmin = () => {
               <div className="flex justify-center items-center">
                 <img
                   src="undraw_Speed_test_re_pe1f.png"
-                  alt="Manage auth Requests"
+                  alt={t("homeAdmin.manageAuth.title")}
                   className="w-48 h-48 center"
                 />
               </div>
               <div className="p-4">
                 <h3 className="text-md font-bold">
-                  Manage Authorization Requests
+                  {t("homeAdmin.manageAuth.title")}
                 </h3>
                 <p className="text-gray-600">
-                  Click to manage authorization requests
+                  {t("homeAdmin.manageAuth.description")}
                 </p>
-              </div>
-            </div>
-            <div
-              className="border border-gray-200 rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105"
-              onClick={handleDocumentManagementClick}
-            >
-              <div className="flex justify-center items-center">
-                <img
-                  src="add_files_re_v09g.png"
-                  alt="Manage Document Requests"
-                  className="w-48 h-48 center"
-                />
-              </div>
-              <div className="p-4">
-                <h3 className="text-md font-bold">Manage Documents</h3>
-                <p className="text-gray-600">Click to manage documents</p>
               </div>
             </div>
           </div>

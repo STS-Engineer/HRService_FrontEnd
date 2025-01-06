@@ -1,0 +1,370 @@
+{
+  "welcome": "स्वागत है",
+  "logout": "लॉग आउट",
+  "profile": "प्रोफाइल",
+  "changePassword": "पासवर्ड बदलें",
+  "notifications": "सूचनाएँ",
+  "Leave Request": "अवकाश अनुरोध",
+  "leave_type": "अवकाश का प्रकार",
+  "leave_request": "अवकाश अनुरोध",
+  "mission_request": "मिशन अनुरोध",
+  "authorization_request": "अनुज्ञा अनुरोध",
+  "work_documents_request": "कार्य दस्तावेज़ अनुरोध",
+  "click_to_request_leave": "अवकाश अनुरोध करने के लिए क्लिक करें",
+  "click_to_request_mission": "मिशन अनुरोध करने के लिए क्लिक करें",
+  "click_to_request_authorization": "अनुज्ञा अनुरोध करने के लिए क्लिक करें",
+  "click_to_request_documents": "दस्तावेज़ अनुरोध करने के लिए क्लिक करें",
+  "back": "वापस",
+  "add_employee_title": "कर्मचारी जोड़ें",
+  "employee_id": "कर्मचारी आईडी",
+  "employee_id_placeholder": "कर्मचारी आईडी दर्ज करें",
+  "first_name": "पहला नाम",
+  "first_name_placeholder": "पहला नाम दर्ज करें",
+  "last_name": "अंतिम नाम",
+  "last_name_placeholder": "अंतिम नाम दर्ज करें",
+  "department": "विभाग",
+  "department_placeholder": "विभाग दर्ज करें",
+  "role": "भूमिका",
+  "select_role_placeholder": "भूमिका चुनें",
+  "plant_connection": "प्लांट कनेक्शन",
+  "select_plant_placeholder": "प्लांट कनेक्शन चुनें",
+  "email": "ईमेल",
+  "email_placeholder": "ईमेल दर्ज करें",
+  "password": "पासवर्ड",
+  "submit_button": "कर्मचारी जोड़ें",
+  "success_message_title": "सफलता",
+  "success_message_text": "कर्मचारी सफलतापूर्वक जोड़ा गया!",
+  "error_message_title": "त्रुटि",
+  "error_message_text": "कर्मचारी जोड़ने में त्रुटि",
+  "dashboard": {
+    "modalTitle": "अवकाश अनुरोध विवरण",
+    "close": "बंद करें",
+    "dateRange": "तारीख़ सीमा",
+    "actions": {
+      "approve": "स्वीकृत करें",
+      "reject": "अस्वीकृत करें",
+      "delete": "हटाएं",
+      "downloadFile": "साक्ष्य फ़ाइल डाउनलोड करें",
+      "viewFile": "फ़ाइल देखें"
+    },
+    "messages": {
+      "confirmApprove": "क्या आप इस अनुरोध को स्वीकृत करने के लिए सुनिश्चित हैं?",
+      "confirmReject": "क्या आप इस अनुरोध को अस्वीकृत करने के लिए सुनिश्चित हैं?",
+      "confirmDelete": "क्या आप इस अनुरोध को हटाने के लिए सुनिश्चित हैं?",
+      "successUpdate": "अनुरोध सफलतापूर्वक अपडेट किया गया।",
+      "successDelete": "अनुरोध हटा दिया गया।",
+      "errorUpdate": "अनुरोध अपडेट नहीं किया जा सका।",
+      "errorDelete": "अनुरोध हटाया नहीं जा सका।",
+      "fileDownloadError": "फ़ाइल डाउनलोड करने में त्रुटि।"
+    },
+    "status": {
+      "status": "स्थिति",
+      "approved": "स्वीकृत",
+      "rejected": "अस्वीकृत",
+      "pending": "लंबित"
+    },
+    "action": "क्रिया"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "अवकाश अनुरोधों का प्रबंधन करें",
+      "description": "अवकाश अनुरोधों का प्रबंधन करने के लिए क्लिक करें"
+    },
+    "manageMission": {
+      "title": "मिशन अनुरोधों का प्रबंधन करें",
+      "description": "मिशन अनुरोधों का प्रबंधन करने के लिए क्लिक करें"
+    },
+    "manageAuth": {
+      "title": "अनुज्ञा अनुरोधों का प्रबंधन करें",
+      "description": "अनुज्ञा अनुरोधों का प्रबंधन करने के लिए क्लिक करें"
+    },
+    "manageDocuments": {
+      "title": "दस्तावेज़ों का प्रबंधन करें",
+      "description": "दस्तावेज़ों का प्रबंधन करने के लिए क्लिक करें"
+    }
+  },
+  "mission_admin": {
+    "title": "मिशन अनुरोध",
+    "firstname": "पहला नाम",
+    "lastname": "अंतिम नाम",
+    "purpose_of_travel": "यात्रा का उद्देश्य",
+    "dates": "तिथियाँ",
+    "status": {
+      "approved": "स्वीकृत",
+      "rejected": "अस्वीकृत",
+      "pending": "लंबित"
+    },
+    "actions": {
+      "approve": "स्वीकृत करें",
+      "reject": "अस्वीकृत करें",
+      "delete": "हटाएं",
+      "view_details": "विवरण देखें"
+    },
+    "pagination": {
+      "total_requests": "कुल अनुरोध"
+    },
+    "modal": {
+      "title": "अनुरोध विवरण",
+      "phone": "फोन",
+      "destination": "गंतव्य",
+      "mission_budget": "मिशन बजट"
+    },
+    "messages": {
+      "confirm_approve": "क्या आप इस अनुरोध को स्वीकृत करने के लिए सुनिश्चित हैं?",
+      "confirm_reject": "क्या आप इस अनुरोध को अस्वीकृत करने के लिए सुनिश्चित हैं?",
+      "confirm_delete": "क्या आप इस अनुरोध को हटाने के लिए सुनिश्चित हैं?",
+      "success_update": "अनुरोध सफलतापूर्वक अपडेट किया गया।",
+      "success_delete": "अनुरोध हटा दिया गया।",
+      "error_update": "अनुरोध अपडेट नहीं किया जा सका।",
+      "error_delete": "अनुरोध हटाया नहीं जा सका।"
+    }
+  },
+  "sidebar": {
+    "home": "होम एडमिन",
+    "requests": "अवकाश अनुरोध",
+    "demands": "अनुरोधों का निरीक्षण करें",
+    "dashboard": "डैशबोर्ड",
+    "myLeave": "मेरी छुट्टी",
+    "myMission": "मेरा मिशन",
+    "myAuth": "मेरी अनुमतियाँ",
+    "myDocs": "मेरे दस्तावेज़",
+    "myPointing": "मेरा पॉइंटिंग",
+    "employeeManagement": "कर्मचारी प्रबंधन",
+    "rhDashboard": "डैशबोर्ड",
+    "salaryCertificate": "वेतन प्रमाण पत्र",
+    "documentManagement": "दस्तावेज़ प्रबंधन",
+    "PointingManagement": " पॉइंटिंग प्रबंधन"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "कर्मचारी नंबर (कर्मचारी आईडी, पहचान पत्र, M.At)",
+    "employeeIdPlaceholder": "कर्मचारी आईडी दर्ज करें",
+    "leaveTypeLabel": "अवकाश प्रकार",
+    "dates": "तिथियाँ",
+    "leaveTypePlaceholder": "अवकाश प्रकार चुनें",
+    "otherLeaveTypeLabel": "कृपया अन्य अवकाश प्रकार का उल्लेख करें",
+    "otherLeaveTypePlaceholder": "अवकाश प्रकार का उल्लेख करें",
+    "startDateLabel": "अवकाश प्रारंभ तिथि",
+    "endDateLabel": "अवकाश समाप्ति तिथि",
+    "DatePlaceholder": "तारीख का चयन करें",
+    "phoneLabel": "फोन (निजी नंबर)",
+    "phonePlaceholder": "फोन नंबर दर्ज करें",
+    "justificationLabel": "जस्टिफिकेशन",
+    "justificationPlaceholder": "जस्टिफिकेशन दर्ज करें",
+    "justificationFileLabel": "जस्टिफिकेशन फ़ाइल अपलोड करें",
+    "uploadFileButton": "फ़ाइल अपलोड करें",
+    "applyButton": "आवेदन करें",
+    "submitButtonLoading": "सबमिट कर रहे हैं...",
+    "successTitle": "सफलता!",
+    "successMessage": "अवकाश अनुरोध सफलतापूर्वक सबमिट किया गया!",
+    "errorTitle": "त्रुटि!",
+    "errorMessage": "अवकाश अनुरोध सबमिट करने में त्रुटि",
+    "fileUploadSuccess": "फ़ाइल सफलतापूर्वक अपलोड की गई",
+    "fileUploadError": "फ़ाइल अपलोड करने में त्रुटि",
+    "validation": {
+      "employeeIdRequired": "कर्मचारी आईडी दर्ज करें",
+      "leaveTypeRequired": "अवकाश प्रकार चुनें",
+      "otherLeaveTypeRequired": "अवकाश प्रकार का उल्लेख करें",
+      "startDateRequired": "अवकाश प्रारंभ तिथि चुनें",
+      "endDateRequired": "अवकाश समाप्ति तिथि चुनें",
+      "phoneRequired": "फोन नंबर दर्ज करें",
+      "justificationRequired": "जस्टिफिकेशन दर्ज करें"
+    },
+    "leaveTypes": {
+      "halfDay": "आधा दिन",
+      "wedding": "शादी",
+      "business": "व्यवसाय",
+      "injury": "चोट",
+      "sick": "बीमार",
+      "maternity": "मातृत्व",
+      "funeral": "अंतिम संस्कार",
+      "annualLeave": "वार्षिक अवकाश",
+      "compensatory": "समायोजन",
+      "withoutPay": "बिना वेतन",
+      "seniority": "सीनियरिटी"
+    }
+  },
+  "missionRequest": {
+    "serialNumber": "सीरियल नंबर (कर्मचारी आईडी, आईडी नंबर, एम.एट)",
+    "serialNumberPlaceholder": "अपना आईडी दर्ज करें",
+    "EmployeeIDPlaceholder": "कृपया अपनी कर्मचारी आईडी दर्ज करें",
+    "EnterDestinationPlaceholder": "गंतव्य दर्ज करें",
+    "phone": "फ़ोन (व्यक्तिगत नंबर)",
+    "phonePlaceholder": "अपना फ़ोन नंबर दर्ज करें",
+    "PhonePlaceholder": "कृपया अपना फ़ोन नंबर दर्ज करें",
+    "startDate": "आरंभ तिथि",
+    "startDatePlaceholder": "कृपया एक आरंभ तिथि चुनें",
+    "endDate": "समाप्ति तिथि",
+    "endDatePlaceholder": "कृपया एक समाप्ति तिथि चुनें",
+    "missionBudget": "मिशन बजट",
+    "missionBudgetPlaceholder": "मिशन बजट दर्ज करें",
+    "purposeOfTravel": "यात्रा का उद्देश्य",
+    "purposeOfTravelPlaceholder": "यात्रा का उद्देश्य दर्ज करें",
+    "DatePlaceholder": "तारीख का चयन करें",
+    "destination": "गंतव्य",
+    "destinationPlaceholder": "गंतव्य दर्ज करें",
+    "departureTime": "प्रस्थान समय",
+    "departureTimePlaceholder": "कृपया प्रस्थान समय चुनें",
+    "submitButton": "लागू करें",
+    "submittingButton": "प्रस्तुत कर रहा है...",
+    "successTitle": "सफलता!",
+    "successMessage": "मिशन अनुरोध सफलतापूर्वक सबमिट हुआ!",
+    "errorTitle": "त्रुटि!",
+    "SelectTimePlaceholder": "समय चुनें",
+    "errorMessage": "मिशन अनुरोध सबमिट करने में विफल। कृपया बाद में पुनः प्रयास करें।",
+    "genericError": "कुछ गलत हो गया!",
+    "myMission": {
+      "title": "मेरे मिशन",
+      "purposeOfTravel": "यात्रा का उद्देश्य",
+      "duration": "अवधि",
+      "destination": "गंतव्य",
+      "status": "स्थिति",
+      "action": "कार्रवाई",
+      "loading": "लोड हो रहा है...",
+      "error": "मिशन अनुरोध लोड करने में विफल",
+      "deleteConfirmation": {
+        "title": "हटाने की पुष्टि",
+        "message": "क्या आप वाकई इस मिशन अनुरोध को हटाना चाहते हैं?",
+        "okText": "हां, हटाएं",
+        "cancelText": "रद्द करें"
+      },
+      "deleteSuccess": "मिशन अनुरोध सफलतापूर्वक हटा दिया गया।",
+      "deleteError": "मिशन अनुरोध को हटाने में विफल।"
+    }
+  },
+  "login": {
+    "welcomeMessage": "AVOCarbon HR सेवा में आपका स्वागत है",
+    "signInTitle": "साइन इन करें",
+    "emailLabel": "ईमेल",
+    "passwordLabel": "पासवर्ड",
+    "plantConnectionLabel": "प्लांट कनेक्शन",
+    "selectPlantPlaceholder": "प्लांट कनेक्शन चुनें",
+    "rememberMe": "मुझे याद रखें",
+    "loginButton": "साइन इन करें",
+    "loginSuccessTitle": "लॉगिन सफल",
+    "loginSuccessMessage": "वापस स्वागत है, {{firstname}}!",
+    "loginFailureTitle": "अमान्य प्रमाण-पत्र",
+    "loginFailureMessage": "कृपया पुनः प्रयास करें",
+    "loginErrorTitle": "लॉगिन विफल",
+    "loginErrorMessage": "पासवर्ड या प्लांट कनेक्शन गलत है। कृपया पुनः प्रयास करें।"
+  },
+  "plants": {
+    "kunshan": "AVOCarbon कुंशान",
+    "tianjin": "AVOCarbon टियांजिन",
+    "france": "AVOCarbon फ्रांस",
+    "cyclam": "सायक्लैम",
+    "germany": "AVOCarbon जर्मनी",
+    "india": "AVOCarbon इंडिया",
+    "korea": "AVOCarbon कोरिया",
+    "tunisia": "AVOCarbon ट्यूनीशिया"
+  },
+
+  "authRequest": {
+    "serialNumber": "क्रमांक (कर्मचारी आईडी, पहचान संख्या, M.At)",
+    "serialNumberPlaceholder": "अपना आईडी दर्ज करें",
+    "phone": "फ़ोन (व्यक्तिगत नंबर)",
+    "phonePlaceholder": "अपना फ़ोन नंबर दर्ज करें",
+    "authorizationDate": "अनुमति की तारीख",
+    "authorizationDatePlaceholder": "कृपया एक तारीख चुनें!",
+    "departureTime": "प्रस्थान का समय",
+    "departureTimePlaceholder": "कृपया प्रस्थान का समय चुनें!",
+    "returnTime": "वापसी का समय",
+    "returnTimePlaceholder": "कृपया वापसी का समय चुनें!",
+    "purposeOfAuthorization": "अनुमति का उद्देश्य",
+    "purposeOfAuthorizationPlaceholder": "अनुमति का उद्देश्य दर्ज करें",
+    "submitButton": "लागू करें",
+    "submitting": "सबमिट हो रहा है...",
+    "successTitle": "सफलता!",
+    "successMessage": "अनुमति अनुरोध सफलतापूर्वक सबमिट किया गया!",
+    "errorTitle": "त्रुटि!",
+    "errorMessage": "कुछ गलत हो गया!",
+    "myAuth": {
+      "Purpose": "उद्देश्य",
+      "Date": "तारीख",
+      "DepartureTime": "प्रस्थान का समय",
+      "ReturnTime": "वापसी का समय",
+      "Status": "स्थिति",
+      "Action": "क्रिया",
+      "Pending": "लंबित",
+      "Approved": "मंजूर",
+      "Rejected": "अस्वीकृत",
+      "fetchError": "अनुमति अनुरोध प्राप्त करने में विफल।",
+      "deleteSuccess": "अनुमति अनुरोध सफलतापूर्वक हटा दिया गया।",
+      "deleteError": "अनुमति अनुरोध हटाने में विफल।",
+      "deleteConfirmation": "हटाने की पुष्टि",
+      "deleteConfirmationMessage": "क्या आप वाकई इस अनुमति अनुरोध को हटाना चाहते हैं?",
+      "yesDelete": "हां, हटाएं",
+      "cancel": "रद्द करें"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "क्रम संख्या (कर्मचारी आईडी, आईडी नंबर, एम.एट)",
+    "employeeIdPlaceholder": "अपना आईडी दर्ज करें",
+    "employeeIdError": "कृपया अपना कर्मचारी आईडी दर्ज करें!",
+    "documentTypeLabel": "दस्तावेज़ का प्रकार",
+    "documentTypePlaceholder": "दस्तावेज़ का प्रकार चुनें",
+    "documentTypeError": "कृपया दस्तावेज़ का प्रकार चुनें!",
+    "salaryCertificate": "वेतन प्रमाण पत्र",
+    "workCertificate": "कार्य प्रमाण पत्र",
+    "other": "अन्य",
+    "otherDocumentTypeLabel": "कृपया निर्दिष्ट करें",
+    "otherDocumentTypePlaceholder": "दस्तावेज़ का प्रकार निर्दिष्ट करें",
+    "otherDocumentTypeError": "कृपया दस्तावेज़ का प्रकार निर्दिष्ट करें!",
+    "documentPurposeLabel": "दस्तावेज़ का उद्देश्य",
+    "documentPurposePlaceholder": "दस्तावेज़ का उद्देश्य दर्ज करें",
+    "applyButton": "लागू करें",
+    "submitting": "जमा किया जा रहा है...",
+    "successMessage": "दस्तावेज़ अनुरोध सफलतापूर्वक सबमिट किया गया!",
+    "errorTitle": "ओह...",
+    "errorMessage": "दस्तावेज़ अनुरोध सबमिट करने में विफल। कृपया पुनः प्रयास करें।",
+    "table": {
+    "documentType": "दस्तावेज़ प्रकार",
+    "download": "डाउनलोड",
+    "downloadButton": "डाउनलोड",
+    "statuskey": "स्थिति",
+    "action": "क्रिया",
+    "na": "उपलब्ध नहीं",
+    "noFile": "कोई फ़ाइल उपलब्ध नहीं",
+    "modal": {
+      "title": "हटाने की पुष्टि",
+      "body": "क्या आप वाकई इस दस्तावेज़ अनुरोध को हटाना चाहते हैं?",
+      "confirm": "हाँ, हटाएं",
+      "cancel": "रद्द करें"
+    },
+    "error": {
+      "fetchFailed": "दस्तावेज़ अनुरोध प्राप्त करने में विफल",
+      "deleteFailed": "दस्तावेज़ अनुरोध हटाने में विफल",
+      "title": "त्रुटि"
+    },
+    "success": {
+      "delete": "दस्तावेज़ अनुरोध सफलतापूर्वक हटा दिया गया।"
+    },
+    "status": {
+      "pending": "लंबित",
+      "completed": "पूरा हुआ",
+      "rejected": "अस्वीकृत"
+    }
+  }
+  },
+  "myPointing": {
+    "date": "तारीख",
+    "pointing": "पॉइंटिंग",
+    "workingHours": "कार्य के घंटे"
+  },
+  "logs": {
+    "notLoggedIn": "लॉग इन नहीं किया गया",
+    "notLoggedOut": "लॉग आउट नहीं किया गया",
+    "insufficientData": "अपर्याप्त डेटा",
+    "hours": "घंटे",
+    "syncSuccess": "लॉग्स सफलतापूर्वक सिंक हो गए!",
+    "updateSuccess": "पॉइंटिंग स्टेटस सफलतापूर्वक अपडेट किए गए!"
+  },
+  "error": {
+    "notAuthenticated": "उपयोगकर्ता प्रमाणीकृत नहीं है।",
+    "fetchLogs": "लॉग्स प्राप्त करने में विफल।",
+    "syncLogs": "लॉग्स सिंक करने में त्रुटि।"
+  },
+  "buttons": {
+    "loadLogs": "लॉग्स लोड करें",
+    "syncLogs": "लॉग्स सिंक करें"
+  }
+}

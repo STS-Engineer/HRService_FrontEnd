@@ -26,7 +26,7 @@ const TopBar = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}`,
+          `http://localhost:3000/auth/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

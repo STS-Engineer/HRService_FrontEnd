@@ -1,0 +1,402 @@
+{
+  "welcome": "Welcome",
+  "logout": "Logout",
+  "profile": "Profile",
+  "changePassword": "Change Password",
+  "notifications": "Notifications",
+  "Leave Request": "Leave Request",
+  "leave_type": "Leave Type",
+  "leave_request": "Leave Request",
+  "mission_request": "Mission Request",
+  "authorization_request": "Authorization Request",
+  "work_documents_request": "Work Documents Request",
+  "click_to_request_leave": "Click to request leave",
+  "click_to_request_mission": "Click to request mission",
+  "click_to_request_authorization": "Click to request authorisation",
+  "click_to_request_documents": "Click to request documents",
+  "back": "Back",
+  "add_employee_title": "Add Employee",
+  "employee_id": "Employee ID",
+  "employee_id_placeholder": "Enter Employee ID",
+  "first_name": "First Name",
+  "first_name_placeholder": "Enter First Name",
+  "last_name": "Last Name",
+  "last_name_placeholder": "Enter Last Name",
+  "department": "Department",
+  "department_placeholder": "Enter Department",
+  "role": "Role",
+  "select_role_placeholder": "Select a role",
+  "plant_connection": "Plant Connection",
+  "select_plant_placeholder": "Select a plant connection",
+  "email": "Email",
+  "email_placeholder": "Enter Email",
+  "password": "Password",
+  "submit_button": "Add Employee",
+  "success_message_title": "Success",
+  "success_message_text": "Employee added successfully!",
+  "error_message_title": "Error",
+  "error_message_text": "Error adding employee",
+  "dashboard": {
+    "modalTitle": "Leave Request Details",
+    "close": "Close",
+    "dateRange": "Date Range",
+    "actions": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "delete": "Delete",
+      "downloadFile": "Download Justification File",
+      "viewFile": "View File"
+    },
+    "messages": {
+      "confirmApprove": "Are you sure you want to approve this request?",
+      "confirmReject": "Are you sure you want to reject this request?",
+      "confirmDelete": "Are you sure you want to delete this request?",
+      "successUpdate": "Request has been updated successfully.",
+      "successDelete": "The request has been deleted.",
+      "errorUpdate": "Failed to update request.",
+      "errorDelete": "Failed to delete the request.",
+      "fileDownloadError": "Failed to download file."
+    },
+    "status": {
+      "status": "Status",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "pending": "Pending"
+    },
+    "action": "Action"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "Manage Leave Requests",
+      "description": "Click to manage leave requests"
+    },
+    "manageMission": {
+      "title": "Manage Mission Requests",
+      "description": "Click to manage mission requests"
+    },
+    "manageAuth": {
+      "title": "Manage Authorization Requests",
+      "description": "Click to manage authorization requests"
+    },
+    "manageDocuments": {
+      "title": "Manage Documents",
+      "description": "Click to manage documents"
+    }
+  },
+  "mission_admin": {
+    "title": "Mission Requests",
+    "firstname": "First Name",
+    "lastname": "Last Name",
+    "purpose_of_travel": "Purpose of Travel",
+    "dates": "Dates",
+    "status_key": {
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "pending": "Pending"
+    },
+    "actions": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "delete": "Delete",
+      "view_details": "View Details"
+    },
+    "pagination": {
+      "total_requests": "Total Requests"
+    },
+    "modal": {
+      "title": "Request Details",
+      "phone": "Phone",
+      "destination": "Destination",
+      "mission_budget": "Mission Budget"
+    },
+    "messages": {
+      "confirm_approve": "Are you sure you want to approve this request?",
+      "confirm_reject": "Are you sure you want to reject this request?",
+      "confirm_delete": "Are you sure you want to delete this request?",
+      "success_update": "Request has been updated successfully.",
+      "success_delete": "Request has been deleted.",
+      "error_update": "Failed to update request.",
+      "error_delete": "Failed to delete the request."
+    }
+  },
+  "sidebar": {
+    "home": "Home Admin",
+    "requests": "Apply for Requests",
+    "demands": "Consult Demands",
+    "dashboard": "Dashboard",
+    "myLeave": "My Leave",
+    "myMission": "My Mission",
+    "myAuth": "My Authorization",
+    "myDocs": "My Documents",
+    "myPointing": "My Pointing",
+    "employeeManagement": "Employee Management",
+    "rhDashboard": "Dashboard",
+    "salaryCertificate": "Salary Certificate",
+    "documentManagement": "Document Management",
+    "PointingManagement": "Pointing Management"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "Serial Number (Employee ID, ID Number, M.At)",
+    "employeeIdPlaceholder": "Enter your ID",
+    "leaveTypeLabel": "Type of Leave",
+    "dates": "Dates",
+    "leaveTypePlaceholder": "Select a leave type",
+    "otherLeaveTypeLabel": "Please specify the type of leave",
+    "otherLeaveTypePlaceholder": "Specify the type of leave",
+    "startDateLabel": "Start Date of Leave",
+    "endDateLabel": "End Date of Leave",
+    "DatePlaceholder": "Select date",
+    "phoneLabel": "Phone (Personal Number)",
+    "phonePlaceholder": "Enter your phone number",
+    "justificationLabel": "Justification",
+    "justificationPlaceholder": "Enter justification",
+    "justificationFileLabel": "Upload Justification File",
+    "uploadFileButton": "Upload File",
+    "applyButton": "Apply",
+    "submitButtonLoading": "Submitting...",
+    "successTitle": "Success!",
+    "successMessage": "Leave request submitted successfully!",
+    "errorTitle": "Error!",
+    "errorMessage": "Failed to submit leave request",
+    "fileUploadSuccess": "file uploaded successfully",
+    "fileUploadError": "file upload failed.",
+    "validation": {
+      "employeeIdRequired": "Please enter your ID",
+      "leaveTypeRequired": "Please select leave type",
+      "otherLeaveTypeRequired": "Please specify the type of leave",
+      "startDateRequired": "Please select start date",
+      "endDateRequired": "Please select end date",
+      "phoneRequired": "Please enter your phone number",
+      "justificationRequired": "Please enter justification"
+    },
+    "leaveTypes": {
+      "halfDay": "Half Day",
+      "wedding": "Wedding",
+      "business": "Business",
+      "injury": "Injury",
+      "sick": "Sick",
+      "maternity": "Maternity",
+      "funeral": "Funeral (Ghrama) / Explet",
+      "annualLeave": "Annual Leave",
+      "compensatory": "Compensatory",
+      "withoutPay": "Without Pay",
+      "seniority": "Seniority"
+    }
+  },
+  "login": {
+    "welcomeMessage": "Welcome to AVOCarbon HR Service",
+    "signInTitle": "Sign In",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "plantConnectionLabel": "Plant Connection",
+    "selectPlantPlaceholder": "Select Plant Connection",
+    "rememberMe": "Remember me",
+    "loginButton": "Sign In",
+    "loginSuccessTitle": "Login Successful",
+    "loginSuccessMessage": "Welcome back, {{firstname}}!",
+    "loginFailureTitle": "Invalid Credentials",
+    "loginFailureMessage": "Please try again",
+    "loginErrorTitle": "Login Failed",
+    "loginErrorMessage": "Password or plant connection incorrect. Please try again."
+  },
+  "plants": {
+    "kunshan": "AVOCarbon Kunshan",
+    "tianjin": "AVOCarbon Tianjin",
+    "france": "AVOCarbon France",
+    "cyclam": "Cyclam",
+    "germany": "AVOCarbon Germany",
+    "india": "AVOCarbon India",
+    "korea": "AVOCarbon Korea",
+    "tunisia": "AVOCarbon Tunisia"
+  },
+  "missionRequest": {
+    "serialNumber": "Serial Number (Employee ID, ID Number, M.At)",
+    "serialNumberPlaceholder": "Enter your ID",
+    "EmployeeIDPlaceholder": "Please enter your Employee ID",
+    "EnterDestinationPlaceholder": "Enter Destination",
+    "phone": "Phone (Personal Number)",
+    "phonePlaceholder": "Enter your phone number",
+    "PhonePlaceholder": "Please enter your phone number",
+    "startDate": "Start Date",
+    "DatePlaceholder": " Please select a date",
+    "startDatePlaceholder": "Please select a start date",
+    "endDate": "End Date",
+    "endDatePlaceholder": "Please select an end date",
+    "missionBudget": "Mission Budget",
+    "missionBudgetPlaceholder": "Enter Mission Budget",
+    "purposeOfTravel": "Purpose of Travel",
+    "purposeOfTravelPlaceholder": "Enter Purpose of Travel",
+    "destination": "Destination",
+    "destinationPlaceholder": "Enter Destination",
+    "departureTime": "Departure Time",
+    "departureTimePlaceholder": "Please select a departure time",
+    "submitButton": "Apply",
+    "submittingButton": "Submitting...",
+    "successTitle": "Success!",
+    "successMessage": "Mission request submitted successfully!",
+    "errorTitle": "Error!",
+    "SelectTimePlaceholder": "Select Time",
+    "errorMessage": "Failed to submit mission request. Please try again later.",
+    "genericError": "Something went wrong!",
+    "myMission": {
+      "title": "My Missions",
+      "purposeOfTravel": "Purpose Of Travel",
+      "duration": "Duration",
+      "from": "from",
+      "to": "to",
+      "destination": "Destination",
+      "status": "Status",
+      "action": "Action",
+      "loading": "Loading...",
+      "error": "Failed to fetch mission requests",
+      "deleteConfirmation": {
+        "title": "Delete Confirmation",
+        "message": "Are you sure you want to delete this mission request?",
+        "okText": "Yes, Delete",
+        "cancelText": "Cancel"
+      },
+      "deleteSuccess": "Mission request deleted successfully.",
+      "deleteError": "Failed to delete mission request."
+    }
+  },
+  "authRequest": {
+    "serialNumber": "Serial Number (Employee ID, ID Number, M.At)",
+    "serialNumberPlaceholder": "Enter your ID",
+    "phone": "Phone (Personal Number)",
+    "phonePlaceholder": "Enter your phone number",
+    "authorizationDate": "Authorization Date",
+    "authorizationDatePlaceholder": "Please select a date!",
+    "departureTime": "Departure Time",
+    "departureTimePlaceholder": "Please select a departure time!",
+    "returnTime": "Return Time",
+    "returnTimePlaceholder": "Please select a return time!",
+    "purposeOfAuthorization": "Purpose of Authorization",
+    "purposeOfAuthorizationPlaceholder": "Enter the purpose of authorization",
+    "submitButton": "Apply",
+    "submitting": "Submitting...",
+    "successTitle": "Success!",
+    "successMessage": "Authorization request submitted successfully!",
+    "errorTitle": "Error!",
+    "errorMessage": "Something went wrong!",
+    "myAuth": {
+      "Purpose": "Purpose",
+      "Date": "Date",
+      "DepartureTime": "Departure Time",
+      "ReturnTime": "Return Time",
+      "Status": "Status",
+      "Action": "Action",
+      "Pending": "Pending",
+      "Approved": "Approved",
+      "Rejected": "Rejected",
+      "fetchError": "Failed to fetch authorization requests.",
+      "deleteSuccess": "Authorization request deleted successfully.",
+      "deleteError": "Failed to delete authorization request.",
+      "deleteConfirmation": "Delete Confirmation",
+      "deleteConfirmationMessage": "Are you sure you want to delete this authorization request?",
+      "yesDelete": "Yes, Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "Serial Number (Employee ID, ID Number, M.At)",
+    "employeeIdPlaceholder": "Enter your ID",
+    "employeeIdError": "Please input your employee ID!",
+    "documentTypeLabel": "Type of Document",
+    "documentTypePlaceholder": "Select Document Type",
+    "documentTypeError": "Please select a document type!",
+    "salaryCertificate": "Salary Certificate",
+    "workCertificate": "Work Certificate",
+    "other": "Other",
+    "otherDocumentTypeLabel": "Please Specify",
+    "otherDocumentTypePlaceholder": "Specify the document type",
+    "otherDocumentTypeError": "Please specify the document type!",
+    "documentPurposeLabel": "Document Purpose",
+    "documentPurposePlaceholder": "Enter the purpose of the document",
+    "applyButton": "Apply",
+    "submitting": "Submitting...",
+    "successMessage": "Document request submitted successfully!",
+    "errorTitle": "Oops...",
+    "errorMessage": "Failed to submit document request. Please try again.",
+    "table": {
+      "documentType": "Document Type",
+      "download": "Download",
+      "downloadButton": "Download",
+      "statuskey": "Status",
+      "action": "Action",
+      "na": "N/A",
+      "noFile": "No file available",
+      "modal": {
+        "title": "Delete Confirmation",
+        "body": "Are you sure you want to delete this document request?",
+        "confirm": "Yes, Delete",
+        "cancel": "Cancel"
+      },
+      "error": {
+        "fetchFailed": "Failed to fetch document requests",
+        "deleteFailed": "Failed to delete document request",
+        "title": "Error"
+      },
+      "success": {
+        "delete": "Document request deleted successfully."
+      },
+      "status": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "rejected": "Rejected"
+      }
+    }
+  },
+  "profil": {
+    "profile": {
+      "updateProfile": "Update Profile",
+      "loading": "Loading...",
+      "errorFetchingDetails": "Error fetching user details:",
+      "uploading": "Uploading...",
+      "uploadPhoto": "Upload Photo",
+      "profilePhotoUpdated": "Profile photo updated successfully!",
+      "updateFailed": "Update failed",
+      "profileUpdateFailed": "Profile update failed: ",
+      "firstName": "First Name",
+      "enterFirstName": "Enter your first name",
+      "lastName": "Last Name",
+      "enterLastName": "Enter your last name",
+      "function": "Function",
+      "enterFunction": "Enter your function",
+      "department": "Department",
+      "enterDepartment": "Enter your department",
+      "email": "Email",
+      "enterEmail": "Enter your email",
+      "updating": "Updating...",
+      "updateProfileInfo": "Update Profile",
+      "confirmPhotoUpload": "Confirm Photo Upload",
+      "confirmPhotoUploadMessage": "Are you sure you want to upload this photo?",
+      "confirmProfileUpdate": "Confirm Profile Update",
+      "confirmProfileUpdateMessage": "Are you sure you want to update your profile information?",
+      "userId": "User ID",
+      "back": "Back",
+      "profileUpdateSuccess": "Profile updated successfully!"
+    }
+  },
+  "myPointing": {
+    "date": "Date",
+    "pointing": "Pointing",
+    "workingHours": "Working Hours"
+  },
+  "logs": {
+    "notLoggedIn": "Not Logged In",
+    "notLoggedOut": "Not Logged Out",
+    "insufficientData": "Insufficient Data",
+    "hours": "hrs",
+    "syncSuccess": "Logs synced successfully!",
+    "updateSuccess": "Pointing statuses updated successfully!"
+  },
+  "error": {
+    "notAuthenticated": "User not authenticated.",
+    "fetchLogs": "Failed to fetch logs.",
+    "syncLogs": "Error syncing logs."
+  },
+  "buttons": {
+    "loadLogs": "Load Logs",
+    "syncLogs": "Synchronize Logs"
+  }
+}

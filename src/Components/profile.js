@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ConfirmDialog from "./Confirmdialog";
 import { ArrowLeftIcon, UserIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 const Profile = () => {
+  const { t } = useTranslation();
   const [user, setUser] = useState({
     id: "",
     firstname: "",
@@ -27,7 +29,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}/photo`,
+          `http://localhost:3000/auth/user/${userId}/photo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -54,7 +56,7 @@ const Profile = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}`,
+          `http://localhost:3000/auth/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -68,7 +70,7 @@ const Profile = () => {
         setUser(data);
         setError(null);
       } catch (error) {
-        console.error("Error fetching user details:", error);
+        console.error(t("errorFetchingDetails"), error);
         setError(error.message || "Failed to fetch user details");
       } finally {
         setLoading(false);
@@ -98,7 +100,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        `https://bhr-avocarbon.azurewebsites.net/auth/user/${user.id}/photo`,
+        `http://localhost:3000/auth/user/${user.id}/photo`,
         {
           method: "POST",
           headers: {
@@ -109,17 +111,17 @@ const Profile = () => {
       );
 
       if (response.ok) {
-        setMessage("Profile photo updated successfully!");
+        setMessage(t("profilePhotoUpdated"));
         // Refresh the profile photo
         const updatedPhotoUrl = URL.createObjectURL(file);
         setProfilePhoto(updatedPhotoUrl);
       } else {
         const data = await response.json();
-        setMessage(data.error || "Update failed");
+        setMessage(data.error || t("updateFailed"));
       }
     } catch (error) {
       console.error("Profile update failed:", error);
-      setMessage("Profile update failed: " + error.message);
+      setMessage(t("profileUpdateFailed") + error.message);
     } finally {
       setLoading(false);
     }
@@ -134,7 +136,7 @@ const Profile = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/auth/user/${user.id}`,
+          `http://localhost:3000/auth/user/${user.id}`,
           {
             method: "PUT",
             headers: {
@@ -164,7 +166,7 @@ const Profile = () => {
     window.history.back(); // Navigate to the previous page
   };
 
-  if (loading) return <p className="text-blue-500">Loading...</p>;
+  if (loading) return <p className="text-blue-500">{t("loading")}</p>;
   if (error) return <p className="text-red-500">{error}</p>;
 
   return (
@@ -177,7 +179,7 @@ const Profile = () => {
         <ArrowLeftIcon className="w-6 h-6" />
       </button>
       <h2 className="text-2xl font-semibold mb-4 text-center">
-        Update Profile
+        {t("profil.profile.updateProfile")}
       </h2>
       {message && (
         <div
@@ -215,22 +217,24 @@ const Profile = () => {
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
             disabled={loading}
           >
-            {loading ? "Uploading..." : "Upload Photo"}
+            {loading ? t("uploading") : t("uploadPhoto")}
           </button>
         </form>
       </div>
       <div className="mb-6">
-        <p className="text-gray-700 font-medium">User ID: {user.id}</p>
+        <p className="text-gray-700 font-medium">
+          {t("profil.profile.userId")} {user.id}
+        </p>
       </div>
       <form onSubmit={handleInfoChange}>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2" htmlFor="firstname">
-            First Name
+            {t("profil.profile.firstName")}
           </label>
           <input
             type="text"
             id="firstname"
-            placeholder="Enter your first name"
+            placeholder={t("enterFirstName")}
             value={user.firstname}
             onChange={(e) => {
               setUser({ ...user, firstname: e.target.value });
@@ -241,12 +245,12 @@ const Profile = () => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2" htmlFor="lastname">
-            Last Name
+            {t("profil.profile.lastName")}
           </label>
           <input
             type="text"
             id="lastname"
-            placeholder="Enter your last name"
+            placeholder={t("enterLastName")}
             value={user.lastname}
             onChange={(e) => {
               setUser({ ...user, lastname: e.target.value });
@@ -257,7 +261,7 @@ const Profile = () => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2" htmlFor="function">
-            Function
+            {t("profil.profile.function")}
           </label>
           <input
             type="text"
@@ -273,12 +277,12 @@ const Profile = () => {
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 mb-2" htmlFor="department">
-            Department
+            {t("department")}
           </label>
           <input
             type="text"
             id="department"
-            placeholder="Enter your department"
+            placeholder={t("enterDepartment")}
             value={user.department}
             onChange={(e) => {
               setUser({ ...user, department: e.target.value });
@@ -289,7 +293,7 @@ const Profile = () => {
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 mb-2" htmlFor="email">
-            Email
+            {t("email")}
           </label>
           <input
             type="email"

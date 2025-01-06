@@ -1,0 +1,370 @@
+{
+  "welcome": "欢迎",
+  "logout": "登出",
+  "profile": "个人资料",
+  "changePassword": "更改密码",
+  "notifications": "通知",
+  "Leave Request": "请假申请",
+  "leave_type": "请假类型",
+  "leave_request": "请假申请",
+  "mission_request": "任务申请",
+  "authorization_request": "授权申请",
+  "work_documents_request": "工作文件申请",
+  "click_to_request_leave": "点击申请请假",
+  "click_to_request_mission": "点击申请任务",
+  "click_to_request_authorization": "点击申请授权",
+  "click_to_request_documents": "点击申请文件",
+  "back": "返回",
+  "add_employee_title": "添加员工",
+  "employee_id": "员工编号",
+  "employee_id_placeholder": "请输入员工编号",
+  "first_name": "名字",
+  "first_name_placeholder": "请输入名字",
+  "last_name": "姓氏",
+  "last_name_placeholder": "请输入姓氏",
+  "department": "部门",
+  "department_placeholder": "请输入部门",
+  "role": "角色",
+  "select_role_placeholder": "选择角色",
+  "plant_connection": "工厂连接",
+  "select_plant_placeholder": "选择工厂连接",
+  "email": "邮箱",
+  "email_placeholder": "请输入邮箱",
+  "password": "密码",
+  "submit_button": "添加员工",
+  "success_message_title": "成功",
+  "success_message_text": "员工成功添加!",
+  "error_message_title": "错误",
+  "error_message_text": "添加员工时出错",
+  "dashboard": {
+    "modalTitle": "请假申请详情",
+    "close": "关闭",
+    "dateRange": "日期范围",
+    "actions": {
+      "approve": "批准",
+      "reject": "拒绝",
+      "delete": "删除",
+      "downloadFile": "下载文件",
+      "viewFile": "查看文件"
+    },
+    "messages": {
+      "confirmApprove": "您确定要批准此请求吗？",
+      "confirmReject": "您确定要拒绝此请求吗？",
+      "confirmDelete": "您确定要删除此请求吗？",
+      "successUpdate": "请求成功更新。",
+      "successDelete": "请求已删除。",
+      "errorUpdate": "请求更新失败。",
+      "errorDelete": "请求删除失败。",
+      "fileDownloadError": "下载文件时出错。"
+    },
+    "status": {
+      "status": "状态",
+      "approved": "批准",
+      "rejected": "拒绝",
+      "pending": "待处理"
+    },
+    "action": "操作"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "管理请假申请",
+      "description": "点击管理请假申请"
+    },
+    "manageMission": {
+      "title": "管理任务申请",
+      "description": "点击管理任务申请"
+    },
+    "manageAuth": {
+      "title": "管理授权申请",
+      "description": "点击管理授权申请"
+    },
+    "manageDocuments": {
+      "title": "管理文件",
+      "description": "点击管理文件"
+    }
+  },
+  "mission_admin": {
+    "title": "任务申请",
+    "firstname": "名字",
+    "lastname": "姓氏",
+    "purpose_of_travel": "出差目的",
+    "dates": "日期",
+    "status": {
+      "approved": "批准",
+      "rejected": "拒绝",
+      "pending": "待处理"
+    },
+    "actions": {
+      "approve": "批准",
+      "reject": "拒绝",
+      "delete": "删除",
+      "view_details": "查看详情"
+    },
+    "pagination": {
+      "total_requests": "总申请"
+    },
+    "modal": {
+      "title": "申请详情",
+      "phone": "电话",
+      "destination": "目的地",
+      "mission_budget": "任务预算"
+    },
+    "messages": {
+      "confirm_approve": "您确定要批准此请求吗？",
+      "confirm_reject": "您确定要拒绝此请求吗？",
+      "confirm_delete": "您确定要删除此请求吗？",
+      "success_update": "请求成功更新。",
+      "success_delete": "请求已删除。",
+      "error_update": "请求更新失败。",
+      "error_delete": "请求删除失败。"
+    }
+  },
+  "sidebar": {
+    "home": "主页 管理员",
+    "requests": "请假申请",
+    "demands": "审核申请",
+    "dashboard": "仪表盘",
+    "myLeave": "我的假期",
+    "myMission": "我的任务",
+    "myAuth": "我的授权",
+    "myDocs": "我的文件",
+    "myPointing": "我的指示",
+    "employeeManagement": "员工管理",
+    "rhDashboard": "仪表盘",
+    "salaryCertificate": "工资证明",
+    "documentManagement": "文件管理",
+    "PointingManagement": "指向管理"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "员工编号（员工ID、身份证、M.At）",
+    "employeeIdPlaceholder": "请输入员工编号",
+    "leaveTypeLabel": "请假类型",
+    "dates": "日期",
+    "leaveTypePlaceholder": "选择请假类型",
+    "otherLeaveTypeLabel": "请指定其他请假类型",
+    "otherLeaveTypePlaceholder": "请输入请假类型",
+    "startDateLabel": "请假开始日期",
+    "endDateLabel": "请假结束日期",
+    "DatePlaceholder": "选择日期",
+    "phoneLabel": "电话（个人电话）",
+    "phonePlaceholder": "请输入电话号码",
+    "justificationLabel": "请假理由",
+    "justificationPlaceholder": "请输入请假理由",
+    "justificationFileLabel": "上传请假证明文件",
+    "uploadFileButton": "上传文件",
+    "applyButton": "提交申请",
+    "submitButtonLoading": "正在提交...",
+    "successTitle": "成功！",
+    "successMessage": "请假申请已成功提交！",
+    "errorTitle": "错误！",
+    "errorMessage": "提交请假申请时发生错误",
+    "fileUploadSuccess": "文件上传成功",
+    "fileUploadError": "文件上传时发生错误",
+    "validation": {
+      "employeeIdRequired": "请输入员工编号",
+      "leaveTypeRequired": "请选择请假类型",
+      "otherLeaveTypeRequired": "请输入其他请假类型",
+      "startDateRequired": "请选择请假开始日期",
+      "endDateRequired": "请选择请假结束日期",
+      "phoneRequired": "请输入电话号码",
+      "justificationRequired": "请输入请假理由"
+    },
+    "leaveTypes": {
+      "halfDay": "半天",
+      "wedding": "婚假",
+      "business": "公务",
+      "injury": "伤病",
+      "sick": "病假",
+      "maternity": "产假",
+      "funeral": "丧假",
+      "annualLeave": "年假",
+      "compensatory": "调休",
+      "withoutPay": "无薪假",
+      "seniority": "年资"
+    }
+  },
+  "missionRequest": {
+    "serialNumber": "序列号（员工编号，身份证号，M.At）",
+    "serialNumberPlaceholder": "请输入您的编号",
+    "EmployeeIDPlaceholder": "请输入员工编号",
+    "EnterDestinationPlaceholder": "输入目的地",
+    "phone": "电话（个人号码）",
+    "phonePlaceholder": "请输入您的电话号码",
+    "PhonePlaceholder": "请填写您的电话号码",
+    "startDate": "开始日期",
+    "startDatePlaceholder": "请选择开始日期",
+    "endDate": "结束日期",
+    "endDatePlaceholder": "请选择结束日期",
+    "missionBudget": "任务预算",
+    "missionBudgetPlaceholder": "请输入任务预算",
+    "purposeOfTravel": "出行目的",
+    "purposeOfTravelPlaceholder": "请输入出行目的",
+    "destination": "目的地",
+    "destinationPlaceholder": "请输入目的地",
+    "departureTime": "出发时间",
+    "DatePlaceholder": "选择日期",
+    "departureTimePlaceholder": "请选择出发时间",
+    "submitButton": "提交",
+    "submittingButton": "提交中...",
+    "successTitle": "成功！",
+    "successMessage": "任务申请提交成功！",
+    "errorTitle": "错误！",
+    "SelectTimePlaceholder": "选择时间",
+    "errorMessage": "任务申请提交失败，请稍后再试。",
+    "genericError": "出现问题！",
+    "myMission": {
+      "title": "我的任务",
+      "purposeOfTravel": "出行目的",
+      "duration": "持续时间",
+      "destination": "目的地",
+      "status": "状态",
+      "action": "操作",
+      "loading": "加载中...",
+      "error": "无法加载任务申请",
+      "deleteConfirmation": {
+        "title": "删除确认",
+        "message": "确定要删除此任务申请吗？",
+        "okText": "是，删除",
+        "cancelText": "取消"
+      },
+      "deleteSuccess": "任务申请已成功删除。",
+      "deleteError": "任务申请删除失败。"
+    }
+  },
+  "login": {
+    "welcomeMessage": "欢迎使用 AVOCarbon 人力资源服务",
+    "signInTitle": "登录",
+    "emailLabel": "电子邮件",
+    "passwordLabel": "密码",
+    "plantConnectionLabel": "工厂连接",
+    "selectPlantPlaceholder": "选择工厂连接",
+    "rememberMe": "记住我",
+    "loginButton": "登录",
+    "loginSuccessTitle": "登录成功",
+    "loginSuccessMessage": "欢迎回来, {{firstname}}!",
+    "loginFailureTitle": "无效的凭证",
+    "loginFailureMessage": "请再试一次",
+    "loginErrorTitle": "登录失败",
+    "loginErrorMessage": "密码或工厂连接错误。请再试一次。"
+  },
+  "plants": {
+    "kunshan": "AVOCarbon 昆山",
+    "tianjin": "AVOCarbon 天津",
+    "france": "AVOCarbon 法国",
+    "cyclam": "Cyclam",
+    "germany": "AVOCarbon 德国",
+    "india": "AVOCarbon 印度",
+    "korea": "AVOCarbon 韩国",
+    "tunisia": "AVOCarbon 突尼斯"
+  },
+
+  "authRequest": {
+    "serialNumber": "序列号（员工ID，身份证号，M.At）",
+    "serialNumberPlaceholder": "请输入您的ID",
+    "phone": "电话（个人号码）",
+    "phonePlaceholder": "请输入您的电话号码",
+    "authorizationDate": "授权日期",
+    "authorizationDatePlaceholder": "请选择一个日期！",
+    "departureTime": "出发时间",
+    "departureTimePlaceholder": "请选择一个出发时间！",
+    "returnTime": "返回时间",
+    "returnTimePlaceholder": "请选择一个返回时间！",
+    "purposeOfAuthorization": "授权目的",
+    "purposeOfAuthorizationPlaceholder": "请输入授权目的",
+    "submitButton": "申请",
+    "submitting": "提交中...",
+    "successTitle": "成功！",
+    "successMessage": "授权请求提交成功！",
+    "errorTitle": "错误！",
+    "errorMessage": "发生了一些错误！",
+    "myAuth": {
+      "Purpose": "目的",
+      "Date": "日期",
+      "DepartureTime": "出发时间",
+      "ReturnTime": "返回时间",
+      "Status": "状态",
+      "Action": "操作",
+      "Pending": "待处理",
+      "Approved": "已批准",
+      "Rejected": "已拒绝",
+      "fetchError": "获取授权请求失败。",
+      "deleteSuccess": "授权请求删除成功。",
+      "deleteError": "删除授权请求失败。",
+      "deleteConfirmation": "删除确认",
+      "deleteConfirmationMessage": "您确定要删除此授权请求吗？",
+      "yesDelete": "是的，删除",
+      "cancel": "取消"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "序列号（员工ID、身份证号、M.At）",
+      "employeeIdPlaceholder": "输入您的ID",
+      "employeeIdError": "请输入您的员工ID！",
+      "documentTypeLabel": "文件类型",
+      "documentTypePlaceholder": "选择文件类型",
+      "documentTypeError": "请选择一种文件类型！",
+      "salaryCertificate": "工资证明",
+      "workCertificate": "工作证明",
+      "other": "其他",
+      "otherDocumentTypeLabel": "请指定",
+      "otherDocumentTypePlaceholder": "指定文件类型",
+      "otherDocumentTypeError": "请指定文件类型！",
+      "documentPurposeLabel": "文件用途",
+      "documentPurposePlaceholder": "输入文件用途",
+      "applyButton": "申请",
+      "submitting": "提交中...",
+      "successMessage": "文档请求提交成功！",
+      "errorTitle": "哎呀...",
+      "errorMessage": "提交文档请求失败。请重试。",
+      "table": {
+    "documentType": "文档类型",
+    "download": "下载",
+    "downloadButton": "下载",
+    "statuskey": "状态",
+    "action": "操作",
+    "na": "不可用",
+    "noFile": "没有可用文件",
+    "modal": {
+      "title": "删除确认",
+      "body": "您确定要删除此文档请求吗？",
+      "confirm": "是的，删除",
+      "cancel": "取消"
+    },
+    "error": {
+      "fetchFailed": "获取文档请求失败",
+      "deleteFailed": "删除文档请求失败",
+      "title": "错误"
+    },
+    "success": {
+      "delete": "文档请求已成功删除。"
+    },
+    "status": {
+      "pending": "待处理",
+      "completed": "已完成",
+      "rejected": "已拒绝"
+    }
+  }
+  },
+  "myPointing": {
+    "date": "日期",
+    "pointing": "签到",
+    "workingHours": "工作时间"
+  },
+  "logs": {
+    "notLoggedIn": "未登录",
+    "notLoggedOut": "未登出",
+    "insufficientData": "数据不足",
+    "hours": "小时",
+    "syncSuccess": "日志同步成功！",
+    "updateSuccess": "考勤状态更新成功！"
+  },
+  "error": {
+    "notAuthenticated": "用户未验证。",
+    "fetchLogs": "获取日志失败。",
+    "syncLogs": "同步日志时出错。"
+  },
+  "buttons": {
+    "loadLogs": "加载日志",
+    "syncLogs": "同步日志"
+  }
+}

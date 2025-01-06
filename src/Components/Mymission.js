@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Modal, message } from "antd";
+import { Table, Button, Modal, message, Tag } from "antd";
 import axios from "axios";
 import Topbar from "./TopBar";
 import Sidebar from "./SideBar";
 import "antd/dist/reset.css"; // Ensure you are using the correct CSS for Ant Design
+import { useTranslation } from "react-i18next";
+import { DeleteOutlined } from "@ant-design/icons";
 
 const MyMission = () => {
+  const { t } = useTranslation();
   const [missionRequests, setMissionRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,7 +24,7 @@ const MyMission = () => {
 
         // Fetch mission requests for the logged-in employee
         const response = await axios.get(
-          `https://bhr-avocarbon.azurewebsites.net/mission-requests/employee/${user.id}`,
+          `http://localhost:3000/mission-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -32,9 +35,7 @@ const MyMission = () => {
         setError(null);
       } catch (error) {
         console.error("Error fetching mission requests:", error);
-        setError(
-          error.response?.data?.message || "Failed to fetch mission requests"
-        );
+        setError(t("myMission.error"));
       } finally {
         setLoading(false);
       }
@@ -61,19 +62,19 @@ const MyMission = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`https://bhr-avocarbon.azurewebsites.net/mission-requests/${deleteId}`, {
+      await axios.delete(`http://localhost:3000/mission-requests/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      message.success("Mission request deleted successfully.");
+      message.success(t("missionRequest.myMission.deleteSuccess"));
       setMissionRequests(
         missionRequests.filter((request) => request.id !== deleteId)
       );
       setIsModalVisible(false);
       setDeleteId(null);
     } catch (error) {
-      message.error("Failed to delete mission request.");
+      message.error(t("missionRequest.myMission.deleteError"));
       console.error("Error deleting mission request:", error);
     }
   };
@@ -85,50 +86,58 @@ const MyMission = () => {
 
   const columns = [
     {
-      title: "Purpose Of Travel",
+      title: t("missionRequest.myMission.purposeOfTravel"),
       dataIndex: "purpose_of_travel",
       key: "purpose_of_travel",
+      responsive: ["md"],
     },
     {
-      title: "Duration",
+      title: t("missionRequest.myMission.duration"),
       key: "duration",
       render: (text, record) => (
         <span>
-          from {formatDate(record.start_date)} to {formatDate(record.end_date)}
+          {t("missionRequest.myMission.from")} {formatDate(record.start_date)}{" "}
+          {t("missionRequest.myMission.to")} {formatDate(record.end_date)}
         </span>
       ),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Destination",
+      title: t("missionRequest.myMission.destination"),
       dataIndex: "destination",
       key: "destination",
+      responsive: ["md"],
     },
     {
-      title: "Status",
+      title: t("missionRequest.myMission.status"),
       dataIndex: "status",
       key: "status",
       render: (status) => (
-        <span
-          className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
+        <Tag
+          color={
             status === "Pending"
-              ? "bg-yellow-400 text-white"
+              ? "gold"
               : status === "Approved"
-              ? "bg-green-400 text-white"
-              : "bg-red-400 text-white"
-          }`}
+              ? "green"
+              : "red"
+          }
         >
-          {status}
-        </span>
+          {status.toUpperCase()}
+        </Tag>
       ),
+      responsive: ["xs", "sm", "md", "lg"],
     },
     {
-      title: "Action",
+      title: t("missionRequest.myMission.action"),
       key: "action",
       render: (text, record) => (
-        <Button danger onClick={() => showDeleteConfirm(record.id)}>
-          Delete
-        </Button>
+        <Button
+          danger
+          icon={<DeleteOutlined />}
+          onClick={() => showDeleteConfirm(record.id)}
+        />
       ),
+      responsive: ["xs", "sm", "md", "lg"], // Show on all screen sizes
     },
   ];
 
@@ -139,7 +148,7 @@ const MyMission = () => {
         <Topbar />
         <div className="p-4">
           {loading ? (
-            <p>Loading...</p>
+            <p>{t("missionRequest.myMission.loading")}</p>
           ) : error ? (
             <p className="text-red-500">{error}</p>
           ) : (
@@ -152,14 +161,18 @@ const MyMission = () => {
                 bordered
               />
               <Modal
-                title="Delete Confirmation"
+                title={t("missionRequest.myMission.deleteConfirmation.title")}
                 visible={isModalVisible}
                 onOk={handleDelete}
                 onCancel={handleCancel}
-                okText="Yes, Delete"
-                cancelText="Cancel"
+                okText={t("missionRequest.myMission.deleteConfirmation.okText")}
+                cancelText={t(
+                  "missionRequest.myMission.deleteConfirmation.cancelText"
+                )}
               >
-                <p>Are you sure you want to delete this mission request?</p>
+                <p>
+                  {t("missionRequest.myMission.deleteConfirmation.message")}
+                </p>
               </Modal>
             </>
           )}

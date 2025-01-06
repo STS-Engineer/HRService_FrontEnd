@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Layout, Avatar, Dropdown, Menu, Badge } from "antd";
+import { Avatar, Dropdown, Menu, Badge } from "antd";
 import {
   BellOutlined,
   UserOutlined,
   LogoutOutlined,
   LockOutlined,
+  GlobalOutlined,
 } from "@ant-design/icons";
-// Import custom styles
+import i18n from "../i18n";
+import Flag from "react-world-flags";
+import { useTranslation } from "react-i18next";
 
-const { Header } = Layout;
+const languages = [
+  { code: "en", name: "English", country: "GB" },
+  { code: "fr", name: "Français", country: "FR" },
+  { code: "zh", name: "中文", country: "CN" },
+  { code: "es", name: "Español", country: "MX" },
+  { code: "de", name: "Deutsch", country: "DE" },
+  { code: "hi", name: "हिन्दी", country: "IN" },
+  { code: "tr", name: "Türkçe", country: "TR" },
+];
 
 const TopBar = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     firstname: "",
@@ -22,7 +34,6 @@ const TopBar = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [profilePhoto, setProfilePhoto] = useState(null);
-  const [unreadNotifications, setUnreadNotifications] = useState(5); // Example count for unread notifications
 
   useEffect(() => {
     const fetchProfilePhoto = async () => {
@@ -30,7 +41,7 @@ const TopBar = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}/photo`,
+          `http://localhost:3000/auth/user/${userId}/photo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -57,7 +68,7 @@ const TopBar = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}`,
+          `http://localhost:3000/auth/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -95,43 +106,109 @@ const TopBar = () => {
     navigate("/change-password");
   };
 
+  const changeLanguage = (code) => {
+    i18n.changeLanguage(code);
+  };
+
   const profileMenu = (
     <Menu>
       <Menu.Item key="1" onClick={() => navigate("/profile")}>
-        <UserOutlined />
-        Profile
+        <UserOutlined className="mr-2" />
+        {t("profile")}
       </Menu.Item>
       <Menu.Item key="2" onClick={handleChangePassword}>
-        <LockOutlined />
-        Change Password
+        <LockOutlined className="mr-2" />
+        {t("changePassword")}
       </Menu.Item>
       <Menu.Item key="3" onClick={handleLogout}>
-        <LogoutOutlined />
-        Logout
+        <LogoutOutlined className="mr-2" />
+        {t("logout")}
       </Menu.Item>
     </Menu>
   );
+
+  const languageMenu = (
+    <Menu>
+      {languages.map((lang) => (
+        <Menu.Item key={lang.code} onClick={() => changeLanguage(lang.code)}>
+          <Flag
+            code={lang.country}
+            style={{ width: 20, height: 14, marginRight: 10 }}
+          />
+          {lang.name}
+        </Menu.Item>
+      ))}
+    </Menu>
+  );
+
+  const containerStyles = {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: "0 20px",
+    background: "linear-gradient(90deg, #076eaf, #3b82f6)", // Gradient background for modern look
+    height: "64px",
+    color: "white",
+    boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.1)", // Adding a subtle shadow for modern appeal
+  };
+
+  const rightContainerStyles = {
+    display: "flex",
+    alignItems: "center",
+    gap: "20px", // Increased gap for spacing
+  };
+
+  const profileStyles = {
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    transition: "transform 0.3s ease",
+  };
+
+  const usernameStyles = {
+    marginLeft: "10px",
+    color: "white",
+    fontSize: "16px",
+    fontWeight: "500", // Slightly bolder text for modern look
+  };
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <Header className="topbar-header">
-      <div className="topbar-left"></div>
-      <div className="topbar-right">
+    <div style={containerStyles}>
+      <div></div>
+      <div style={rightContainerStyles}>
+        <Dropdown overlay={languageMenu} trigger={["click"]}>
+          <GlobalOutlined
+            style={{
+              fontSize: 22,
+              cursor: "pointer",
+              transition: "color 0.3s ease",
+            }}
+            onMouseEnter={(e) => (e.target.style.color = "#fbbf24")}
+            onMouseLeave={(e) => (e.target.style.color = "#fff")}
+          />
+        </Dropdown>
         <Dropdown overlay={profileMenu} trigger={["click"]}>
-          <div className="topbar-profile" style={{ cursor: "pointer" }}>
+          <div
+            style={profileStyles}
+            onMouseEnter={(e) => (e.target.style.transform = "scale(1.1)")}
+            onMouseLeave={(e) => (e.target.style.transform = "scale(1)")}
+          >
             <Avatar
               size="large"
               src={profilePhoto || <UserOutlined />}
               alt={`${user.firstname} ${user.lastname}`}
               icon={!profilePhoto && <UserOutlined />}
             />
-            <span className="topbar-username">{`${user.firstname} ${user.lastname}`}</span>
+            <span style={usernameStyles}>
+              {`${user.firstname} ${user.lastname}`}
+            </span>
           </div>
         </Dropdown>
       </div>
-    </Header>
+    </div>
   );
 };
 

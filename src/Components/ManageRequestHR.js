@@ -1,66 +1,66 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import SideBarAdmin from "./SideBarAdmin";
+import SidebarHR from "./SideBarHR";
 import TopBar from "./TopBar";
-import { useTranslation } from "react-i18next";
 
-const Requets = () => {
-  const { t } = useTranslation();
+const ManageRequestHR = () => {
   const navigate = useNavigate();
-  const handleLeaveRequestClick = () => {
-    navigate("/leave-request-admin");
+
+  const handleLeaveManagementClick = () => {
+    navigate("/admin-dashboard");
   };
-  // Function to handle card click and navigate to MissionRequest page
-  const handleMissionRequestClick = () => {
-    navigate("/mission-request-admin");
+
+  const handleMissionManagementClick = () => {
+    navigate("/mission-management");
   };
-  // Function to handle card click and navigate to AuthorizationRequest page
+
+  const handleDocumentManagementClick = () => {
+    navigate("/document-management");
+  };
+
   const handleAuthoRequestClick = () => {
-    navigate("/auth-request-admin");
+    navigate("/auth-management");
   };
-  // Function to handle card click and navigate to Document page
-  const handleDocumentRequestClick = () => {
-    navigate("/document-request-admin");
-  };
+
   return (
     <div className="flex h-screen">
-      <SideBarAdmin />
+      <SidebarHR />
       <div className="flex-1 flex flex-col">
         <TopBar />
         <div className="flex-1 p-4 overflow-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div
               className="border border-gray-200 rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105"
-              onClick={handleLeaveRequestClick}
+              onClick={handleLeaveManagementClick}
             >
               <div className="flex justify-center items-center">
                 <img
-                  src="lee.png"
-                  alt={t("leave_request")}
+                  src="software_engineer_re_tnjc.png"
+                  alt="Manage Leave Requests"
                   className="w-48 h-48 center"
                 />
               </div>
-
               <div className="p-4">
-                <h3 className="text-md font-bold">{t("Leave Request")}</h3>
-                <p className="text-gray-600">{t("click_to_request_leave")}</p>
+                <h3 className="text-md font-bold">Manage Leave Requests</h3>
+                <p className="text-gray-600">Click to manage leave requests</p>
               </div>
             </div>
             <div
               className="border border-gray-200 rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105"
-              onClick={handleMissionRequestClick}
+              onClick={handleMissionManagementClick}
             >
               <div className="flex justify-center items-center">
                 <img
-                  src="mission.png"
-                  alt="Card 2"
+                  src="product_iteration_kjok.png"
+                  alt="Manage Mission Requests"
                   className="w-48 h-48 center"
                 />
               </div>
-
               <div className="p-4">
-                <h3 className="text-md font-bold">{t("mission_request")}</h3>
-                <p className="text-gray-600">{t("click_to_request_mission")}</p>
+                <h3 className="text-md font-bold">Manage Mission Requests</h3>
+                <p className="text-gray-600">
+                  Click to manage mission requests
+                </p>
               </div>
             </div>
             <div
@@ -68,34 +68,35 @@ const Requets = () => {
               onClick={handleAuthoRequestClick}
             >
               <div className="flex justify-center items-center">
-                <img src="author.png" alt="Card 3" className="w-48 h-48 " />
+                <img
+                  src="undraw_Speed_test_re_pe1f.png"
+                  alt="Manage auth Requests"
+                  className="w-48 h-48 center"
+                />
               </div>
-
               <div className="p-4">
                 <h3 className="text-md font-bold">
-                  {t("authorization_request")}
+                  Manage Authorization Requests
                 </h3>
                 <p className="text-gray-600">
-                  {t("click_to_request_authorization")}
+                  Click to manage authorization requests
                 </p>
               </div>
             </div>
             <div
               className="border border-gray-200 rounded-lg overflow-hidden shadow-md cursor-pointer transform transition-transform duration-300 hover:scale-105"
-              onClick={handleDocumentRequestClick}
+              onClick={handleDocumentManagementClick}
             >
               <div className="flex justify-center items-center">
-                <img src="bookmark.png" alt="Card 4" className="w-48 h-48 " />
+                <img
+                  src="add_files_re_v09g.png"
+                  alt="Manage Document Requests"
+                  className="w-48 h-48 center"
+                />
               </div>
-
               <div className="p-4">
-                <h3 className="text-md font-bold">
-                  {t("work_documents_request")}
-                </h3>
-                <p className="text-gray-600">
-                  {" "}
-                  {t("click_to_request_documents")}
-                </p>
+                <h3 className="text-md font-bold">Manage Documents</h3>
+                <p className="text-gray-600">Click to manage documents</p>
               </div>
             </div>
           </div>
@@ -104,4 +105,5 @@ const Requets = () => {
     </div>
   );
 };
-export default Requets;
+
+export default ManageRequestHR;

@@ -3,9 +3,11 @@ import { Form, Input, Button, DatePicker, TimePicker } from "antd";
 import axios from "axios";
 import Swal from "sweetalert2";
 import moment from "moment";
+import { useTranslation } from "react-i18next"; // Import translation hook
 
 const AuthRequest = () => {
-  const [form] = Form.useForm(); // Get the form instance
+  const { t } = useTranslation(); // Initialize translation
+  const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (values) => {
@@ -28,66 +30,75 @@ const AuthRequest = () => {
         throw new Error("No token found. Please log in again.");
       }
       await axios.post(
-        "https://bhr-avocarbon.azurewebsites.net/authorization-requests",
+        "http://localhost:3000/authorization-requests",
         formData,
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       setSubmitting(false);
       Swal.fire(
-        "Success!",
-        "Authorization request submitted successfully!",
+        t("authRequest.successTitle"),
+        t("authRequest.successMessage"),
         "success"
       );
 
-      // Clear form fields after successful submission
-      form.resetFields(); // Reset the form fields
+      form.resetFields();
     } catch (error) {
       Swal.fire(
-        "Error!",
-        error.response ? error.response.data.error : "Something went wrong!",
+        t("authRequest.errorTitle"),
+        error.response
+          ? error.response.data.error
+          : t("authRequest.errorMessage"),
         "error"
       );
       setSubmitting(false);
     }
   };
 
-  const today = moment(); // Current date for min date
+  const today = moment();
 
   return (
     <div className="w-full p-4 pt-6 pb-8 mb-4 bg-white rounded shadow-md">
       <Form form={form} layout="vertical" onFinish={handleSubmit}>
         {/* Employee ID */}
         <Form.Item
-          label="Serial Number (Employee ID, ID Number, M.At)"
+          label={t("authRequest.serialNumber")}
           name="employeeId"
           rules={[
-            { required: true, message: "Please input your Employee ID!" },
+            {
+              required: true,
+              message: t("authRequest.serialNumberPlaceholder"),
+            },
           ]}
         >
-          <Input placeholder="Enter your ID" />
+          <Input placeholder={t("authRequest.serialNumberPlaceholder")} />
         </Form.Item>
 
         {/* Phone Number */}
         <Form.Item
-          label="Phone (Personal Number)"
+          label={t("authRequest.phone")}
           name="phone"
           rules={[
-            { required: true, message: "Please input your phone number!" },
+            { required: true, message: t("authRequest.phonePlaceholder") },
           ]}
         >
-          <Input placeholder="Enter your phone number" />
+          <Input placeholder={t("authRequest.phonePlaceholder")} />
         </Form.Item>
 
         {/* Authorization Date */}
         <Form.Item
-          label="Authorization Date"
+          label={t("authRequest.authorizationDate")}
           name="authorizationDate"
-          rules={[{ required: true, message: "Please select a date!" }]}
+          rules={[
+            {
+              required: true,
+              message: t("authRequest.authorizationDatePlaceholder"),
+            },
+          ]}
         >
           <DatePicker
             style={{ width: "20%" }}
@@ -96,30 +107,43 @@ const AuthRequest = () => {
         </Form.Item>
 
         {/* Departure and Return Time */}
-        <Form.Item label="Departure Time" name="departureTime">
-          <TimePicker style={{ width: "20%" }} format="HH:mm:ss" />
+        <Form.Item label={t("authRequest.departureTime")} name="departureTime">
+          <TimePicker
+            style={{ width: "20%" }}
+            format="HH:mm:ss"
+            placeholder={t("authRequest.departureTimePlaceholder")}
+          />
         </Form.Item>
-
-        <Form.Item label="Return Time" name="returnTime">
-          <TimePicker style={{ width: "20%" }} format="HH:mm:ss" />
+        <Form.Item label={t("authRequest.returnTime")} name="returnTime">
+          <TimePicker
+            style={{ width: "20%" }}
+            format="HH:mm:ss"
+            placeholder={t("authRequest.returnTimePlaceholder")}
+          />
         </Form.Item>
-
         {/* Purpose of Authorization */}
         <Form.Item
-          label="Purpose of Authorization"
+          label={t("authRequest.purposeOfAuthorization")}
           name="purposeOfAuthorization"
-          rules={[{ required: true, message: "Please input the purpose!" }]}
+          rules={[
+            {
+              required: true,
+              message: t("authRequest.purposeOfAuthorizationPlaceholder"),
+            },
+          ]}
         >
           <Input.TextArea
             rows={4}
-            placeholder="Enter the purpose of authorization"
+            placeholder={t("authRequest.purposeOfAuthorizationPlaceholder")}
           />
         </Form.Item>
 
         {/* Submit Button */}
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={submitting}>
-            {submitting ? "Submitting..." : "Apply"}
+            {submitting
+              ? t("authRequest.submitting")
+              : t("authRequest.submitButton")}
           </Button>
         </Form.Item>
       </Form>

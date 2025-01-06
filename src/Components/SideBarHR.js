@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import {
   BsHouseDoorFill,
   BsPeopleFill,
+  BsClockFill,
   // BsClipboardCheck,
   // BsChatLeftTextFill,
   BsBarChartFill,
 } from "react-icons/bs";
-
+import { useTranslation } from "react-i18next";
 import { FaFileAlt } from "react-icons/fa";
 
 const SidebarHR = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
 
   return (
@@ -95,15 +97,24 @@ const SidebarHR = () => {
                 to="/home-rh"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsHouseDoorFill className="mr-3 text-lg" /> Home
+                <BsHouseDoorFill className="mr-3 text-lg" /> {t("sidebar.home")}
               </Link>
             </li>
+            {/* <li className="my-2">
+              <Link
+                to="/home-admin-HR"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsHouseDoorFill className="mr-2" /> Manage Requests
+              </Link>
+            </li> */}
             <li className="my-2">
               <Link
                 to="/employee-management"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsPeopleFill className="mr-3 text-lg" /> Employee Management
+                <BsPeopleFill className="mr-3 text-lg" />{" "}
+                {t("sidebar.employeeManagement")}
               </Link>
             </li>
 
@@ -112,7 +123,8 @@ const SidebarHR = () => {
                 to="/RH-dashboard"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsBarChartFill className="mr-3 text-lg" /> Dashboard
+                <BsBarChartFill className="mr-3 text-lg" />{" "}
+                {t("sidebar.rhDashboard")}
               </Link>
             </li>
             <li className="my-2">
@@ -120,9 +132,29 @@ const SidebarHR = () => {
                 to="/Dispatch-SalaryCertificate"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <FaFileAlt className="mr-3 text-lg" /> Salary Certificate
+                <FaFileAlt className="mr-3 text-lg" />{" "}
+                {t("sidebar.salaryCertificate")}
               </Link>
             </li>
+            <li className="my-2">
+              <Link
+                to="/document-management"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <FaFileAlt className="mr-3 text-lg" />{" "}
+                {t("sidebar.documentManagement")}
+              </Link>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/pointing-management-RH"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsClockFill className="mr-2" />{" "}
+                {t("sidebar.PointingManagement")}
+              </Link>
+            </li>
+
             {/* <li className="my-2">
               <Link
                 to="/requests-RH"

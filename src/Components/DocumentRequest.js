@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Select, message } from "antd";
+import { Form, Input, Button, Select } from "antd";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 const { Option } = Select;
 
 const DocumentRequest = () => {
-  const [form] = Form.useForm(); // Ant Design form instance
+  const { t } = useTranslation(); // Use translation function
+  const [form] = Form.useForm();
   const [submitting, setSubmitting] = useState(false);
+
   const handleSubmit = async (values) => {
     setSubmitting(true);
 
@@ -20,35 +23,32 @@ const DocumentRequest = () => {
       additional_info: values.documentPurpose,
     };
 
-    // Get the token from local storage (or wherever it's stored)
-    const token = localStorage.getItem("token"); // Adjust this based on your app's implementation
+    const token = localStorage.getItem("token");
 
     try {
       await axios.post(
-        "https://bhr-avocarbon.azurewebsites.net/document-requests",
+        "http://localhost:3000/document-requests",
         newDocumentRequest,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Include the token in the headers
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
-      // Success alert using SweetAlert
       Swal.fire({
         icon: "success",
-        title: "Document request submitted successfully!",
+        title: t("successMessage"),
         showConfirmButton: false,
         timer: 2000,
       });
 
-      form.resetFields(); // Reset the form after successful submission
+      form.resetFields();
     } catch (err) {
-      // Error alert using SweetAlert
       Swal.fire({
         icon: "error",
-        title: "Oops...",
-        text: "Failed to submit document request. Please try again.",
+        title: t("errorTitle"),
+        text: t("errorMessage"),
       });
     } finally {
       setSubmitting(false);
@@ -63,33 +63,34 @@ const DocumentRequest = () => {
         onFinish={handleSubmit}
         className="space-y-4"
       >
-        {/* Employee ID */}
         <Form.Item
-          label="Serial Number (Employee ID, ID Number, M.At)"
+          label={t("documentRequest.employeeIdLabel")}
           name="employeeId"
           rules={[
-            { required: true, message: "Please input your employee ID!" },
+            { required: true, message: t("documentRequest.employeeIdError") },
           ]}
         >
-          <Input placeholder="Enter your  ID" />
+          <Input placeholder={t("documentRequest.employeeIdPlaceholder")} />
         </Form.Item>
 
-        {/* Document Type */}
         <Form.Item
-          label="Type of Document"
+          label={t("documentRequest.documentTypeLabel")}
           name="documentType"
           rules={[
-            { required: true, message: "Please select a document type!" },
+            { required: true, message: t("documentRequest.documentTypeError") },
           ]}
         >
-          <Select placeholder="Select Document Type">
-            <Option value="salary-certificate">Salary Certificate</Option>
-            <Option value="work-certificate">Work Certificate</Option>
-            <Option value="other">Other</Option>
+          <Select placeholder={t("documentRequest.documentTypePlaceholder")}>
+            <Option value="salary-certificate">
+              {t("documentRequest.salaryCertificate")}
+            </Option>
+            <Option value="work-certificate">
+              {t("documentRequest.workCertificate")}
+            </Option>
+            <Option value="other">{t("documentRequest.other")}</Option>
           </Select>
         </Form.Item>
 
-        {/* Other Document Type (shown only if 'Other' is selected) */}
         <Form.Item
           noStyle
           shouldUpdate={(prevValues, currentValues) =>
@@ -99,30 +100,39 @@ const DocumentRequest = () => {
           {({ getFieldValue }) =>
             getFieldValue("documentType") === "other" ? (
               <Form.Item
-                label="Please Specify"
+                label={t("documentRequest.otherDocumentTypeLabel")}
                 name="otherDocumentType"
                 rules={[
                   {
                     required: true,
-                    message: "Please specify the document type!",
+                    message: t("documentRequest.otherDocumentTypeError"),
                   },
                 ]}
               >
-                <Input placeholder="Specify the document type" />
+                <Input
+                  placeholder={t(
+                    "documentRequest.otherDocumentTypePlaceholder"
+                  )}
+                />
               </Form.Item>
             ) : null
           }
         </Form.Item>
 
-        {/* Document Purpose */}
-        <Form.Item label="Document Purpose" name="documentPurpose">
-          <Input placeholder="Enter the purpose of the document" />
+        <Form.Item
+          label={t("documentRequest.documentPurposeLabel")}
+          name="documentPurpose"
+        >
+          <Input
+            placeholder={t("documentRequest.documentPurposePlaceholder")}
+          />
         </Form.Item>
 
-        {/* Submit Button */}
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={submitting}>
-            {submitting ? "Submitting..." : "Apply"}
+            {submitting
+              ? t("documentRequest.submitting")
+              : t("documentRequest.applyButton")}
           </Button>
         </Form.Item>
       </Form>

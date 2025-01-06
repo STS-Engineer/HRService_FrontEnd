@@ -8,10 +8,12 @@ import {
   CheckOutlined,
   CloseOutlined,
 } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 // Initialize SweetAlert
 const MySwal = withReactContent(Swal);
 
 const MissionAdmin = () => {
+  const { t } = useTranslation();
   const [missionRequests, setMissionRequests] = useState([]);
   const [selectedRequest, setSelectedRequest] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +24,7 @@ const MissionAdmin = () => {
     const fetchMissionRequests = () => {
       const token = localStorage.getItem("token");
       fetch(
-        `https://bhr-avocarbon.azurewebsites.net/mission-requests?page=${currentPage}&limit=${requestsPerPage}`,
+        `http://localhost:3000/mission-requests?page=${currentPage}&limit=${requestsPerPage}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -50,14 +52,14 @@ const MissionAdmin = () => {
   // Handle status change with SweetAlert confirmation
   const handleStatusChange = (id, newStatus) => {
     MySwal.fire({
-      title: `Are you sure you want to ${newStatus.toLowerCase()} this request?`,
+      title: t(`mission_admin.messages.confirm_${newStatus.toLowerCase()}`),
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: `Yes, ${newStatus.toLowerCase()} it!`,
+      confirmButtonText: t(`mission_admin.actions.${newStatus.toLowerCase()}`),
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`https://bhr-avocarbon.azurewebsites.net/mission-requests/${id}`, {
+        fetch(`http://localhost:3000/mission-requests/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -94,17 +96,17 @@ const MissionAdmin = () => {
 
   const handleDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
+      title: t("mission_admin.messages.confirm_delete"),
       text: "You want to delete this request?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: t("mission_admin.actions.delete"),
     }).then((result) => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
-        fetch(`https://bhr-avocarbon.azurewebsites.net/mission-requests/${id}`, {
+        fetch(`http://localhost:3000/mission-requests/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -126,22 +128,22 @@ const MissionAdmin = () => {
 
   const columns = [
     {
-      title: "First Name",
+      title: t("mission_admin.firstname"),
       dataIndex: "firstname",
       key: "firstname",
     },
     {
-      title: "Last Name",
+      title: t("mission_admin.lastname"),
       dataIndex: "lastname",
       key: "lastname",
     },
     {
-      title: "Purpose of Travel",
+      title: t("mission_admin.purpose_of_travel"),
       dataIndex: "purposeoftravel",
       key: "purposeoftravel",
     },
     {
-      title: "Dates",
+      title: t("mission_admin.dates"),
       dataIndex: "startdate",
       key: "dates",
       render: (text, record) => (
@@ -152,7 +154,7 @@ const MissionAdmin = () => {
       ),
     },
     {
-      title: "Status",
+      title: t("mission_admin.status"),
       dataIndex: "status",
       key: "status",
       render: (text) => (
@@ -165,12 +167,12 @@ const MissionAdmin = () => {
               : "yellow"
           }
         >
-          {text}
+          {t(`mission_admin.status.${text.toLowerCase()}`)}
         </Tag>
       ),
     },
     {
-      title: "Action",
+      title: t("mission_admin.actions.action"),
       key: "action",
       render: (_, record) => (
         <div className="flex space-x-3">
@@ -229,7 +231,7 @@ const MissionAdmin = () => {
         style={{ marginTop: 16, textAlign: "center" }}
       />
       <Modal
-        title="Request Details"
+        title={t("mission_admin.modal.title")}
         visible={!!selectedRequest}
         onCancel={() => setSelectedRequest(null)}
         footer={null}
@@ -237,14 +239,16 @@ const MissionAdmin = () => {
         {selectedRequest && (
           <div>
             <p>
-              <strong>Phone:</strong> {selectedRequest.phone}
+              <strong>{t("mission_admin.modal.phone")}:</strong>{" "}
+              {selectedRequest.phone}
             </p>
             <p>
-              <strong>Destination:</strong> {selectedRequest.destination}
+              <strong>{t("mission_admin.modal.destination")}:</strong>{" "}
+              {selectedRequest.destination}
             </p>
             <p>
-              <strong>Mission Budget:</strong> {selectedRequest.missionbudget}{" "}
-              euro
+              <strong>{t("mission_admin.modal.mission_budget")}:</strong>{" "}
+              {selectedRequest.missionbudget} euro
             </p>
           </div>
         )}

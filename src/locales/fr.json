@@ -1,0 +1,401 @@
+{
+  "welcome": "Bienvenue",
+  "logout": "Déconnexion",
+  "profile": "Profil",
+  "changePassword": "Changer le mot de passe",
+  "notifications": "Notifications",
+  "Leave Request": "Damande de congé ",
+  "leave_type": "Type de congé ",
+  "leave_request": "Demande de congé",
+  "mission_request": "Demande de mission",
+  "authorization_request": "Demande d'autorisation",
+  "work_documents_request": "Demande de documents de travail",
+  "click_to_request_leave": "Cliquez pour demander un congé",
+  "click_to_request_mission": "Cliquez pour demander une mission",
+  "click_to_request_authorization": "Cliquez pour demander une autorisation",
+  "click_to_request_documents": "Cliquez pour demander des documents",
+  "back": "Retour",
+  "add_employee_title": "Ajouter un Employé",
+  "employee_id": "ID Employé",
+  "employee_id_placeholder": "Entrer l'ID de l'employé",
+  "first_name": "Prénom",
+  "first_name_placeholder": "Entrer le Prénom",
+  "last_name": "Nom",
+  "last_name_placeholder": "Entrer le Nom de famille",
+  "department": "Département",
+  "department_placeholder": "Entrer le Département",
+  "role": "Rôle",
+  "select_role_placeholder": "Sélectionner un rôle",
+  "plant_connection": "Connexion à l'usine",
+  "select_plant_placeholder": "Sélectionner une connexion à l'usine",
+  "email": "Email",
+  "email_placeholder": "Entrer l'Email",
+  "password": "Mot de passe",
+  "submit_button": "Ajouter l'Employé",
+  "success_message_title": "Succès",
+  "success_message_text": "Employé ajouté avec succès !",
+  "error_message_title": "Erreur",
+  "error_message_text": "Erreur lors de l'ajout de l'employé",
+  "dashboard": {
+    "modalTitle": "Détails de la demande de congé",
+    "close": "Fermer",
+    "dateRange": "Période",
+    "actions": {
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "delete": "Supprimer",
+      "downloadFile": "Télécharger le fichier justificatif",
+      "viewFile": "Voir le fichier"
+    },
+    "messages": {
+      "confirmApprove": "Êtes-vous sûr de vouloir approuver cette demande ?",
+      "confirmReject": "Êtes-vous sûr de vouloir rejeter cette demande ?",
+      "confirmDelete": "Êtes-vous sûr de vouloir supprimer cette demande ?",
+      "successUpdate": "La demande a été mise à jour avec succès.",
+      "successDelete": "La demande a été supprimée.",
+      "errorUpdate": "Échec de la mise à jour de la demande.",
+      "errorDelete": "Échec de la suppression de la demande.",
+      "fileDownloadError": "Échec du téléchargement du fichier."
+    },
+    "status": {
+      "status": "Statut",
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "pending": "En attente"
+    },
+    "action": "Action"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "Gérer les demandes de congé",
+      "description": "Cliquez pour gérer les demandes de congé"
+    },
+    "manageMission": {
+      "title": "Gérer les demandes de mission",
+      "description": "Cliquez pour gérer les demandes de mission"
+    },
+    "manageAuth": {
+      "title": "Gérer les demandes d'autorisation",
+      "description": "Cliquez pour gérer les demandes d'autorisation"
+    },
+    "manageDocuments": {
+      "title": "Gérer les documents",
+      "description": "Cliquez pour gérer les documents"
+    }
+  },
+  "mission_admin": {
+    "title": "Demandes de Mission",
+    "firstname": "Prénom",
+    "lastname": "Nom",
+    "purpose_of_travel": "Objet du Mission",
+    "dates": "Dates",
+    "status": {
+      "approved": "Approuvé",
+      "rejected": "Rejeté",
+      "pending": "En Attente"
+    },
+    "actions": {
+      "approve": "Approuver",
+      "reject": "Rejeter",
+      "delete": "Supprimer",
+      "view_details": "Voir les Détails"
+    },
+    "pagination": {
+      "total_requests": "Total des Demandes"
+    },
+    "modal": {
+      "title": "Détails de la Demande",
+      "phone": "Téléphone",
+      "destination": "Destination",
+      "mission_budget": "Budget de la Mission"
+    },
+    "messages": {
+      "confirm_approve": "Êtes-vous sûr de vouloir approuver cette demande ?",
+      "confirm_reject": "Êtes-vous sûr de vouloir rejeter cette demande ?",
+      "confirm_delete": "Êtes-vous sûr de vouloir supprimer cette demande ?",
+      "success_update": "La demande a été mise à jour avec succès.",
+      "success_delete": "La demande a été supprimée.",
+      "error_update": "Échec de la mise à jour de la demande.",
+      "error_delete": "Échec de la suppression de la demande."
+    }
+  },
+  "sidebar": {
+    "home": "Accueil",
+    "requests": "Faire des Demandes",
+    "demands": "Consulter les Demandes",
+    "dashboard": "Tableau de Bord",
+    "myLeave": "Mes Congés",
+    "myMission": "Mes Missions",
+    "myAuth": "Mes Autorisations",
+    "myDocs": "Mes Documents",
+    "myPointing": "Mon Pointage",
+    "employeeManagement": "Gestion des Employés",
+    "rhDashboard": "Tableau de Bord",
+    "salaryCertificate": "Certificat de Salaire",
+    "documentManagement": "Gestion des Documents",
+    "PointingManagement": "Gestion du Pointage"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "Numéro de série (ID employé, numéro ID, M.At)",
+    "employeeIdPlaceholder": "Entrez votre ID",
+    "leaveTypeLabel": "Type de congé",
+    "dates": "Dates",
+    "leaveTypePlaceholder": "Sélectionnez un type de congé",
+    "otherLeaveTypeLabel": "Veuillez spécifier le type de congé",
+    "otherLeaveTypePlaceholder": "Spécifiez le type de congé",
+    "startDateLabel": "Date de début de congé",
+    "endDateLabel": "Date de fin de congé",
+    "DatePlaceholder": "Sélectionnez date",
+    "phoneLabel": "Téléphone (Numéro personnel)",
+    "phonePlaceholder": "Entrez votre numéro de téléphone",
+    "justificationLabel": "Justification",
+    "justificationPlaceholder": "Entrez la justification",
+    "justificationFileLabel": "Téléchargez le fichier de justification",
+    "uploadFileButton": "Téléchargez le fichier",
+    "applyButton": "Envoyer",
+    "submitButtonLoading": "Envoi en cours...",
+    "successTitle": "Succès!",
+    "successMessage": "Demande de congé soumise avec succès!",
+    "errorTitle": "Erreur!",
+    "errorMessage": "Échec de l'envoi de la demande de congé",
+    "fileUploadSuccess": "fichier téléchargé avec succès",
+    "fileUploadError": "échec du téléchargement du fichier.",
+    "validation": {
+      "employeeIdRequired": "Veuillez entrer votre ID",
+      "leaveTypeRequired": "Veuillez sélectionner un type de congé",
+      "otherLeaveTypeRequired": "Veuillez spécifier le type de congé",
+      "startDateRequired": "Veuillez sélectionner la date de début",
+      "endDateRequired": "Veuillez sélectionner la date de fin",
+      "phoneRequired": "Veuillez entrer votre numéro de téléphone",
+      "justificationRequired": "Veuillez entrer la justification"
+    },
+    "leaveTypes": {
+      "halfDay": "Demi-journée",
+      "wedding": "Mariage",
+      "business": "Affaires",
+      "injury": "Blessure",
+      "sick": "Maladie",
+      "maternity": "Maternité",
+      "funeral": "Funérailles (Ghrama) / Explet",
+      "annualLeave": "Congé annuel",
+      "compensatory": "Compensatoire",
+      "withoutPay": "Sans solde",
+      "seniority": "Ancienneté"
+    }
+  },
+  "login": {
+    "welcomeMessage": "Bienvenue dans le service RH d'AVOCarbon",
+    "signInTitle": "Se connecter",
+    "emailLabel": "E-mail",
+    "passwordLabel": "Mot de passe",
+    "plantConnectionLabel": "Connexion de l'usine",
+    "selectPlantPlaceholder": "Sélectionner la connexion de l'usine",
+    "rememberMe": "Se souvenir de moi",
+    "loginButton": "Connexion",
+    "loginSuccessTitle": "Connexion réussie",
+    "loginSuccessMessage": "Bon retour, {{firstname}}!",
+    "loginFailureTitle": "Identifiants invalides",
+    "loginFailureMessage": "Veuillez réessayer",
+    "loginErrorTitle": "Échec de la connexion",
+    "loginErrorMessage": "Mot de passe ou connexion d'usine incorrect. Veuillez réessayer."
+  },
+  "plants": {
+    "kunshan": "AVOCarbon Kunshan",
+    "tianjin": "AVOCarbon Tianjin",
+    "france": "AVOCarbon France",
+    "cyclam": "Cyclam",
+    "germany": "AVOCarbon Allemagne",
+    "india": "AVOCarbon Inde",
+    "korea": "AVOCarbon Corée",
+    "tunisia": "AVOCarbon Tunisie"
+  },
+  "missionRequest": {
+    "serialNumber": "Numéro de série (ID Employé, Numéro d'ID, M.At)",
+    "serialNumberPlaceholder": "Entrez votre ID",
+    "EmployeeIDPlaceholder": "Veuillez entrer votre ID Employé",
+    "EnterDestinationPlaceholder": "Entrez la destination",
+    "phone": "Téléphone (Numéro personnel)",
+    "phonePlaceholder": "Entrez votre numéro de téléphone",
+    "PhonePlaceholder": "Veuillez entrer votre numéro de téléphone",
+    "startDate": "Date de début",
+    "startDatePlaceholder": "Veuillez sélectionner une date de début",
+    "endDate": "Date de fin",
+    "DatePlaceholder": "Sélectionnez date",
+    "endDatePlaceholder": "Veuillez sélectionner une date de fin",
+    "missionBudget": "Budget de la mission",
+    "missionBudgetPlaceholder": "Entrez le budget de la mission",
+    "purposeOfTravel": "Objet du voyage",
+    "purposeOfTravelPlaceholder": "Entrez l'objet du voyage",
+    "destination": "Destination",
+    "destinationPlaceholder": "Entrez la destination",
+    "departureTime": "Heure de départ",
+    "departureTimePlaceholder": "Veuillez sélectionner une heure de départ",
+    "submitButton": "Envoyer",
+    "submittingButton": "Soumission...",
+    "successTitle": "Succès !",
+
+    "successMessage": "Demande de mission soumise avec succès !",
+    "errorTitle": "Erreur !",
+    "SelectTimePlaceholder": "Sélectionner l'heure",
+    "errorMessage": "Échec de la soumission de la demande de mission. Veuillez réessayer plus tard.",
+    "genericError": "Quelque chose s'est mal passé !",
+    "myMission": {
+      "title": "Mes Missions",
+      "purposeOfTravel": "But du Voyage",
+      "duration": "Durée",
+      "destination": "Destination",
+      "status": "Statut",
+      "action": "Action",
+      "loading": "Chargement...",
+      "error": "Échec du chargement des demandes de mission",
+      "deleteConfirmation": {
+        "title": "Confirmation de Suppression",
+        "message": "Êtes-vous sûr de vouloir supprimer cette demande de mission ?",
+        "okText": "Oui, Supprimer",
+        "cancelText": "Annuler"
+      },
+      "deleteSuccess": "Demande de mission supprimée avec succès.",
+      "deleteError": "Échec de la suppression de la demande de mission."
+    }
+  },
+  "profil": {
+    "profile": {
+      "updateProfile": "Mettre à jour le profil",
+      "loading": "Chargement...",
+      "errorFetchingDetails": "Erreur lors de la récupération des détails de l'utilisateur :",
+      "uploadPhoto": "Télécharger une photo",
+      "uploading": "Téléchargement...",
+      "profilePhotoUpdated": "Photo de profil mise à jour avec succès !",
+      "updateFailed": "Échec de la mise à jour",
+      "profileUpdateFailed": "Échec de la mise à jour du profil : ",
+      "firstName": "Prénom",
+      "enterFirstName": "Entrez votre prénom",
+      "lastName": "Nom de famille",
+      "enterLastName": "Entrez votre nom de famille",
+      "function": "Fonction",
+      "enterFunction": "Entrez votre fonction",
+      "department": "Département",
+      "enterDepartment": "Entrez votre département",
+      "email": "Email",
+      "enterEmail": "Entrez votre email",
+      "updating": "Mise à jour...",
+      "updateProfileInfo": "Mettre à jour le profil",
+      "confirmPhotoUpload": "Confirmer le téléchargement de la photo",
+      "confirmPhotoUploadMessage": "Êtes-vous sûr de vouloir télécharger cette photo ?",
+      "confirmProfileUpdate": "Confirmer la mise à jour du profil",
+      "confirmProfileUpdateMessage": "Êtes-vous sûr de vouloir mettre à jour vos informations de profil ?",
+      "userId": "ID utilisateur",
+      "back": "Retour",
+      "profileUpdateSuccess": "Profil mis à jour avec succès !"
+    }
+  },
+  "authRequest": {
+    "serialNumber": "Numéro de série (ID employé, numéro d'identité, M.At)",
+    "serialNumberPlaceholder": "Entrez votre ID",
+    "phone": "Téléphone (Numéro personnel)",
+    "phonePlaceholder": "Entrez votre numéro de téléphone",
+    "authorizationDate": "Date d'autorisation",
+    "authorizationDatePlaceholder": "Veuillez sélectionner une date !",
+    "departureTime": "Heure de départ",
+    "departureTimePlaceholder": "Veuillez sélectionner une heure de départ !",
+    "returnTime": "Heure de retour",
+    "returnTimePlaceholder": "Veuillez sélectionner une heure de retour !",
+    "purposeOfAuthorization": "Objet de l'autorisation",
+    "purposeOfAuthorizationPlaceholder": "Entrez l'objet de l'autorisation",
+    "submitButton": "Envoyer",
+    "submitting": "En cours...",
+    "successTitle": "Succès !",
+    "successMessage": "Demande d'autorisation soumise avec succès !",
+    "errorTitle": "Erreur !",
+    "errorMessage": "Quelque chose a mal tourné !",
+    "myAuth": {
+      "Purpose": "Objet",
+      "Date": "Date",
+      "DepartureTime": "Heure de départ",
+      "ReturnTime": "Heure de retour",
+      "Status": "Statut",
+      "Action": "Action",
+      "Pending": "En attente",
+      "Approved": "Approuvé",
+      "Rejected": "Rejeté",
+      "fetchError": "Impossible de récupérer les demandes d'autorisation.",
+      "deleteSuccess": "Demande d'autorisation supprimée avec succès.",
+      "deleteError": "Impossible de supprimer la demande d'autorisation.",
+      "deleteConfirmation": "Confirmation de suppression",
+      "deleteConfirmationMessage": "Êtes-vous sûr de vouloir supprimer cette demande d'autorisation ?",
+      "yesDelete": "Oui, supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "Numéro de série (ID employé, numéro d'identité, M.At)",
+    "employeeIdPlaceholder": "Entrez votre ID",
+    "employeeIdError": "Veuillez entrer votre ID employé !",
+    "documentTypeLabel": "Type de document",
+    "documentTypePlaceholder": "Sélectionnez le type de document",
+    "documentTypeError": "Veuillez sélectionner un type de document !",
+    "salaryCertificate": "Certificat de salaire",
+    "workCertificate": "Certificat de travail",
+    "other": "Autre",
+    "otherDocumentTypeLabel": "Veuillez préciser",
+    "otherDocumentTypePlaceholder": "Précisez le type de document",
+    "otherDocumentTypeError": "Veuillez préciser le type de document !",
+    "documentPurposeLabel": "Objet du document",
+    "documentPurposePlaceholder": "Entrez l'objet du document",
+    "applyButton": "Envoyer",
+    "submitting": "En cours de soumission...",
+    "successMessage": "Demande de document soumise avec succès !",
+    "errorTitle": "Oups...",
+    "errorMessage": "Échec de la soumission de la demande de document. Veuillez réessayer.",
+    "table": {
+      "documentType": "Type de document",
+      "download": "Télécharger",
+      "downloadButton": "Télécharger",
+      "statuskey": "Statut",
+      "action": "Action",
+      "na": "Non disponible",
+      "noFile": "Aucun fichier disponible",
+      "modal": {
+        "title": "Confirmation de suppression",
+        "body": "Êtes-vous sûr de vouloir supprimer cette demande de document ?",
+        "confirm": "Oui, supprimer",
+        "cancel": "Annuler"
+      },
+      "error": {
+        "fetchFailed": "Échec du chargement des demandes de documents",
+        "deleteFailed": "Échec de la suppression de la demande de document",
+        "title": "Erreur"
+      },
+      "success": {
+        "delete": "Demande de document supprimée avec succès."
+      },
+      "status": {
+        "pending": "En attente",
+        "completed": "Terminé",
+        "rejected": "Rejeté"
+      }
+    }
+  },
+  "myPointing": {
+    "date": "Date",
+    "pointing": "Pointage",
+    "workingHours": "Heures travaillées"
+  },
+  "logs": {
+    "notLoggedIn": "Non pointé à l'entrée",
+    "notLoggedOut": "Non pointé à la sortie",
+    "insufficientData": "Données insuffisantes",
+    "hours": "hrs",
+    "syncSuccess": "Logs synchronisés avec succès !",
+    "updateSuccess": "Statuts de pointage mis à jour avec succès !"
+  },
+  "error": {
+    "notAuthenticated": "Utilisateur non authentifié.",
+    "fetchLogs": "Erreur lors de la récupération des logs.",
+    "syncLogs": "Erreur lors de la synchronisation des logs."
+  },
+  "buttons": {
+    "loadLogs": "Charger les logs",
+    "syncLogs": "Synchroniser les logs"
+  }
+}

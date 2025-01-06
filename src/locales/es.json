@@ -1,0 +1,369 @@
+{
+  "welcome": "Bienvenido",
+  "logout": "Cerrar sesión",
+  "profile": "Perfil",
+  "changePassword": "Cambiar contraseña",
+  "notifications": "Notificaciones",
+  "Leave Request": "Solicitud de permiso",
+  "leave_type": "Tipo de permiso",
+  "leave_request": "Solicitud de permiso",
+  "mission_request": "Solicitud de misión",
+  "authorization_request": "Solicitud de autorización",
+  "work_documents_request": "Solicitud de documentos laborales",
+  "click_to_request_leave": "Haz clic para solicitar permiso",
+  "click_to_request_mission": "Haz clic para solicitar misión",
+  "click_to_request_authorization": "Haz clic para solicitar autorización",
+  "click_to_request_documents": "Haz clic para solicitar documentos",
+  "back": "Volver",
+  "add_employee_title": "Agregar empleado",
+  "employee_id": "ID del empleado",
+  "employee_id_placeholder": "Introduce el ID del empleado",
+  "first_name": "Primer nombre",
+  "first_name_placeholder": "Introduce el primer nombre",
+  "last_name": "Apellido",
+  "last_name_placeholder": "Introduce el apellido",
+  "department": "Departamento",
+  "department_placeholder": "Introduce el departamento",
+  "role": "Rol",
+  "select_role_placeholder": "Selecciona un rol",
+  "plant_connection": "Conexión de planta",
+  "select_plant_placeholder": "Selecciona una conexión de planta",
+  "email": "Correo electrónico",
+  "email_placeholder": "Introduce el correo electrónico",
+  "password": "Contraseña",
+  "submit_button": "Agregar empleado",
+  "success_message_title": "Éxito",
+  "success_message_text": "¡Empleado agregado con éxito!",
+  "error_message_title": "Error",
+  "error_message_text": "Error al agregar empleado",
+  "dashboard": {
+    "modalTitle": "Detalles de solicitud de permiso",
+    "close": "Cerrar",
+    "dateRange": "Rango de fechas",
+    "actions": {
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "delete": "Eliminar",
+      "downloadFile": "Descargar archivo de justificación",
+      "viewFile": "Ver archivo"
+    },
+    "messages": {
+      "confirmApprove": "¿Estás seguro de que deseas aprobar esta solicitud?",
+      "confirmReject": "¿Estás seguro de que deseas rechazar esta solicitud?",
+      "confirmDelete": "¿Estás seguro de que deseas eliminar esta solicitud?",
+      "successUpdate": "La solicitud se ha actualizado correctamente.",
+      "successDelete": "La solicitud ha sido eliminada.",
+      "errorUpdate": "No se pudo actualizar la solicitud.",
+      "errorDelete": "No se pudo eliminar la solicitud.",
+      "fileDownloadError": "Error al descargar el archivo."
+    },
+    "status": {
+      "status": "Estado",
+      "approved": "Aprobado",
+      "rejected": "Rechazado",
+      "pending": "Pendiente"
+    },
+    "action": "Acción"
+  },
+  "homeAdmin": {
+    "manageLeave": {
+      "title": "Gestionar solicitudes de permiso",
+      "description": "Haz clic para gestionar las solicitudes de permiso"
+    },
+    "manageMission": {
+      "title": "Gestionar solicitudes de misión",
+      "description": "Haz clic para gestionar las solicitudes de misión"
+    },
+    "manageAuth": {
+      "title": "Gestionar solicitudes de autorización",
+      "description": "Haz clic para gestionar las solicitudes de autorización"
+    },
+    "manageDocuments": {
+      "title": "Gestionar documentos",
+      "description": "Haz clic para gestionar los documentos"
+    }
+  },
+  "mission_admin": {
+    "title": "Solicitudes de misión",
+    "firstname": "Primer nombre",
+    "lastname": "Apellido",
+    "purpose_of_travel": "Propósito del viaje",
+    "dates": "Fechas",
+    "status": {
+      "approved": "Aprobado",
+      "rejected": "Rechazado",
+      "pending": "Pendiente"
+    },
+    "actions": {
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "delete": "Eliminar",
+      "view_details": "Ver detalles"
+    },
+    "pagination": {
+      "total_requests": "Total de solicitudes"
+    },
+    "modal": {
+      "title": "Detalles de solicitud",
+      "phone": "Teléfono",
+      "destination": "Destino",
+      "mission_budget": "Presupuesto de la misión"
+    },
+    "messages": {
+      "confirm_approve": "¿Estás seguro de que deseas aprobar esta solicitud?",
+      "confirm_reject": "¿Estás seguro de que deseas rechazar esta solicitud?",
+      "confirm_delete": "¿Estás seguro de que deseas eliminar esta solicitud?",
+      "success_update": "La solicitud ha sido actualizada correctamente.",
+      "success_delete": "La solicitud ha sido eliminada.",
+      "error_update": "No se pudo actualizar la solicitud.",
+      "error_delete": "No se pudo eliminar la solicitud."
+    }
+  },
+  "sidebar": {
+    "home": "Inicio Admin",
+    "requests": "Solicitar permisos",
+    "demands": "Consultar demandas",
+    "dashboard": "Tablero",
+    "myLeave": "Mis Vacaciones",
+    "myMission": "Mis Misiones",
+    "myAuth": "Mis Autorizaciones",
+    "myDocs": "Mis Documentos",
+    "myPointing": "Mi Apuntando",
+    "employeeManagement": "Gestión de Empleados",
+    "rhDashboard": "Panel de Control",
+    "salaryCertificate": "Certificado de Salario",
+    "documentManagement": "Gestión de Documentos",
+    "PointingManagement": "Gestión de Apuntado"
+  },
+  "leaveRequest": {
+    "employeeIdLabel": "Número de serie (ID de empleado, número de identificación, M.At)",
+    "employeeIdPlaceholder": "Introduce tu ID",
+    "leaveTypeLabel": "Tipo de permiso",
+    "dates": "Fechas",
+    "leaveTypePlaceholder": "Selecciona un tipo de permiso",
+    "otherLeaveTypeLabel": "Por favor especifica el tipo de permiso",
+    "otherLeaveTypePlaceholder": "Especifica el tipo de permiso",
+    "startDateLabel": "Fecha de inicio del permiso",
+    "endDateLabel": "Fecha de fin del permiso",
+    "DatePlaceholder": "selecciona fecha",
+    "phoneLabel": "Teléfono (Número personal)",
+    "phonePlaceholder": "Introduce tu número de teléfono",
+    "justificationLabel": "Justificación",
+    "justificationPlaceholder": "Introduce la justificación",
+    "justificationFileLabel": "Subir archivo de justificación",
+    "uploadFileButton": "Subir archivo",
+    "applyButton": "Aplicar",
+    "submitButtonLoading": "Enviando...",
+    "successTitle": "¡Éxito!",
+    "successMessage": "¡Solicitud de permiso enviada con éxito!",
+    "errorTitle": "¡Error!",
+    "errorMessage": "Error al enviar la solicitud de permiso",
+    "fileUploadSuccess": "Archivo subido con éxito",
+    "fileUploadError": "Error al subir el archivo.",
+    "validation": {
+      "employeeIdRequired": "Por favor ingresa tu ID",
+      "leaveTypeRequired": "Por favor selecciona el tipo de permiso",
+      "otherLeaveTypeRequired": "Por favor especifica el tipo de permiso",
+      "startDateRequired": "Por favor selecciona la fecha de inicio",
+      "endDateRequired": "Por favor selecciona la fecha de fin",
+      "phoneRequired": "Por favor ingresa tu número de teléfono",
+      "justificationRequired": "Por favor ingresa la justificación"
+    },
+    "leaveTypes": {
+      "halfDay": "Medio día",
+      "wedding": "Boda",
+      "business": "Negocios",
+      "injury": "Lesión",
+      "sick": "Enfermedad",
+      "maternity": "Maternidad",
+      "funeral": "Funeral (Ghrama) / Explet",
+      "annualLeave": "Permiso anual",
+      "compensatory": "Compensatorio",
+      "withoutPay": "Sin sueldo",
+      "seniority": "Antigüedad"
+    }
+  },
+  "missionRequest": {
+    "serialNumber": "Número de serie (ID del empleado, Número de ID, M.At)",
+    "serialNumberPlaceholder": "Ingrese su ID",
+    "EmployeeIDPlaceholder": "Por favor, introduzca su ID de empleado",
+    "EnterDestinationPlaceholder": "Ingrese el destino",
+    "phone": "Teléfono (Número personal)",
+    "phonePlaceholder": "Ingrese su número de teléfono",
+    "PhonePlaceholder": "Por favor, introduzca su número de teléfono",
+    "startDate": "Fecha de inicio",
+    "startDatePlaceholder": "Seleccione una fecha de inicio",
+    "endDate": "Fecha de fin",
+    "endDatePlaceholder": "Seleccione una fecha de fin",
+    "DatePlaceholder": "selecciona fecha",
+    "missionBudget": "Presupuesto de la misión",
+    "missionBudgetPlaceholder": "Ingrese el presupuesto de la misión",
+    "purposeOfTravel": "Propósito del viaje",
+    "purposeOfTravelPlaceholder": "Ingrese el propósito del viaje",
+    "destination": "Destino",
+    "destinationPlaceholder": "Ingrese el destino",
+    "departureTime": "Hora de salida",
+    "departureTimePlaceholder": "Seleccione una hora de salida",
+    "submitButton": "Aplicar",
+    "submittingButton": "Enviando...",
+    "successTitle": "¡Éxito!",
+    "successMessage": "¡Solicitud de misión enviada con éxito!",
+    "errorTitle": "¡Error!",
+    "SelectTimePlaceholder": "Seleccionar hora",
+    "errorMessage": "No se pudo enviar la solicitud de misión. Inténtalo de nuevo más tarde.",
+    "genericError": "¡Algo salió mal!",
+    "myMission": {
+      "title": "Mis Misiones",
+      "purposeOfTravel": "Propósito del Viaje",
+      "duration": "Duración",
+      "destination": "Destino",
+      "status": "Estado",
+      "action": "Acción",
+      "loading": "Cargando...",
+      "error": "No se pudieron cargar las solicitudes de misión",
+      "deleteConfirmation": {
+        "title": "Confirmación de Eliminación",
+        "message": "¿Estás seguro de que deseas eliminar esta solicitud de misión?",
+        "okText": "Sí, Eliminar",
+        "cancelText": "Cancelar"
+      },
+      "deleteSuccess": "Solicitud de misión eliminada con éxito.",
+      "deleteError": "No se pudo eliminar la solicitud de misión."
+    }
+  },
+  "login": {
+    "welcomeMessage": "Bienvenido al servicio de RH de AVOCarbon",
+    "signInTitle": "Iniciar sesión",
+    "emailLabel": "Correo electrónico",
+    "passwordLabel": "Contraseña",
+    "plantConnectionLabel": "Conexión de la planta",
+    "selectPlantPlaceholder": "Seleccionar conexión de planta",
+    "rememberMe": "Recuérdame",
+    "loginButton": "Iniciar sesión",
+    "loginSuccessTitle": "Inicio de sesión exitoso",
+    "loginSuccessMessage": "¡Bienvenido de nuevo, {{firstname}}!",
+    "loginFailureTitle": "Credenciales inválidas",
+    "loginFailureMessage": "Por favor, inténtelo de nuevo",
+    "loginErrorTitle": "Inicio de sesión fallido",
+    "loginErrorMessage": "Contraseña o conexión de planta incorrecta. Por favor, inténtelo de nuevo."
+  },
+  "plants": {
+    "kunshan": "AVOCarbon Kunshan",
+    "tianjin": "AVOCarbon Tianjin",
+    "france": "AVOCarbon Francia",
+    "cyclam": "Cyclam",
+    "germany": "AVOCarbon Alemania",
+    "india": "AVOCarbon India",
+    "korea": "AVOCarbon Corea",
+    "tunisia": "AVOCarbon Túnez"
+  },
+  "authRequest": {
+    "serialNumber": "Número de serie (ID de empleado, número de identificación, M.At)",
+    "serialNumberPlaceholder": "Ingrese su ID",
+    "phone": "Teléfono (Número personal)",
+    "phonePlaceholder": "Ingrese su número de teléfono",
+    "authorizationDate": "Fecha de autorización",
+    "authorizationDatePlaceholder": "¡Por favor seleccione una fecha!",
+    "departureTime": "Hora de salida",
+    "departureTimePlaceholder": "¡Por favor seleccione una hora de salida!",
+    "returnTime": "Hora de regreso",
+    "returnTimePlaceholder": "¡Por favor seleccione una hora de regreso!",
+    "purposeOfAuthorization": "Propósito de la autorización",
+    "purposeOfAuthorizationPlaceholder": "Ingrese el propósito de la autorización",
+    "submitButton": "Aplicar",
+    "submitting": "Enviando...",
+    "successTitle": "¡Éxito!",
+    "successMessage": "¡Solicitud de autorización enviada con éxito!",
+    "errorTitle": "¡Error!",
+    "errorMessage": "¡Algo salió mal!",
+    "myAuth": {
+      "Purpose": "Propósito",
+      "Date": "Fecha",
+      "DepartureTime": "Hora de salida",
+      "ReturnTime": "Hora de regreso",
+      "Status": "Estado",
+      "Action": "Acción",
+      "Pending": "Pendiente",
+      "Approved": "Aprobado",
+      "Rejected": "Rechazado",
+      "fetchError": "No se pudieron obtener las solicitudes de autorización.",
+      "deleteSuccess": "Solicitud de autorización eliminada con éxito.",
+      "deleteError": "No se pudo eliminar la solicitud de autorización.",
+      "deleteConfirmation": "Confirmación de eliminación",
+      "deleteConfirmationMessage": "¿Está seguro de que desea eliminar esta solicitud de autorización?",
+      "yesDelete": "Sí, eliminar",
+      "cancel": "Cancelar"
+    }
+  },
+  "documentRequest": {
+    "employeeIdLabel": "Número de serie (ID de empleado, número de identificación, M.At)",
+    "employeeIdPlaceholder": "Ingrese su ID",
+    "employeeIdError": "¡Por favor, ingrese su ID de empleado!",
+    "documentTypeLabel": "Tipo de documento",
+    "documentTypePlaceholder": "Seleccione el tipo de documento",
+    "documentTypeError": "¡Por favor, seleccione un tipo de documento!",
+    "salaryCertificate": "Certificado de salario",
+    "workCertificate": "Certificado de trabajo",
+    "other": "Otro",
+    "otherDocumentTypeLabel": "Por favor, especifique",
+    "otherDocumentTypePlaceholder": "Especifique el tipo de documento",
+    "otherDocumentTypeError": "¡Por favor, especifique el tipo de documento!",
+    "documentPurposeLabel": "Propósito del documento",
+    "documentPurposePlaceholder": "Ingrese el propósito del documento",
+    "applyButton": "Aplicar",
+    "submitting": "Enviando...",
+    "successMessage": "¡Solicitud de documento enviada con éxito!",
+    "errorTitle": "Vaya...",
+    "errorMessage": "Error al enviar la solicitud de documento. Por favor, inténtelo de nuevo.",
+    "table": {
+      "documentType": "Tipo de Documento",
+      "download": "Descargar",
+      "downloadButton": "Descargar",
+      "statuskey": "Estado",
+      "action": "Acción",
+      "na": "No disponible",
+      "noFile": "No hay archivo disponible",
+      "modal": {
+        "title": "Confirmación de Eliminación",
+        "body": "¿Está seguro de que desea eliminar esta solicitud de documento?",
+        "confirm": "Sí, eliminar",
+        "cancel": "Cancelar"
+      },
+      "error": {
+        "fetchFailed": "Error al obtener las solicitudes de documentos",
+        "deleteFailed": "Error al eliminar la solicitud de documento",
+        "title": "Error"
+      },
+      "success": {
+        "delete": "Solicitud de documento eliminada con éxito."
+      },
+      "status": {
+        "pending": "Pendiente",
+        "completed": "Completado",
+        "rejected": "Rechazado"
+      }
+    }
+  },
+  "myPointing": {
+    "date": "Fecha",
+    "pointing": "Puntos de control",
+    "workingHours": "Horas trabajadas"
+  },
+  "logs": {
+    "notLoggedIn": "No se registró la entrada",
+    "notLoggedOut": "No se registró la salida",
+    "insufficientData": "Datos insuficientes",
+    "hours": "hrs",
+    "syncSuccess": "¡Registros sincronizados con éxito!",
+    "updateSuccess": "¡Estados de puntos de control actualizados con éxito!"
+  },
+  "error": {
+    "notAuthenticated": "Usuario no autenticado.",
+    "fetchLogs": "Error al obtener los registros.",
+    "syncLogs": "Error al sincronizar los registros."
+  },
+  "buttons": {
+    "loadLogs": "Cargar registros",
+    "syncLogs": "Sincronizar registros"
+  }
+}

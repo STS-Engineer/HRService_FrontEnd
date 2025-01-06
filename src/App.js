@@ -11,7 +11,6 @@ import MissionRequest from "./Components/MissionRequest";
 import Login from "./Components/Login";
 import AdminDashboard from "./Components/AdminDashboard";
 import SideBarAdmin from "./Components/SideBarAdmin";
-import TopBarAdmin from "./Components/TopBarAdmin";
 import Sidebar from "./Components/SideBar";
 import TopBar from "./Components/TopBar";
 import Home from "./Components/Home";
@@ -28,7 +27,6 @@ import DocumentRequest from "./Components/DocumentRequest";
 import MyDoc from "./Components/Mydoc";
 import DocumentAdmin from "./Components/DocAdmin";
 import Profile from "./Components/profile";
-// import Notifications from "./Components/Notifications";
 import ChangePassword from "./Components/ChangePassword";
 import Requets from "./Components/ApplyForRequest";
 import DemandsPage from "./Components/Mydemands";
@@ -38,6 +36,10 @@ import AddEmployee from "./Components/AddEmployee";
 import Dashboard from "./Components/Dashboard";
 import SalaryCertificateUpload from "./Components/SalaryCertificateUpload";
 import Chatbot from "./Components/Chatbot";
+import ManageRequestHR from "./Components/ManageRequestHR";
+import PointingManagement from "./Components/PointingManagement";
+import EmployeePointing from "./Components/MyPointing";
+import PointingManagementRH from "./Components/Pointing_RH";
 
 const App = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -149,7 +151,7 @@ const App = () => {
             path="/document-management"
             element={
               <div className="flex h-screen">
-                <SideBarAdmin />
+                <SidebarHR />
                 <div className="flex-1 flex flex-col">
                   <TopBar />
                   <div className="flex-1 overflow-auto p-4">
@@ -223,7 +225,6 @@ const App = () => {
               </div>
             }
           />
-
           <Route
             path="/leave-request"
             element={
@@ -319,7 +320,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/requests" element={<Requets />} />
           <Route path="/home-admin" element={<HomeAdmin />} />
-
+          <Route path="/home-admin-HR" element={<ManageRequestHR />} />
           <Route
             path="/my-leave"
             element={<MyLeave leaveRequests={leaveRequests} />}
@@ -416,6 +417,51 @@ const App = () => {
                     <SalaryCertificateUpload />
                   </div>
 
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/pointing-management-RH"
+            element={
+              <div className="flex h-screen">
+                <SidebarHR />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <PointingManagementRH />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/pointing-management"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <PointingManagement />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/my-pointing"
+            element={
+              <div className="flex h-screen">
+                <Sidebar />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <EmployeePointing />
+                  </div>
                   <Footer />
                 </div>
               </div>

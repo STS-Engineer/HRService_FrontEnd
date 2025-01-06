@@ -30,7 +30,7 @@ const Dashboard = () => {
     const fetchStatistics = async () => {
       try {
         const response = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/dashboard/general-statistics",
+          "http://localhost:3000/dashboard/general-statistics",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ const Dashboard = () => {
 
     const fetchRequestsPerEmployee = async (employeeID = null) => {
       try {
-        let url = "https://bhr-avocarbon.azurewebsites.net/dashboard/requests-per-employee";
+        let url = "http://localhost:3000/dashboard/requests-per-employee";
         if (employeeID) {
           url += `?employeeID=${employeeID}`;
         }
@@ -74,7 +74,7 @@ const Dashboard = () => {
     const fetchEmployeesOnLeaveToday = async () => {
       try {
         const response = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/dashboard/employees-on-leave-today",
+          "http://localhost:3000/dashboard/employees-on-leave-today",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -90,7 +90,7 @@ const Dashboard = () => {
     const fetchTotalRequestsForPieChart = async () => {
       try {
         const response = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/dashboard/general-statistics",
+          "http://localhost:3000/dashboard/general-statistics",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -159,7 +159,7 @@ const Dashboard = () => {
         Dashboard
       </Title>
       <Row gutter={[16, 16]} justify="center">
-        <Col xs={24} md={12}>
+        <Col xs={24} sm={12} md={8}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
@@ -174,7 +174,7 @@ const Dashboard = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} md={12}>
+        <Col xs={24} sm={12} md={8}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
@@ -189,7 +189,7 @@ const Dashboard = () => {
             />
           </Card>
         </Col>
-        <Col xs={24} md={12}>
+        <Col xs={24} sm={12} md={8}>
           <Card
             style={{
               boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
@@ -265,7 +265,7 @@ const Dashboard = () => {
             </div>
           </Card>
         </Col>
-        <Col xs={24} sm={12} md={8} lg={6}>
+        <Col xs={24} md={12}>
           <Card
             title={
               <span>

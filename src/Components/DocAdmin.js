@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { FaUpload } from "react-icons/fa";
 
@@ -8,14 +8,22 @@ const DocumentAdmin = () => {
   const [uploadingRequestId, setUploadingRequestId] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [uploading, setUploading] = useState(false);
+  const fileInputRefs = useRef({});
 
   useEffect(() => {
     const fetchRequests = async () => {
       try {
+        // Fetch document requests for the HR Manager
+        const token = localStorage.getItem("token");
         const response = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/document-requests"
+          "http://localhost:3000/document-requests/hr-manager-requests",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
-        setRequests(response.data);
+        setRequests(response.data.data);
       } catch (error) {
         console.error("Error fetching requests:", error);
       }
@@ -23,8 +31,9 @@ const DocumentAdmin = () => {
     fetchRequests();
   }, []);
 
-  const handleFileChange = (e) => {
+  const handleFileChange = (e, requestId) => {
     setSelectedFile(e.target.files[0]);
+    fileInputRefs.current[requestId] = e.target;
   };
 
   const handleUpload = async (requestId) => {
@@ -39,16 +48,24 @@ const DocumentAdmin = () => {
     try {
       setUploading(true);
       setUploadingRequestId(requestId);
+      const token = localStorage.getItem("token");
       await axios.post(
-        `https://bhr-avocarbon.azurewebsites.net/document-requests/upload/${requestId}`,
+        `http://localhost:3000/document-requests/upload/${requestId}`,
         formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
       setSuccessMessage("The document is sent successfully!");
+
+      // Clear the file input after successful upload
+      if (fileInputRefs.current[requestId]) {
+        fileInputRefs.current[requestId].value = ""; // Reset file input
+      }
+
       setSelectedFile(null);
       setUploadingRequestId(null);
     } catch (error) {
@@ -86,6 +103,9 @@ const DocumentAdmin = () => {
               <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Upload
               </th>
+              <th className="px-2 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Action
+              </th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -116,7 +136,7 @@ const DocumentAdmin = () => {
                 <td className="px-2 py-3 text-sm text-gray-500">
                   <input
                     type="file"
-                    onChange={handleFileChange}
+                    onChange={(e) => handleFileChange(e, request.requestid)}
                     className="text-sm text-gray-600 file:py-1 file:px-2 file:border file:border-gray-300 file:rounded-lg file:bg-gray-50 file:text-gray-700 file:cursor-pointer"
                   />
                   <button
@@ -140,6 +160,7 @@ const DocumentAdmin = () => {
                     )}
                   </button>
                 </td>
+                <td></td>
               </tr>
             ))}
           </tbody>

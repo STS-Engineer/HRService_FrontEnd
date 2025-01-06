@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "./SideBar";
 import TopBar from "./TopBar";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const handleLeaveRequestClick = () => {
     navigate("/leave-request");
@@ -35,14 +37,14 @@ const Home = () => {
               <div className="flex justify-center items-center">
                 <img
                   src="lee.png"
-                  alt="Request Leave"
+                  alt={t("leave_request")}
                   className="w-48 h-48 center"
                 />
               </div>
 
               <div className="p-4">
-                <h3 className="text-md font-bold">Leave Request</h3>
-                <p className="text-gray-600">Click to request leave</p>
+                <h3 className="text-md font-bold">{t("Leave Request")}</h3>
+                <p className="text-gray-600">{t("click_to_request_leave")}</p>
               </div>
             </div>
             <div
@@ -58,8 +60,8 @@ const Home = () => {
               </div>
 
               <div className="p-4">
-                <h3 className="text-md font-bold">Mission Request</h3>
-                <p className="text-gray-600">Click to request mission</p>
+                <h3 className="text-md font-bold">{t("mission_request")}</h3>
+                <p className="text-gray-600">{t("click_to_request_mission")}</p>
               </div>
             </div>
             <div
@@ -71,8 +73,12 @@ const Home = () => {
               </div>
 
               <div className="p-4">
-                <h3 className="text-md font-bold">Authorization Request</h3>
-                <p className="text-gray-600">Click to request authorisation</p>
+                <h3 className="text-md font-bold">
+                  {t("authorization_request")}
+                </h3>
+                <p className="text-gray-600">
+                  {t("click_to_request_authorization")}
+                </p>
               </div>
             </div>
             <div
@@ -84,8 +90,12 @@ const Home = () => {
               </div>
 
               <div className="p-4">
-                <h3 className="text-md font-bold">Work Documents Request</h3>
-                <p className="text-gray-600">Click to request documents</p>
+                <h3 className="text-md font-bold">
+                  {t("work_documents_request")}
+                </h3>
+                <p className="text-gray-600">
+                  {t("click_to_request_documents")}
+                </p>
               </div>
             </div>
           </div>

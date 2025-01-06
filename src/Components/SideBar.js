@@ -6,9 +6,12 @@ import {
   BsBriefcaseFill,
   BsShieldLockFill,
   BsFileEarmarkFill,
+  BsClockFill,
 } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -95,7 +98,7 @@ const Sidebar = () => {
                 to="/home"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsHouseDoorFill className="mr-3 text-xl" /> Home
+                <BsHouseDoorFill className="mr-3 text-xl" /> {t("sidebar.home")}
               </Link>
             </li>
             <li>
@@ -103,7 +106,8 @@ const Sidebar = () => {
                 to="/my-leave"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsCalendarCheckFill className="mr-3 text-xl" /> My Leave
+                <BsCalendarCheckFill className="mr-3 text-xl" />{" "}
+                {t("sidebar.myLeave")}
               </Link>
             </li>
             <li>
@@ -111,7 +115,8 @@ const Sidebar = () => {
                 to="/my-mission"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsBriefcaseFill className="mr-3 text-xl" /> My Mission
+                <BsBriefcaseFill className="mr-3 text-xl" />{" "}
+                {t("sidebar.myMission")}
               </Link>
             </li>
             <li>
@@ -119,7 +124,8 @@ const Sidebar = () => {
                 to="/my-auth"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsShieldLockFill className="mr-3 text-xl" /> My Authorization
+                <BsShieldLockFill className="mr-3 text-xl" />{" "}
+                {t("sidebar.myAuth")}
               </Link>
             </li>
             <li>
@@ -127,7 +133,17 @@ const Sidebar = () => {
                 to="/my-docs"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsFileEarmarkFill className="mr-3 text-xl" /> My Documents
+                <BsFileEarmarkFill className="mr-3 text-xl" />{" "}
+                {t("sidebar.myDocs")}
+              </Link>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/my-pointing"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <BsClockFill className="mr-3 text-xl" />{" "}
+                {t("sidebar.myPointing")}
               </Link>
             </li>
           </ul>

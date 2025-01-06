@@ -3,6 +3,7 @@ import { Table, Button, message, Tag } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import { FaDownload } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const DemandsPage = ({ user }) => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -12,6 +13,7 @@ const DemandsPage = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedFilter, setSelectedFilter] = useState("leave");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -22,16 +24,16 @@ const DemandsPage = ({ user }) => {
         const user = JSON.parse(localStorage.getItem("user"));
 
         const response = await Promise.all([
-          fetch(`https://bhr-avocarbon.azurewebsites.net/leave-requests/employee/${user.id}`, {
+          fetch(`http://localhost:3000/leave-requests/employee/${user.id}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
           fetch(
-            `https://bhr-avocarbon.azurewebsites.net/authorization-requests/employee/${user.id}`,
+            `http://localhost:3000/authorization-requests/employee/${user.id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
           ),
-          fetch(`https://bhr-avocarbon.azurewebsites.net/mission-requests/employee/${user.id}`, {
+          fetch(`http://localhost:3000/mission-requests/employee/${user.id}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -75,13 +77,13 @@ const DemandsPage = ({ user }) => {
         // Determine the correct URL based on the request type
         switch (requestType) {
           case "Leave":
-            url = `https://bhr-avocarbon.azurewebsites.net/leave-requests/${requestId}`;
+            url = `http://localhost:3000/leave-requests/${requestId}`;
             break;
           case "Mission":
-            url = `https://bhr-avocarbon.azurewebsites.net/mission-requests/${requestId}`;
+            url = `http://localhost:3000/mission-requests/${requestId}`;
             break;
           case "Authorization":
-            url = `https://bhr-avocarbon.azurewebsites.net/authorization-requests/${requestId}`;
+            url = `http://localhost:3000/authorization-requests/${requestId}`;
             break;
           default:
             throw new Error("Unknown request type");
@@ -293,7 +295,7 @@ const DemandsPage = ({ user }) => {
                 type="primary"
                 icon={<FaDownload />}
                 onClick={() => {
-                  window.location.href = `https://bhr-avocarbon.azurewebsites.net/document-requests/download/${doc.file_path}`;
+                  window.location.href = `http://localhost:3000/document-requests/download/${doc.file_path}`;
                 }}
               >
                 Download

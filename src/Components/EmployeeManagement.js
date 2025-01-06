@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Table, Button, Modal, Form, Input, Select, Row, Col } from "antd"; // Import necessary components
+import { Table, Button, Modal, Form, Input, Select, Row, Col } from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 
@@ -13,13 +13,12 @@ const EmployeeManagement = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
-  // Fetch employees
   useEffect(() => {
     const fetchEmployees = async () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "https://bhr-avocarbon.azurewebsites.net/auth/employees-by-plant",
+          "http://localhost:3000/auth/employees-by-plant",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -51,17 +50,13 @@ const EmployeeManagement = () => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
 
-        // Make the delete request to the API
-        await axios.delete(`https://bhr-avocarbon.azurewebsites.net/users/${id}`, {
+        await axios.delete(`http://localhost:3000/users/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        // Update the state by filtering out the deleted employee
         setEmployees(employees.filter((employee) => employee.id !== id));
-
-        // Show success message
         Swal.fire("Deleted!", "The employee has been deleted.", "success");
       }
     } catch (error) {
@@ -136,12 +131,18 @@ const EmployeeManagement = () => {
       title: "Actions",
       key: "actions",
       render: (_, record) => (
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
           <Button
             type="primary"
             icon={<EditOutlined />}
-            onClick={() => handleEdit(record)} // Trigger modal
-            size="small" // Smaller button for mobile
+            onClick={() => handleEdit(record)}
+            size="small"
           />
           <Button
             type="danger"
@@ -162,7 +163,7 @@ const EmployeeManagement = () => {
         </Col>
         <Col>
           <Link to="/add-employee">
-            <Button type="primary" icon={<PlusOutlined />}>
+            <Button type="primary" icon={<PlusOutlined />} size="middle">
               Add New Employee
             </Button>
           </Link>
@@ -173,8 +174,9 @@ const EmployeeManagement = () => {
         columns={columns}
         loading={loading}
         rowKey="id"
-        pagination={{ pageSize: 12 }}
-        scroll={{ x: true }} // Add horizontal scroll for small screens
+        pagination={{ pageSize: 8 }}
+        scroll={{ x: true }} // Enables horizontal scrolling for smaller screens
+        size="small" // Use small size for better compactness on mobile
       />
 
       <Modal
@@ -182,6 +184,7 @@ const EmployeeManagement = () => {
         visible={isModalVisible}
         onCancel={handleCloseModal}
         footer={null}
+        width={window.innerWidth < 768 ? "90%" : 520} // Adjust modal width for mobile
       >
         {selectedEmployee && (
           <EditEmployeeForm
@@ -207,22 +210,20 @@ const EditEmployeeForm = ({ record, onClose, onUpdate }) => {
 
   const onFinish = async (values) => {
     try {
-      const token = localStorage.getItem("token"); // Get the token from local storage
-
-      // Send the PUT request to update the employee details
+      const token = localStorage.getItem("token");
       const response = await axios.put(
-        `https://bhr-avocarbon.azurewebsites.net/auth/user/${record.id}`,
+        `http://localhost:3000/auth/user/${record.id}`,
         values,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // Add the authorization header
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       Swal.fire("Success!", "Employee updated successfully!", "success");
       onUpdate(response.data);
-      onClose(); // Close the modal after successful update
+      onClose();
     } catch (error) {
       console.error("Error updating employee:", error);
       Swal.fire("Error!", "There was an issue updating the employee.", "error");
@@ -259,7 +260,7 @@ const EditEmployeeForm = ({ record, onClose, onUpdate }) => {
         <Input />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" block>
           Update Employee
         </Button>
       </Form.Item>

@@ -26,7 +26,7 @@ const SalaryCertificateUpload = () => {
 
     try {
       const response = await axios.post(
-        "https://bhr-avocarbon.azurewebsites.net/salary-certificates",
+        "http://localhost:3000/salary-certificates",
         formData,
         {
           headers: {
@@ -101,7 +101,7 @@ const SalaryCertificateUpload = () => {
             Upload Salary Certificates
           </Title>
           <Text type="secondary" style={{ fontSize: "16px", color: "#606770" }}>
-            Please upload your salary certificates in PDF format. You can upload
+            Please upload the salary certificates in PDF format. You can upload
             multiple files.
           </Text>
           <br />
