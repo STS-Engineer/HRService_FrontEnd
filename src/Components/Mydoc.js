@@ -21,7 +21,7 @@ const MyDoc = ({ user }) => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await fetch(
-          `http://localhost:3000/document-requests/employee/${user.id}`,
+          `https://bhr-avocarbon.azurewebsites.net/document-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const MyDoc = ({ user }) => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:3000/document-requests/${deleteId}`, {
+      await fetch(`https://bhr-avocarbon.azurewebsites.net/document-requests/${deleteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ const MyDoc = ({ user }) => {
             type="primary"
             icon={<FaDownload />}
             onClick={() => {
-              window.location.href = `http://localhost:3000/document-requests/download/${doc.file_path}`;
+              window.location.href = `https://bhr-avocarbon.azurewebsites.net/document-requests/download/${doc.file_path}`;
             }}
           >
             Download
