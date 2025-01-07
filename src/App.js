@@ -407,6 +407,21 @@ const App = () => {
             }
           />
           <Route
+            path="/Dispatch-SalaryCertificate-Manager"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <SalaryCertificateUpload />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
             path="/Dispatch-SalaryCertificate"
             element={
               <div className="flex h-screen">
