@@ -8,7 +8,7 @@ import {
   BsClockFill,
 } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
-
+import { FaFileAlt } from "react-icons/fa";
 const SideBarAdmin = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
