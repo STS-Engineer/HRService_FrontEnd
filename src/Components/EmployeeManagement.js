@@ -18,7 +18,7 @@ const EmployeeManagement = () => {
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:3000/auth/employees-by-plant",
+          "https://bhr-avocarbon.azurewebsites.net/auth/employees-by-plant",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const EmployeeManagement = () => {
       if (result.isConfirmed) {
         const token = localStorage.getItem("token");
 
-        await axios.delete(`http://localhost:3000/users/${id}`, {
+        await axios.delete(`https://bhr-avocarbon.azurewebsites.net/users/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -212,7 +212,7 @@ const EditEmployeeForm = ({ record, onClose, onUpdate }) => {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.put(
-        `http://localhost:3000/auth/user/${record.id}`,
+        `https://bhr-avocarbon.azurewebsites.net/auth/user/${record.id}`,
         values,
         {
           headers: {
