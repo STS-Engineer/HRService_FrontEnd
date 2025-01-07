@@ -20,7 +20,7 @@ const MyAuth = () => {
         const token = localStorage.getItem("token");
         const user = JSON.parse(localStorage.getItem("user"));
         const response = await fetch(
-          `http://localhost:3000/authorization-requests/employee/${user.id}`,
+          `https://bhr-avocarbon.azurewebsites.net/authorization-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ const MyAuth = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await fetch(`http://localhost:3000/authorization-requests/${deleteId}`, {
+      await fetch(`https://bhr-avocarbon.azurewebsites.net/authorization-requests/${deleteId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
