@@ -24,7 +24,7 @@ const PointingManagement = () => {
   const fetchLogs = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:3000/pointing/`, {
+      const response = await axios.get(`https://bhr-avocarbon.azurewebsites.net/pointing/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data);
