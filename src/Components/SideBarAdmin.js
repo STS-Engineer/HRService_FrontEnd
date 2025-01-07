@@ -123,6 +123,15 @@ const SideBarAdmin = () => {
                 {t("sidebar.PointingManagement")}
               </Link>
             </li>
+            <li className="my-2">
+              <Link
+                to="/Dispatch-SalaryCertificate-Manager"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <FaFileAlt className="mr-3 text-lg" />{" "}
+                {t("sidebar.salaryCertificate")}
+              </Link>
+            </li>
             {/* <li className="my-2">
               <Link
                 to="/dashboard"
