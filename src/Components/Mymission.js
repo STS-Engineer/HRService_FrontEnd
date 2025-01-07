@@ -24,7 +24,7 @@ const MyMission = () => {
 
         // Fetch mission requests for the logged-in employee
         const response = await axios.get(
-          `http://localhost:3000/mission-requests/employee/${user.id}`,
+          `https://bhr-avocarbon.azurewebsites.net/mission-requests/employee/${user.id}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -62,7 +62,7 @@ const MyMission = () => {
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:3000/mission-requests/${deleteId}`, {
+      await axios.delete(`https://bhr-avocarbon.azurewebsites.net/mission-requests/${deleteId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
