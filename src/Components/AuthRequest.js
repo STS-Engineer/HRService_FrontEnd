@@ -30,7 +30,7 @@ const AuthRequest = () => {
         throw new Error("No token found. Please log in again.");
       }
       await axios.post(
-        "http://localhost:3000/authorization-requests",
+        "https://bhr-avocarbon.azurewebsites.net/authorization-requests",
         formData,
         {
           headers: {
