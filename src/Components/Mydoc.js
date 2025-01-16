@@ -147,12 +147,12 @@ const MyDoc = ({ user }) => {
             bordered
           />
           <Modal
-            title={t("modal.title")}
+            title={t("table.modal.title")}
             visible={isModalVisible}
             onOk={handleDelete}
             onCancel={handleCancel}
-            okText={t("modal.confirm")}
-            cancelText={t("modal.cancel")}
+            okText={t("table.modal.confirm")}
+            cancelText={t("table.modal.cancel")}
           >
             <p>{t("modal.body")}</p>
           </Modal>
