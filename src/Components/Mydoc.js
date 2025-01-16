@@ -154,7 +154,7 @@ const MyDoc = ({ user }) => {
             okText={t("documentRequest.table.modal.confirm")}
             cancelText={t("documentRequest.table.modal.cancel")}
           >
-            <p>{t("modal.body")}</p>
+            <p>{t("documentRequest.table.modal.body")}</p>
           </Modal>
         </>
       )}
