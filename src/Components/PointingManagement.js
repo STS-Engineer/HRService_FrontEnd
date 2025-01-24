@@ -24,9 +24,12 @@ const PointingManagement = () => {
   const fetchLogs = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`https://bhr-avocarbon.azurewebsites.net/pointing/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `https://bhr-avocarbon.azurewebsites.net/pointing/`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setData(response.data);
       filterData(response.data, dateRange); // Filter immediately after fetching
     } catch (error) {
@@ -120,7 +123,7 @@ const PointingManagement = () => {
       key: "pointages",
       render: (text, record) => (
         <Space>
-          {record.logs.in !== "Not Logged In" ? (
+          {record.logs.in ? (
             <Tag
               color="green"
               style={{ display: "inline-flex", alignItems: "center" }}
@@ -129,10 +132,10 @@ const PointingManagement = () => {
               {moment(record.logs.in).format("HH:mm:ss")}
             </Tag>
           ) : (
-            <Tag color="red">{record.logs.in}</Tag>
+            <Tag color="red">Not Logged In</Tag>
           )}
           <span style={{ margin: "0 8px" }}>|</span>
-          {record.logs.out !== "Not Logged Out" ? (
+          {record.logs.out ? (
             <Tag
               color="red"
               style={{ display: "inline-flex", alignItems: "center" }}
@@ -141,7 +144,7 @@ const PointingManagement = () => {
               {moment(record.logs.out).format("HH:mm:ss")}
             </Tag>
           ) : (
-            <Tag color="red">{record.logs.out}</Tag>
+            <Tag color="red">Not Logged Out</Tag>
           )}
         </Space>
       ),
@@ -161,11 +164,11 @@ const PointingManagement = () => {
           prefix={<SearchOutlined />}
           onChange={(e) => handleSearch(e.target.value)}
         />
-        {/* <RangePicker
+        <RangePicker
           onChange={handleDateChange}
           suffixIcon={<CalendarOutlined />}
           defaultValue={dateRange}
-        /> */}
+        />
         <Button type="primary" onClick={fetchLogs} icon={<SyncOutlined />}>
           Refresh Logs
         </Button>
