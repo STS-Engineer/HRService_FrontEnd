@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { Upload, Button, message, Row, Col, Card } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import SidebarAdmin from "./SideBarAdmin";
 import TopBarAdmin from "./TopBarAdmin";
 
 const DocumentManagement = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [message, setMessage] = useState("");
 
-  const handleFileChange = (e) => {
-    setSelectedFiles([...e.target.files]);
+  const handleFileChange = (info) => {
+    if (info.file.status === "done") {
+      message.success(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === "error") {
+      message.error(`${info.file.name} file upload failed.`);
+    }
+    setSelectedFiles(info.fileList);
   };
 
   const handleUpload = () => {
@@ -19,12 +25,12 @@ const DocumentManagement = () => {
           const employeeName = file.name.split(".")[0]; // Assuming the file name is employeeName.pdf
           addSalaryCertificate({ employeeName, certificateUrl });
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file.originFileObj);
       });
-      setMessage("Salary certificates uploaded successfully.");
+      message.success("Salary certificates uploaded successfully.");
       setSelectedFiles([]);
     } else {
-      setMessage("Please select files.");
+      message.warning("Please select files.");
     }
   };
 
@@ -35,16 +41,39 @@ const DocumentManagement = () => {
         <TopBarAdmin />
         <div className="flex-1 p-4 overflow-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="border p-4 rounded shadow">
-              <h2 className="text-lg font-bold mb-4">
-                Upload Salary Certificates
-              </h2>
-              <input type="file" multiple onChange={handleFileChange} />
-              <button onClick={handleUpload} className="button mt-2">
-                Upload
-              </button>
-              {message && <p className="mt-2 text-green-600">{message}</p>}
-            </div>
+            <Card
+              title="Upload Salary Certificates"
+              bordered={false}
+              className="p-4"
+            >
+              <Row gutter={16}>
+                <Col span={24} sm={12}>
+                  <Upload
+                    multiple
+                    beforeUpload={() => false} // Prevent auto upload
+                    onChange={handleFileChange}
+                    fileList={selectedFiles}
+                    showUploadList={{ showRemoveIcon: true }}
+                    accept=".pdf,.doc,.docx,.jpg,.png,.jpeg"
+                  >
+                    <Button icon={<UploadOutlined />}>Select Files</Button>
+                  </Upload>
+                </Col>
+                <Col
+                  span={24}
+                  sm={12}
+                  className="flex justify-center items-center"
+                >
+                  <Button
+                    type="primary"
+                    onClick={handleUpload}
+                    disabled={selectedFiles.length === 0}
+                  >
+                    Upload
+                  </Button>
+                </Col>
+              </Row>
+            </Card>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ import {
   // BsChatLeftTextFill,
   BsBarChartFill,
 } from "react-icons/bs";
+import { AiOutlineSchedule } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 import { FaFileAlt } from "react-icons/fa";
 
@@ -152,6 +153,15 @@ const SidebarHR = () => {
               >
                 <BsClockFill className="mr-2" />{" "}
                 {t("sidebar.PointingManagement")}
+              </Link>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/Horaire_Management"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <AiOutlineSchedule className="mr-2" />{" "}
+                {t("sidebar.HoraireManagement")}
               </Link>
             </li>
 

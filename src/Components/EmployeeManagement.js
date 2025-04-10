@@ -1,11 +1,31 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { Table, Button, Modal, Form, Input, Select, Row, Col } from "antd";
+import {
+  Table,
+  Button,
+  Modal,
+  Form,
+  Input,
+  Select,
+  Row,
+  Col,
+  Card,
+  Tag,
+  Space,
+} from "antd";
 import { EditOutlined, DeleteOutlined, PlusOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 
 const { Option } = Select;
+
+const roleColors = {
+  EMPLOYEE: "blue",
+  MANAGER: "green",
+  HRMANAGER: "purple",
+  PLANT_MANAGER: "orange",
+  CEO: "red",
+};
 
 const EmployeeManagement = () => {
   const [employees, setEmployees] = useState([]);
@@ -69,6 +89,7 @@ const EmployeeManagement = () => {
     setSelectedEmployee(record);
     setIsModalVisible(true);
   };
+
   const handleUpdateEmployee = (updatedEmployee) => {
     setEmployees((prevEmployees) =>
       prevEmployees.map((employee) =>
@@ -85,9 +106,10 @@ const EmployeeManagement = () => {
 
   const columns = [
     {
-      title: "Employee ID",
+      title: "ID",
       dataIndex: "id",
       key: "id",
+      responsive: ["lg"],
     },
     {
       title: "First Name",
@@ -103,21 +125,20 @@ const EmployeeManagement = () => {
       title: "Department",
       dataIndex: "department",
       key: "department",
+      responsive: ["md"],
     },
     {
       title: "Role",
       dataIndex: "role",
       key: "role",
+      render: (role) => <Tag color={roleColors[role] || "default"}>{role}</Tag>,
     },
     {
       title: "Email",
       dataIndex: "email",
       key: "email",
       render: (email) => (
-        <a
-          href={`mailto:${email}`}
-          style={{ color: "#1890ff", textDecoration: "underline" }}
-        >
+        <a href={`mailto:${email}`} className="text-blue-500 underline">
           {email}
         </a>
       ),
@@ -126,18 +147,13 @@ const EmployeeManagement = () => {
       title: "Plant Connection",
       dataIndex: "plant_connection",
       key: "plant_connection",
+      responsive: ["md"],
     },
     {
       title: "Actions",
       key: "actions",
       render: (_, record) => (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
+        <Space>
           <Button
             type="primary"
             icon={<EditOutlined />}
@@ -150,51 +166,59 @@ const EmployeeManagement = () => {
             onClick={() => handleDelete(record.id)}
             size="small"
           />
-        </div>
+        </Space>
       ),
     },
   ];
 
   return (
-    <div className="p-6">
-      <Row justify="space-between" align="middle" gutter={[16, 16]}>
-        <Col>
-          <h2 className="text-xl font-semibold">Employee Management</h2>
-        </Col>
-        <Col>
-          <Link to="/add-employee">
-            <Button type="primary" icon={<PlusOutlined />} size="middle">
-              Add New Employee
-            </Button>
-          </Link>
-        </Col>
-      </Row>
-      <Table
-        dataSource={employees}
-        columns={columns}
-        loading={loading}
-        rowKey="id"
-        pagination={{ pageSize: 8 }}
-        scroll={{ x: true }} // Enables horizontal scrolling for smaller screens
-        size="small" // Use small size for better compactness on mobile
-      />
+    <Card className="p-4 rounded-lg shadow-md">
+      <div style={{ padding: 20 }}>
+        <h2 className="text-xl sm:text-2xl font-bold mb-4">
+          Employee Management
+        </h2>
+        <Row justify="space-between" align="middle" className="mb-4">
+          <Col span={24} sm={8} md={6}>
+            <Link to="/add-employee">
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                size="middle"
+                className="w-auto px-3 py-1"
+              >
+                Add New Employee
+              </Button>
+            </Link>
+          </Col>
+        </Row>
 
-      <Modal
-        title="Edit Employee"
-        visible={isModalVisible}
-        onCancel={handleCloseModal}
-        footer={null}
-        width={window.innerWidth < 768 ? "90%" : 520} // Adjust modal width for mobile
-      >
-        {selectedEmployee && (
-          <EditEmployeeForm
-            record={selectedEmployee}
-            onClose={handleCloseModal}
-            onUpdate={handleUpdateEmployee}
-          />
-        )}
-      </Modal>
-    </div>
+        <Table
+          dataSource={employees}
+          columns={columns}
+          loading={loading}
+          rowKey="id"
+          pagination={{ pageSize: 8 }}
+          scroll={{ x: true }}
+          size="small"
+          className="overflow-x-auto"
+        />
+        <Modal
+          title="Edit Employee"
+          open={isModalVisible}
+          onCancel={handleCloseModal}
+          footer={null}
+          width="90%"
+        >
+          {selectedEmployee && (
+            <EditEmployeeForm
+              record={selectedEmployee}
+              onClose={handleCloseModal}
+              onUpdate={handleUpdateEmployee}
+            />
+          )}
+        </Modal>
+      </div>
+    </Card>
   );
 };
 
@@ -232,36 +256,24 @@ const EditEmployeeForm = ({ record, onClose, onUpdate }) => {
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish}>
-      <Form.Item label="Employee ID" name="id">
-        <Input disabled />
-      </Form.Item>
-      <Form.Item name="firstname" label="First Name">
+      <Form.Item label="First Name" name="firstname">
         <Input />
       </Form.Item>
-      <Form.Item name="lastname" label="Last Name">
+      <Form.Item label="Last Name" name="lastname">
         <Input />
       </Form.Item>
-      <Form.Item name="department" label="Department">
-        <Input />
-      </Form.Item>
-      <Form.Item name="role" label="Role">
+      <Form.Item label="Role" name="role">
         <Select>
-          <Option value="EMPLOYEE">Employee</Option>
-          <Option value="MANAGER">Manager</Option>
-          <Option value="HRMANAGER">HR Manager</Option>
-          <Option value="PLANT_MANAGER">Plant Manager</Option>
-          <Option value="CEO">CEO</Option>
+          {Object.keys(roleColors).map((role) => (
+            <Option key={role} value={role}>
+              {role}
+            </Option>
+          ))}
         </Select>
-      </Form.Item>
-      <Form.Item name="email" label="Email">
-        <Input />
-      </Form.Item>
-      <Form.Item name="plant_connection" label="Plant Connection">
-        <Input />
       </Form.Item>
       <Form.Item>
         <Button type="primary" htmlType="submit" block>
-          Update Employee
+          Update
         </Button>
       </Form.Item>
     </Form>

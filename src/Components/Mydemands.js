@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, message, Tag } from "antd";
+import { Table, Button, message, Tag, Card } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import { FaDownload } from "react-icons/fa";
@@ -338,25 +338,27 @@ const DemandsPage = ({ user }) => {
   };
 
   return (
-    <div>
-      {/* <h1 className="text-2xl font-bold">My Requests</h1> */}
-      <div className="flex space-x-4 mb-4">
-        {["leave", "authorization", "mission", "document"].map((filter) => (
-          <Button
-            key={filter}
-            onClick={() => setSelectedFilter(filter)}
-            className={
-              selectedFilter === filter
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200"
-            }
-          >
-            {`${filter.charAt(0).toUpperCase() + filter.slice(1)} Requests`}
-          </Button>
-        ))}
+    <Card style={{ padding: 20, borderRadius: 10 }}>
+      <div>
+        {/* <h1 className="text-2xl font-bold">My Requests</h1> */}
+        <div className="flex space-x-4 mb-4">
+          {["leave", "authorization", "mission", "document"].map((filter) => (
+            <Button
+              key={filter}
+              onClick={() => setSelectedFilter(filter)}
+              className={
+                selectedFilter === filter
+                  ? "bg-blue-500 text-white"
+                  : "bg-gray-200"
+              }
+            >
+              {`${filter.charAt(0).toUpperCase() + filter.slice(1)} Requests`}
+            </Button>
+          ))}
+        </div>
+        {renderTable()}
       </div>
-      {renderTable()}
-    </div>
+    </Card>
   );
 };
 

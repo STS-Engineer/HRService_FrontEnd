@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFileExcel, faFilePdf } from "@fortawesome/free-solid-svg-icons";
-import { Table, Button, Select, DatePicker, Pagination } from "antd";
+import { Table, Button, Select, DatePicker, Pagination, Card, Tag } from "antd";
 import TopBar from "./TopBar";
 import SidebarHR from "./SideBarHR";
 import axios from "axios";
@@ -12,7 +12,48 @@ import * as XLSX from "xlsx";
 import Swal from "sweetalert2";
 
 const { Option } = Select;
-
+const getLeaveTypeTagColor = (leaveType) => {
+  switch (leaveType) {
+    case "half_day":
+      return "blue";
+    case "Wedding":
+      return "purple";
+    case "Business":
+      return "green";
+    case "Injury":
+      return "red";
+    case "Sick":
+      return "orange";
+    case "Maternity":
+      return "pink";
+    case "Funeral":
+      return "gray";
+    case "Annual Leave":
+      return "cyan";
+    case "Compensatory":
+      return "yellow";
+    case "Without Pay":
+      return "black";
+    case "Seniority":
+      return "lime";
+    case "Other":
+      return "teal";
+    default:
+      return "default";
+  }
+};
+const getTypeTagColor = (type) => {
+  switch (type) {
+    case "Leave":
+      return "blue";
+    case "Mission":
+      return "green";
+    case "Authorization":
+      return "orange";
+    default:
+      return "gray";
+  }
+};
 const HomeHR = () => {
   const navigate = useNavigate();
   const [requests, setRequests] = useState([]);
@@ -165,8 +206,8 @@ const HomeHR = () => {
           "Start Date",
           "End Date",
           "Duration",
-          "Departure Time", // Add departure time to the header
-          "Return Time", // Add return time to the header
+          "Departure Time",
+          "Return Time",
         ],
       ],
       body: filteredRequests.map((req) => [
@@ -178,8 +219,8 @@ const HomeHR = () => {
         formatDate(req.startDate) || "",
         formatDate(req.endDate) || "",
         calculateDuration(req.startDate, req.endDate) + " days" || "",
-        req.departureTime || "", // Add departure time to the body
-        req.returnTime || "", // Add return time to the body
+        req.departureTime || "",
+        req.returnTime || "",
       ]),
     });
     doc.save("employeerequests.pdf");
@@ -201,8 +242,8 @@ const HomeHR = () => {
         "Start Date": formatDate(req.startDate) || "",
         "End Date": formatDate(req.endDate) || "",
         Duration: calculateDuration(req.startDate, req.endDate) + " days" || "",
-        "Departure Time": req.departureTime || "", // Add departure time
-        "Return Time": req.returnTime || "", // Add return time
+        "Departure Time": req.departureTime || "",
+        "Return Time": req.returnTime || "",
       }))
     );
     const workbook = XLSX.utils.book_new();
@@ -219,8 +260,18 @@ const HomeHR = () => {
     { title: "Employee ID", dataIndex: "employeeId", key: "employeeId" },
     { title: "First Name", dataIndex: "firstName", key: "firstName" },
     { title: "Last Name", dataIndex: "lastName", key: "lastName" },
-    { title: "Type of Request", dataIndex: "type", key: "type" },
-    { title: "Type of Leave", dataIndex: "leaveType", key: "leaveType" },
+    {
+      title: "Type of Request",
+      dataIndex: "type",
+      key: "type",
+      render: (text) => <Tag color={getTypeTagColor(text)}>{text}</Tag>, // Use dynamic color for each type
+    },
+    {
+      title: "Type of Leave",
+      dataIndex: "leaveType",
+      key: "leaveType",
+      render: (text) => <Tag color={getLeaveTypeTagColor(text)}>{text}</Tag>,
+    },
     {
       title: "Start Date",
       dataIndex: "startDate",
@@ -256,54 +307,56 @@ const HomeHR = () => {
       <SidebarHR sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-col flex-1">
         <TopBar />
-        <div className="p-4">
-          <h1 className="text-2xl font-semibold mb-4">Employee Requests</h1>
-          <div className="mb-4">
-            <Select
-              defaultValue="All"
-              style={{ width: 120 }}
-              onChange={(value) => setFilter(value)}
-            >
-              <Option value="All">All</Option>
-              <Option value="Leave">Leave</Option>
-              <Option value="Mission">Mission</Option>
-              <Option value="Authorization">Authorization</Option>
-            </Select>
-            <DatePicker
-              className="ml-2"
-              onChange={(date, dateString) => setFilterDate(dateString)}
+        <Card style={{ padding: 20, borderRadius: 10 }}>
+          <div style={{ padding: 20 }}>
+            <h2 className="text-2xl font-bold mb-4">Employee Requests</h2>
+            <div className="mb-4">
+              <Select
+                defaultValue="All"
+                style={{ width: 120 }}
+                onChange={(value) => setFilter(value)}
+              >
+                <Option value="All">All</Option>
+                <Option value="Leave">Leave</Option>
+                <Option value="Mission">Mission</Option>
+                <Option value="Authorization">Authorization</Option>
+              </Select>
+              <DatePicker
+                className="ml-2"
+                onChange={(date, dateString) => setFilterDate(dateString)}
+              />
+              <Button
+                type="primary"
+                icon={<FontAwesomeIcon icon={faFilePdf} />}
+                onClick={handleDownloadPDF}
+                className="ml-2"
+              >
+                Download PDF
+              </Button>
+              <Button
+                type="primary"
+                icon={<FontAwesomeIcon icon={faFileExcel} />}
+                onClick={handleDownloadExcel}
+                className="ml-2"
+              >
+                Download Excel
+              </Button>
+            </div>
+            <Table
+              dataSource={currentRequests}
+              columns={columns}
+              rowKey="id"
+              pagination={false}
             />
-            <Button
-              type="primary"
-              icon={<FontAwesomeIcon icon={faFilePdf} />}
-              onClick={handleDownloadPDF}
-              className="ml-2"
-            >
-              Download PDF
-            </Button>
-            <Button
-              type="primary"
-              icon={<FontAwesomeIcon icon={faFileExcel} />}
-              onClick={handleDownloadExcel}
-              className="ml-2"
-            >
-              Download Excel
-            </Button>
+            <Pagination
+              current={currentPage}
+              total={filteredRequests.length}
+              pageSize={requestsPerPage}
+              onChange={paginate}
+              className="mt-4"
+            />
           </div>
-          <Table
-            dataSource={currentRequests}
-            columns={columns}
-            rowKey="id"
-            pagination={false}
-          />
-          <Pagination
-            current={currentPage}
-            total={filteredRequests.length}
-            pageSize={requestsPerPage}
-            onChange={paginate}
-            className="mt-4"
-          />
-        </div>
+        </Card>
       </div>
     </div>
   );

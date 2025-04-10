@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer className="bg-white text-gray-300 p-4 text-center">
-      © 2024 Leave Management Application
+      © 2025 HR Management Application
     </footer>
   );
 };

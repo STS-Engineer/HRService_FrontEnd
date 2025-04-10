@@ -6,6 +6,7 @@ import Sidebar from "./SideBar";
 import "antd/dist/reset.css"; // Ensure you are using the correct CSS for Ant Design
 import { useTranslation } from "react-i18next";
 import { DeleteOutlined } from "@ant-design/icons";
+import DynamicHeader from "./DynamicHeader";
 
 const MyMission = () => {
   const { t } = useTranslation();

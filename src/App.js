@@ -40,6 +40,10 @@ import ManageRequestHR from "./Components/ManageRequestHR";
 import PointingManagement from "./Components/PointingManagement";
 import EmployeePointing from "./Components/MyPointing";
 import PointingManagementRH from "./Components/Pointing_RH";
+import WorkingHoursSummary from "./Components/WorkingHoursSummary";
+import PointingReports from "./Components/PointingReports";
+import PointingReportRH from "./Components/PointingReportRH";
+import HoraireManagement from "./Components/HoraireManagement";
 
 const App = () => {
   const [leaveRequests, setLeaveRequests] = useState([]);
@@ -407,6 +411,21 @@ const App = () => {
             }
           />
           <Route
+            path="/Dispatch-SalaryCertificate-Manager"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <SalaryCertificateUpload />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
             path="/Dispatch-SalaryCertificate"
             element={
               <div className="flex h-screen">
@@ -438,6 +457,36 @@ const App = () => {
             }
           />
           <Route
+            path="/working-hours"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <WorkingHoursSummary />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/pointing-hours-perweek"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <PointingReports />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
             path="/pointing-management"
             element={
               <div className="flex h-screen">
@@ -461,6 +510,51 @@ const App = () => {
                   <TopBar />
                   <div className="flex-1 overflow-auto p-4">
                     <EmployeePointing />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/my-pointing-Manager"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <EmployeePointing />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/my-pointing-Report"
+            element={
+              <div className="flex h-screen">
+                <SideBarAdmin />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <PointingReportRH />
+                  </div>
+                  <Footer />
+                </div>
+              </div>
+            }
+          />
+          <Route
+            path="/Horaire_Management"
+            element={
+              <div className="flex h-screen">
+                <SidebarHR />
+                <div className="flex-1 flex flex-col">
+                  <TopBar />
+                  <div className="flex-1 overflow-auto p-4">
+                    <HoraireManagement />
                   </div>
                   <Footer />
                 </div>

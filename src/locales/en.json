@@ -63,7 +63,8 @@
       "rejected": "Rejected",
       "pending": "Pending"
     },
-    "action": "Action"
+    "action": "Action",
+    "weeklyHours":"weekly Hours"
   },
   "homeAdmin": {
     "manageLeave": {
@@ -133,7 +134,12 @@
     "rhDashboard": "Dashboard",
     "salaryCertificate": "Salary Certificate",
     "documentManagement": "Document Management",
-    "PointingManagement": "Pointing Management"
+    "PointingManagement": "Pointing Management",
+    "Daily Pointing":"Daily Pointing",
+    "Daily Pointing Reports":"Daily Pointing Reports",
+    "Working Hours" : "Working Hours",
+    "Pointing Reports" :"Pointing Reports",
+    "HoraireManagement":"Schedule management"
   },
   "leaveRequest": {
     "employeeIdLabel": "Serial Number (Employee ID, ID Number, M.At)",
@@ -378,6 +384,7 @@
     }
   },
   "myPointing": {
+    "title":"My Pointing",
     "date": "Date",
     "pointing": "Pointing",
     "workingHours": "Working Hours"

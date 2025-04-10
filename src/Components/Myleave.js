@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Table, Button, Modal, message, Tag } from "antd";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import Topbar from "./TopBar";
 import Sidebar from "./SideBar";
 import "antd/dist/reset.css";
 import { DeleteOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
+import DynamicHeader from "./DynamicHeader";
 
 const MyLeave = () => {
   const { t } = useTranslation();
+  const location = useLocation();
+  console.log("Current Path:", location.pathname);
   const [leaveRequests, setLeaveRequests] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -131,7 +135,7 @@ const MyLeave = () => {
           onClick={() => showDeleteConfirm(record.id)}
         />
       ),
-      responsive: ["xs", "sm", "md", "lg"], // Show on all screen sizes
+      responsive: ["xs", "sm", "md", "lg"],
     },
   ];
 
@@ -140,6 +144,7 @@ const MyLeave = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Topbar />
+        <DynamicHeader currentPath={location.pathname} />
         <div className="p-4">
           {loading ? (
             <p>Loading...</p>

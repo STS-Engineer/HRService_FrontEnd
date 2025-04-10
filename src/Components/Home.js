@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Sidebar from "./SideBar";
 import TopBar from "./TopBar";
 import { useTranslation } from "react-i18next";
+import { HomeIcon } from "@heroicons/react/24/outline";
+import DynamicHeader from "./DynamicHeader"; // Import the DynamicHeader
 
 const Home = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const location = useLocation();
   const handleLeaveRequestClick = () => {
     navigate("/leave-request");
   };
@@ -28,6 +31,18 @@ const Home = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <TopBar />
+        <DynamicHeader currentPath={location.pathname} />
+        {/* HEADER SECTION */}
+        {/* <div className="bg-white p-4 shadow-sm border-b">
+          <h1 className="text-2xl font-semibold text-gray-800">Dashboard</h1>
+          <div className="flex items-center space-x-2 text-gray-500 text-sm mt-1">
+            <HomeIcon className="h-4 w-4" />
+            <span>Home</span>
+            <span>/</span>
+            <span className="text-gray-700 font-medium">Default Dashboard</span>
+          </div>
+        </div> */}
+
         <div className="flex-1 p-4 overflow-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div
@@ -41,7 +56,6 @@ const Home = () => {
                   className="w-48 h-48 center"
                 />
               </div>
-
               <div className="p-4">
                 <h3 className="text-md font-bold">{t("Leave Request")}</h3>
                 <p className="text-gray-600">{t("click_to_request_leave")}</p>
@@ -58,7 +72,6 @@ const Home = () => {
                   className="w-48 h-48 center"
                 />
               </div>
-
               <div className="p-4">
                 <h3 className="text-md font-bold">{t("mission_request")}</h3>
                 <p className="text-gray-600">{t("click_to_request_mission")}</p>
@@ -71,7 +84,6 @@ const Home = () => {
               <div className="flex justify-center items-center">
                 <img src="author.png" alt="Card 3" className="w-48 h-48 " />
               </div>
-
               <div className="p-4">
                 <h3 className="text-md font-bold">
                   {t("authorization_request")}

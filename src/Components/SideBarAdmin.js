@@ -8,10 +8,12 @@ import {
   BsClockFill,
 } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
+import { FaFileAlt } from "react-icons/fa";
 
 const SideBarAdmin = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
+  const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   return (
     <div className="flex h-screen">
@@ -115,26 +117,93 @@ const SideBarAdmin = () => {
               </Link>
             </li>
             <li className="my-2">
-              <Link
+              {/* <Link
                 to="/pointing-management"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
                 <BsClockFill className="mr-2" />{" "}
                 {t("sidebar.PointingManagement")}
+              </Link> */}
+              <li className="my-2">
+                <div>
+                  <button
+                    className="flex items-center justify-between p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200 w-full"
+                    onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+                  >
+                    <div className="flex items-center">
+                      <BsClockFill className="mr-2" />
+                      {t("sidebar.PointingManagement")}
+                    </div>
+                    <span>{isSubmenuOpen ? "▲" : "▼"}</span>
+                  </button>
+
+                  {/* Scrollable Submenu */}
+                  {isSubmenuOpen && (
+                    <ul
+                      className="mt-2 ml-6 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
+                      style={{
+                        background: "#f9f9f9",
+                        borderRadius: "8px",
+                      }}
+                    >
+                      <li className="mb-2">
+                        <Link
+                          to="/pointing-management"
+                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
+                        >
+                          {t("sidebar.Daily Pointing")}
+                        </Link>
+                      </li>
+                      <li className="mb-2">
+                        <Link
+                          to="/my-pointing-Report"
+                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
+                        >
+                          {t("sidebar.Daily Pointing Reports")}
+                        </Link>
+                      </li>
+                      {/* <li className="mb-2">
+                        <Link
+                          to="/pointing-hours-perweek"
+                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
+                        >
+                          {t("sidebar.Working Hours")}
+                        </Link>
+                      </li> */}
+                      <li>
+                        <Link
+                          to="/pointing-hours-perweek"
+                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
+                        >
+                          {t("sidebar.Pointing Reports")}
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
+                </div>
+              </li>
+            </li>
+            <li className="my-2">
+              <Link
+                to="/Dispatch-SalaryCertificate-Manager"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
+              >
+                <FaFileAlt className="mr-3 text-lg" />{" "}
+                {t("sidebar.salaryCertificate")}
               </Link>
             </li>
-            {/* <li className="my-2">
+            <li className="my-2">
               <Link
-                to="/dashboard"
-                className="flex items-center p-2 text-gray-600 hover:bg-orange-500 hover:text-white rounded-md transition-colors duration-200"
+                to="/my-pointing-Manager"
+                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
               >
-                <BsBarChartFill className="mr-2" /> Dashboard
+                <BsClockFill className="mr-3 text-xl" />{" "}
+                {t("sidebar.myPointing")}
               </Link>
-            </li> */}
+            </li>
           </ul>
         </nav>
       </div>
-
       {/* Overlay for Mobile */}
       {isOpen && (
         <div
