@@ -27,7 +27,7 @@ const HoraireManagement = () => {
   const fetchHoraires = async () => {
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:3000/horaires");
+      const response = await axios.get("https://bhr-avocarbon.azurewebsites.net/horaires");
       setHoraires(response.data);
     } catch (error) {
       message.error("Erreur lors du chargement des horaires");
@@ -53,12 +53,12 @@ const HoraireManagement = () => {
 
       if (editingHoraire) {
         await axios.put(
-          `http://localhost:3000/horaires/${editingHoraire.id}`,
+          `https://bhr-avocarbon.azurewebsites.net/horaires/${editingHoraire.id}`,
           payload
         );
         message.success("Horaire mis à jour avec succès");
       } else {
-        await axios.post("http://localhost:3000/horaires", payload);
+        await axios.post("https://bhr-avocarbon.azurewebsites.net/horaires", payload);
         message.success("Horaire ajouté avec succès");
       }
 
@@ -73,7 +73,7 @@ const HoraireManagement = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:3000/horaires/${id}`);
+      await axios.delete(`https://bhr-avocarbon.azurewebsites.net/horaires/${id}`);
       message.success("Horaire supprimé avec succès");
       fetchHoraires();
     } catch (error) {
