@@ -29,7 +29,7 @@ const PointingReports = () => {
     try {
       const [startDate, endDate] = dates;
       const response = await axios.get(
-        `http://localhost:3000/pointing/logs/working_hours_monthly?startDate=${startDate}&endDate=${endDate}`
+        `https://bhr-avocarbon.azurewebsites.net/pointing/logs/working_hours_monthly?startDate=${startDate}&endDate=${endDate}`
       );
       setData(response.data);
     } catch (error) {
