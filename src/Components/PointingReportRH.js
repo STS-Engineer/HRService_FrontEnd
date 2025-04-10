@@ -35,7 +35,7 @@ const PointingReportRH = () => {
   const fetchAttendance = async () => {
     try {
       const { employee_id, date, employee_name } = filters;
-      let url = "http://localhost:3000/pointing/allattendance/";
+      let url = "https://bhr-avocarbon.azurewebsites.net/pointing/allattendance/";
 
       if (employee_id) {
         url = `https://bhr-avocarbon.azurewebsites.net/pointing/attendance/employee?employee_id=${employee_id}`;
