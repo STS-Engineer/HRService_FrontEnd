@@ -4,15 +4,14 @@ import {
   BsHouseDoorFill,
   BsClipboardCheck,
   BsChatLeftTextFill,
-  BsBarChartFill,
   BsClockFill,
 } from "react-icons/bs";
-import { useTranslation } from "react-i18next";
 import { FaFileAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 
 const SideBarAdmin = () => {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState(false); // State for mobile menu toggle
+  const [isOpen, setIsOpen] = useState(false);
   const [isSubmenuOpen, setIsSubmenuOpen] = useState(false);
 
   return (
@@ -59,9 +58,7 @@ const SideBarAdmin = () => {
         {/* Close Button for Mobile */}
         <button
           className="absolute top-4 right-4 text-gray-600 hover:text-gray-800 md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
+          onClick={() => setIsOpen(false)}
           aria-label="Close Navigation Menu"
         >
           <svg
@@ -80,19 +77,19 @@ const SideBarAdmin = () => {
           </svg>
         </button>
 
-        {/* Logo or Branding */}
+        {/* Logo */}
         <div className="p-4 flex items-center justify-center mt-10">
           <img
             src="image.png"
             alt="Logo"
-            className="h-20 mb-5  border-2 border-gray-300 shadow-lg"
+            className="h-20 mb-5 border-2 border-gray-300 shadow-lg"
           />
         </div>
 
         {/* Navigation Links */}
         <nav className="flex-1 px-4">
           <ul className="space-y-6">
-            <li className="my-2">
+            <li>
               <Link
                 to="/home-admin"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
@@ -100,7 +97,8 @@ const SideBarAdmin = () => {
                 <BsHouseDoorFill className="mr-2" /> {t("sidebar.home")}
               </Link>
             </li>
-            <li className="my-2">
+
+            <li>
               <Link
                 to="/requests"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
@@ -108,7 +106,8 @@ const SideBarAdmin = () => {
                 <BsClipboardCheck className="mr-2" /> {t("sidebar.requests")}
               </Link>
             </li>
-            <li className="my-2">
+
+            <li>
               <Link
                 to="/demands"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
@@ -116,74 +115,50 @@ const SideBarAdmin = () => {
                 <BsChatLeftTextFill className="mr-2" /> {t("sidebar.demands")}
               </Link>
             </li>
-            <li className="my-2">
-              {/* <Link
-                to="/pointing-management"
-                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
-              >
-                <BsClockFill className="mr-2" />{" "}
-                {t("sidebar.PointingManagement")}
-              </Link> */}
-              <li className="my-2">
-                <div>
-                  <button
-                    className="flex items-center justify-between p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200 w-full"
-                    onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
-                  >
-                    <div className="flex items-center">
-                      <BsClockFill className="mr-2" />
-                      {t("sidebar.PointingManagement")}
-                    </div>
-                    <span>{isSubmenuOpen ? "▲" : "▼"}</span>
-                  </button>
 
-                  {/* Scrollable Submenu */}
-                  {isSubmenuOpen && (
-                    <ul
-                      className="mt-2 ml-6 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100"
-                      style={{
-                        background: "#f9f9f9",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      <li className="mb-2">
-                        <Link
-                          to="/pointing-management"
-                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
-                        >
-                          {t("sidebar.Daily Pointing")}
-                        </Link>
-                      </li>
-                      <li className="mb-2">
-                        <Link
-                          to="/my-pointing-Report"
-                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
-                        >
-                          {t("sidebar.Daily Pointing Reports")}
-                        </Link>
-                      </li>
-                      {/* <li className="mb-2">
-                        <Link
-                          to="/pointing-hours-perweek"
-                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
-                        >
-                          {t("sidebar.Working Hours")}
-                        </Link>
-                      </li> */}
-                      <li>
-                        <Link
-                          to="/pointing-hours-perweek"
-                          className="flex items-center p-2 text-gray-600 bg-gray-100 hover:bg-gray-200 rounded-lg shadow-sm transition duration-200"
-                        >
-                          {t("sidebar.Pointing Reports")}
-                        </Link>
-                      </li>
-                    </ul>
-                  )}
+            <li>
+              <button
+                className="flex items-center justify-between p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200 w-full"
+                onClick={() => setIsSubmenuOpen(!isSubmenuOpen)}
+              >
+                <div className="flex items-center">
+                  <BsClockFill className="mr-2" />
+                  {t("sidebar.PointingManagement")}
                 </div>
-              </li>
+                <span>{isSubmenuOpen ? "▲" : "▼"}</span>
+              </button>
+
+              {isSubmenuOpen && (
+                <ul className="mt-2 ml-6 max-h-40 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 bg-gray-50 rounded-lg">
+                  <li className="mb-2">
+                    <Link
+                      to="/pointing-management"
+                      className="block p-2 text-gray-600 hover:bg-gray-200 rounded-lg"
+                    >
+                      {t("sidebar.Daily Pointing")}
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link
+                      to="/my-pointing-Report"
+                      className="block p-2 text-gray-600 hover:bg-gray-200 rounded-lg"
+                    >
+                      {t("sidebar.Daily Pointing Reports")}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to="/pointing-hours-perweek"
+                      className="block p-2 text-gray-600 hover:bg-gray-200 rounded-lg"
+                    >
+                      {t("sidebar.Pointing Reports")}
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
-            <li className="my-2">
+
+            <li>
               <Link
                 to="/Dispatch-SalaryCertificate-Manager"
                 className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
@@ -192,25 +167,17 @@ const SideBarAdmin = () => {
                 {t("sidebar.salaryCertificate")}
               </Link>
             </li>
-            <li className="my-2">
-              <Link
-                to="/my-pointing-Manager"
-                className="flex items-center p-3 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-xl shadow-md transition duration-200"
-              >
-                <BsClockFill className="mr-3 text-xl" />{" "}
-                {t("sidebar.myPointing")}
-              </Link>
-            </li>
           </ul>
         </nav>
       </div>
+
       {/* Overlay for Mobile */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black opacity-50 z-20"
           onClick={() => setIsOpen(false)}
           aria-hidden="true"
-        ></div>
+        />
       )}
     </div>
   );

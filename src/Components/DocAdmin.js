@@ -16,7 +16,7 @@ const DocumentAdmin = () => {
         // Fetch document requests for the HR Manager
         const token = localStorage.getItem("token");
         const response = await axios.get(
-          "http://localhost:3000/document-requests/hr-manager-requests",
+          "https://bhr-avocarbon.azurewebsites.net/document-requests/hr-manager-requests",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ const DocumentAdmin = () => {
       setUploadingRequestId(requestId);
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:3000/document-requests/upload/${requestId}`,
+        `https://bhr-avocarbon.azurewebsites.net/document-requests/upload/${requestId}`,
         formData,
         {
           headers: {

@@ -17,7 +17,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/auth/register", {
+      const response = await axios.post("https://bhr-avocarbon.azurewebsites.net/auth/register", {
         firstname,
         lastname,
         function: userFunction,

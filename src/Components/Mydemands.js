@@ -24,16 +24,16 @@ const DemandsPage = ({ user }) => {
         const user = JSON.parse(localStorage.getItem("user"));
 
         const response = await Promise.all([
-          fetch(`http://localhost:3000/leave-requests/employee/${user.id}`, {
+          fetch(`https://bhr-avocarbon.azurewebsites.net/leave-requests/employee/${user.id}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
           fetch(
-            `http://localhost:3000/authorization-requests/employee/${user.id}`,
+            `https://bhr-avocarbon.azurewebsites.net/authorization-requests/employee/${user.id}`,
             {
               headers: { Authorization: `Bearer ${token}` },
             }
           ),
-          fetch(`http://localhost:3000/mission-requests/employee/${user.id}`, {
+          fetch(`https://bhr-avocarbon.azurewebsites.net/mission-requests/employee/${user.id}`, {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);
@@ -77,13 +77,13 @@ const DemandsPage = ({ user }) => {
         // Determine the correct URL based on the request type
         switch (requestType) {
           case "Leave":
-            url = `http://localhost:3000/leave-requests/${requestId}`;
+            url = `https://bhr-avocarbon.azurewebsites.net/leave-requests/${requestId}`;
             break;
           case "Mission":
-            url = `http://localhost:3000/mission-requests/${requestId}`;
+            url = `https://bhr-avocarbon.azurewebsites.net/mission-requests/${requestId}`;
             break;
           case "Authorization":
-            url = `http://localhost:3000/authorization-requests/${requestId}`;
+            url = `https://bhr-avocarbon.azurewebsites.net/authorization-requests/${requestId}`;
             break;
           default:
             throw new Error("Unknown request type");
@@ -295,7 +295,7 @@ const DemandsPage = ({ user }) => {
                 type="primary"
                 icon={<FaDownload />}
                 onClick={() => {
-                  window.location.href = `http://localhost:3000/document-requests/download/${doc.file_path}`;
+                  window.location.href = `https://bhr-avocarbon.azurewebsites.net/document-requests/download/${doc.file_path}`;
                 }}
               >
                 Download

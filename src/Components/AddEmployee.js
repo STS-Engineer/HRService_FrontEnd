@@ -53,7 +53,7 @@ const AddEmployeeForm = () => {
 
   const handleSubmit = async (values) => {
     try {
-      await axios.post("http://localhost:3000/auth/register", values);
+      await axios.post("https://bhr-avocarbon.azurewebsites.net/auth/register", values);
       Swal.fire({
         icon: "success",
         title: t("success_message_title"),

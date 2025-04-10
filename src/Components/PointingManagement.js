@@ -36,9 +36,12 @@ const PointingManagement = () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`http://localhost:3000/pointing/`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `https://bhr-avocarbon.azurewebsites.net/pointing/`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setData(response.data);
       filterData(response.data, dateRange, selectedDate);
     } catch (error) {
@@ -154,7 +157,7 @@ const PointingManagement = () => {
               style={{ display: "inline-flex", alignItems: "center" }}
             >
               <ClockCircleOutlined style={{ marginRight: 4 }} />
-              {moment(record.logs.in).format("HH:mm:ss")}
+              {moment(record.logs.in).utc(false).format("HH:mm:ss")}
             </Tag>
           ) : (
             <Tag color="red">Not Logged In</Tag>
@@ -166,7 +169,7 @@ const PointingManagement = () => {
               style={{ display: "inline-flex", alignItems: "center" }}
             >
               <ClockCircleOutlined style={{ marginRight: 4 }} />
-              {moment(record.logs.out).format("HH:mm:ss")}
+              {moment(record.logs.out).utc(false).format("HH:mm:ss")}
             </Tag>
           ) : (
             <Tag color="red">Not Logged Out</Tag>
@@ -209,12 +212,12 @@ const PointingManagement = () => {
             allowClear
             style={{ width: "250px" }}
           />
-          <DatePicker
-            onChange={handleSelectedDateChange}
-            placeholder="Select a Date"
-            style={{ width: "250px" }}
+          <RangePicker
+            onChange={handleDateChange}
+            suffixIcon={<CalendarOutlined />}
+            defaultValue={dateRange}
+            style={{ width: "300px" }}
           />
-
           <Button
             type="primary"
             onClick={fetchLogs}
@@ -224,6 +227,7 @@ const PointingManagement = () => {
             Refresh Logs
           </Button>
         </div>
+
         {loading ? (
           <Spin size="large" />
         ) : (

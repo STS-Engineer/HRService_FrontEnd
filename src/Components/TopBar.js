@@ -41,7 +41,7 @@ const TopBar = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:3000/auth/user/${userId}/photo`,
+          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}/photo`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -68,7 +68,7 @@ const TopBar = () => {
         const token = localStorage.getItem("token");
         const userId = JSON.parse(localStorage.getItem("user")).id;
         const response = await fetch(
-          `http://localhost:3000/auth/user/${userId}`,
+          `https://bhr-avocarbon.azurewebsites.net/auth/user/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,

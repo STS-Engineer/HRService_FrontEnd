@@ -39,7 +39,7 @@ const EmployeeLogs = () => {
       }
 
       const { data } = await axios.get(
-        `http://localhost:3000/pointing/logs/employee/${user.id}`,
+        `https://bhr-avocarbon.azurewebsites.net/pointing/logs/employee/${user.id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
           params: { startDate: filters.startDate, endDate: filters.endDate },
@@ -78,9 +78,14 @@ const EmployeeLogs = () => {
   const syncLogs = async () => {
     try {
       setLoading(true);
-      await axios.post("http://localhost:3000/pointing/sync");
+
+      // Call the sync API for device logs
+      await axios.post("https://bhr-avocarbon.azurewebsites.net/pointing/sync");
+      message.success(t("logs.syncSuccess"));
+
+      // Call the update pointing statuses API
       await axios.post(
-        "http://localhost:3000/pointing/update-pointing-statuses"
+        "https://bhr-avocarbon.azurewebsites.net/pointing/update-pointing-statuses"
       );
       message.success(t("logs.syncSuccess"));
       fetchLogs();

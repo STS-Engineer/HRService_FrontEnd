@@ -26,7 +26,7 @@ const SalaryCertificateUpload = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/salary-certificates",
+        "https://bhr-avocarbon.azurewebsites.net/salary-certificates",
         formData,
         {
           headers: {

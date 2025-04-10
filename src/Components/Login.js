@@ -39,7 +39,7 @@ const Login = () => {
 
   const handleSubmit = async (values) => {
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", {
+      const response = await axios.post("https://bhr-avocarbon.azurewebsites.net/auth/login", {
         email: values.username,
         password: values.password,
         plant_connection: values.plantConnection,
