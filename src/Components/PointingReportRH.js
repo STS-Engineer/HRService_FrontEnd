@@ -38,11 +38,11 @@ const PointingReportRH = () => {
       let url = "http://localhost:3000/pointing/allattendance/";
 
       if (employee_id) {
-        url = `http://localhost:3000/pointing/attendance/employee?employee_id=${employee_id}`;
+        url = `https://bhr-avocarbon.azurewebsites.net/pointing/attendance/employee?employee_id=${employee_id}`;
       } else if (date) {
-        url = `http://localhost:3000/pointing/attendance/date?date=${date}`;
+        url = `https://bhr-avocarbon.azurewebsites.net/pointing/attendance/date?date=${date}`;
       } else if (employee_name) {
-        url = `http://localhost:3000/pointing/attendance/name?name=${employee_name}`;
+        url = `https://bhr-avocarbon.azurewebsites.net/pointing/attendance/name?name=${employee_name}`;
       }
 
       const response = await axios.get(url);
@@ -59,7 +59,7 @@ const PointingReportRH = () => {
   // Insert new attendance record
   const handleInsertAttendance = async () => {
     try {
-      await axios.post("http://localhost:3000/pointing/allattendance"); // Adjust the endpoint if needed
+      await axios.post("https://bhr-avocarbon.azurewebsites.net/pointing/allattendance"); // Adjust the endpoint if needed
       notification.success({
         message: "Success",
         description: "Attendance records inserted successfully!",
@@ -78,7 +78,7 @@ const PointingReportRH = () => {
   const handleDownloadExcel = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3000/pointing/attendance/export/excel",
+        "https://bhr-avocarbon.azurewebsites.net/pointing/attendance/export/excel",
         {
           responseType: "blob",
         }
