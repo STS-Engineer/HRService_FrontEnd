@@ -41,7 +41,7 @@ const PointingManagementRH = () => {
   useEffect(() => {
     const fetchPointeuses = async () => {
       try {
-        const response = await fetch("http://localhost:3000/pointing/devices");
+        const response = await fetch("https://bhr-avocarbon.azurewebsites.net/pointing/devices");
         if (!response.ok) throw new Error("Failed to fetch machines");
 
         const data = await response.json();
@@ -77,7 +77,7 @@ const PointingManagementRH = () => {
   const fetchEmployees = async (pointeuse) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/pointing/pointeuses/${pointeuse.id}/employees`
+        `https://bhr-avocarbon.azurewebsites.net/pointing/pointeuses/${pointeuse.id}/employees`
       );
       if (!response.ok) throw new Error("Failed to fetch employees");
 
@@ -95,7 +95,7 @@ const PointingManagementRH = () => {
   const handleDeletePointeuse = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/pointing/delete-device/${id}`,
+        `https://bhr-avocarbon.azurewebsites.net/pointing/delete-device/${id}`,
         { method: "DELETE" }
       );
 
@@ -113,7 +113,7 @@ const PointingManagementRH = () => {
   const handleAddPointeuse = async (values) => {
     try {
       const response = await fetch(
-        "http://localhost:3000/pointing/add-device",
+        "https://bhr-avocarbon.azurewebsites.net/pointing/add-device",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
