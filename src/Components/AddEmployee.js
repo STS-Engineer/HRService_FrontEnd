@@ -35,10 +35,10 @@ const AddEmployeeForm = () => {
     const fetchData = async () => {
       try {
         const deptResponse = await axios.get(
-          "http://localhost:3000/departments"
+          "https://bhr-avocarbon.azurewebsites.net/departments"
         );
         const horairesResponse = await axios.get(
-          "http://localhost:3000/horaires"
+          "https://bhr-avocarbon.azurewebsites.net/horaires"
         );
 
         setDepartments(deptResponse.data);
