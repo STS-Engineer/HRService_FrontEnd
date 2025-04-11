@@ -31,7 +31,7 @@ const WorkingHoursSummary = () => {
       const formattedFromDate = moment(fromDate).format("YYYY-MM-DD");
       const formattedToDate = moment(toDate).format("YYYY-MM-DD");
       const response = await axios.get(
-        "http://localhost:3000/pointing/logs/working_hours",
+        "https://bhr-avocarbon.azurewebsites.net/pointing/logs/working_hours",
         {
           params: { fromDate: formattedFromDate, toDate: formattedToDate },
         }
@@ -59,7 +59,7 @@ const WorkingHoursSummary = () => {
       const formattedToDate = moment(toDate).format("YYYY-MM-DD");
 
       const response = await axios.get(
-        "http://localhost:3000/pointing/working_hours",
+        "https://bhr-avocarbon.azurewebsites.net/pointing/working_hours",
         {
           params: { fromDate: formattedFromDate, toDate: formattedToDate },
           responseType: "blob",
