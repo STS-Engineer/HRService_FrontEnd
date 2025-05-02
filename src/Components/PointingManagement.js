@@ -29,46 +29,47 @@ const PointingManagement = () => {
     moment().startOf("day"),
     moment().endOf("day"),
   ]);
-  const [selectedDate, setSelectedDate] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const fetchLogs = async () => {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
+
+      const params = {
+        startDate: dateRange[0].format("YYYY-MM-DD"),
+        endDate: dateRange[1].format("YYYY-MM-DD"),
+        // You can optionally add employeeId if needed:
+        // employeeId: currentUserId
+      };
+
       const response = await axios.get(
-        `https://bhr-avocarbon.azurewebsites.net/pointing/`,
+        "https://bhr-avocarbon.azurewebsites.net/pointing/filter",
         {
           headers: { Authorization: `Bearer ${token}` },
+          params,
         }
       );
+
       setData(response.data);
-      filterData(response.data, dateRange, selectedDate);
+      filterData(response.data);
     } catch (error) {
+      console.error(error);
       message.error("Failed to fetch logs.");
     } finally {
       setLoading(false);
     }
   };
 
-  const filterData = (logs, dateRange, selectedDate) => {
+  const filterData = (logs) => {
     const filtered = logs.filter((log) => {
       const logDate = moment(log.log_time).startOf("day");
-
-      const isInDateRange = selectedDate
-        ? logDate.isSame(moment(selectedDate).startOf("day"), "day")
-        : logDate.isBetween(
-            moment(dateRange[0]).startOf("day"),
-            moment(dateRange[1]).endOf("day"),
-            "day",
-            "[]"
-          );
 
       const isInSearchTerm =
         log.firstname.toLowerCase().includes(searchTerm.toLowerCase()) ||
         log.lastname.toLowerCase().includes(searchTerm.toLowerCase());
 
-      return isInDateRange && isInSearchTerm;
+      return isInSearchTerm;
     });
 
     const groupedData = groupLogsByEmployeeAndDate(filtered);
@@ -115,18 +116,12 @@ const PointingManagement = () => {
 
   const handleSearch = (term) => {
     setSearchTerm(term);
-    filterData(data, dateRange, selectedDate);
+    filterData(data);
   };
 
   const handleDateChange = (dates) => {
     if (!dates || dates.length === 0) return;
     setDateRange(dates);
-    filterData(data, dates, selectedDate);
-  };
-
-  const handleSelectedDateChange = (date) => {
-    setSelectedDate(date);
-    filterData(data, dateRange, date);
   };
 
   const columns = [
@@ -157,7 +152,7 @@ const PointingManagement = () => {
               style={{ display: "inline-flex", alignItems: "center" }}
             >
               <ClockCircleOutlined style={{ marginRight: 4 }} />
-              {moment(record.logs.in).utc(false).format("HH:mm:ss")}
+              {moment(record.logs.in).format("HH:mm:ss")}
             </Tag>
           ) : (
             <Tag color="red">Not Logged In</Tag>
@@ -169,7 +164,7 @@ const PointingManagement = () => {
               style={{ display: "inline-flex", alignItems: "center" }}
             >
               <ClockCircleOutlined style={{ marginRight: 4 }} />
-              {moment(record.logs.out).utc(false).format("HH:mm:ss")}
+              {moment(record.logs.out).format("HH:mm:ss")}
             </Tag>
           ) : (
             <Tag color="red">Not Logged Out</Tag>
@@ -196,9 +191,10 @@ const PointingManagement = () => {
     },
   ];
 
+  // Fetch logs on mount and when date range changes
   useEffect(() => {
     fetchLogs();
-  }, []);
+  }, [dateRange]);
 
   return (
     <Card style={{ padding: 20, borderRadius: 10 }}>
@@ -214,9 +210,8 @@ const PointingManagement = () => {
           />
           <RangePicker
             onChange={handleDateChange}
-            suffixIcon={<CalendarOutlined />}
-            defaultValue={dateRange}
-            style={{ width: "300px" }}
+            value={dateRange}
+            style={{ width: "350px" }}
           />
           <Button
             type="primary"
@@ -227,7 +222,6 @@ const PointingManagement = () => {
             Refresh Logs
           </Button>
         </div>
-
         {loading ? (
           <Spin size="large" />
         ) : (
